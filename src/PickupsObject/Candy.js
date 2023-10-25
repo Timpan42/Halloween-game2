@@ -1,6 +1,6 @@
-import Enemy from './Enemy'
+import PickUps from '../PickUps'
 
-export default class Candy extends Enemy {
+export default class Candy extends PickUps {
   constructor(game, x, y) {
     super(game)
     this.width = 32

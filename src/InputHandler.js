@@ -23,6 +23,7 @@ export default class InputHandler {
         this.game.player.shoot(this.mouseX, this.mouseY)
       }
 
+
       if (event.key === 'p') {
         this.game.debug = !this.game.debug
       }

@@ -54,6 +54,8 @@ export default class UserInterface {
       )
       context.fillText(`keys: ${this.game.keys}`, this.game.width - 20, 150)
       context.fillText(`Enemies: ${this.game.enemies.length}`, this.game.width - 20, 175)
+      context.fillText(`Pickups: ${this.game.pickUpsArray.length}`, this.game.width - 20, 200)
+
     }
 
     context.restore()

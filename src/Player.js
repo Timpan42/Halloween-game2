@@ -56,6 +56,8 @@ export default class Player {
     this.y += this.speedY
     this.x += this.speedX
 
+
+
     // Ammo over time 
     if (this.ammoTimer > this.ammoInterval && this.ammo < this.maxAmmo) {
       this.ammoTimer = 0

@@ -1,8 +1,8 @@
 import InputHandler from './InputHandler.js'
 import Player from './Player.js'
 import UserInterface from './UserInterface.js'
-import Pumpkin from './Pumpkin.js'
-import Candy from './Candy.js'
+import Pumpkin from './Enemies/Pumpkin.js'
+import Candy from './PickupsObject/Candy.js'
 export default class Game {
   constructor(width, height, canvasPosition) {
     this.width = width
@@ -15,6 +15,11 @@ export default class Game {
     this.gravity = 1
     this.debug = false
     this.gameTime = 0
+
+    this.pickUpsArray = []
+    this.pickUpsTimer = 0
+    this.pickUpsInterval = 2000
+
     this.enemies = []
     this.enemyTimer = 0
     this.enemyInterval = 1000
@@ -33,6 +38,33 @@ export default class Game {
       return
     }
 
+    //Spawn pickups
+    if (this.pickUpsTimer > this.pickUpsInterval) {
+      let x = Math.random() * (this.width - 100) // spawn on left or right edge
+      let y = Math.random() * (this.height - 100) // spawn on top or bottom edge
+
+      this.pickUpsArray.push(new Candy(this, x, y))
+      this.pickUpsTimer = 0
+    } else {
+      this.pickUpsTimer += deltaTime
+    }
+
+
+    // collision check pickups
+    this.pickUpsArray.forEach((pickUps) => {
+      pickUps.update(this.player)
+
+      if (this.checkCollision(this.player, pickUps)) {
+        pickUps.markedForDeletion = true
+
+        if (pickUps.type === 'candy') {
+          this.player.lives += 1
+        }
+      }
+    })
+
+
+
     //Span enemy
     if (this.enemyTimer > this.enemyInterval) {
       let x = Math.random() < 0.5 ? 0 : this.width // spawn on left or right edge
@@ -46,26 +78,22 @@ export default class Game {
       } else {
         x = Math.random() * this.width // if on bottom edge, randomize x position
       }
-      if (Math.random() < 0.2) {
-        this.enemies.push(new Candy(this, x, y))
-      } else {
-        this.enemies.push(new Pumpkin(this, x, y))
-      }
+      this.enemies.push(new Pumpkin(this, x, y))
       this.enemyTimer = 0
     } else {
       this.enemyTimer += deltaTime
     }
-    this.player.update(deltaTime)
 
-    // collision check 
+    // collision check enemy
     this.enemies.forEach((enemy) => {
       // collision with enemy and player 
       enemy.update(this.player)
+
       if (this.checkCollision(this.player, enemy)) {
-        this.player.lives--
         enemy.markedForDeletion = true
-        if (enemy.type === 'candy') {
-          this.player.ammo += 5
+
+        if (enemy.type === 'pumpkin') {
+          this.player.lives--
         }
       }
 
@@ -81,12 +109,20 @@ export default class Game {
         }
       })
     })
+
+
+
+    this.player.update(deltaTime)
+    this.pickUpsArray = this.pickUpsArray.filter((pickUps) => !pickUps.markedForDeletion)
     this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
   }
 
   draw(context) {
     this.ui.draw(context)
     this.player.draw(context)
+    this.pickUpsArray.forEach((pickUps) => {
+      pickUps.draw(context)
+    })
     this.enemies.forEach((enemy) => {
       enemy.draw(context)
     })

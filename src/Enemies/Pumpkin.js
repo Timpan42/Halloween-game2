@@ -1,4 +1,4 @@
-import Enemy from './Enemy.js'
+import Enemy from '../Enemy.js'
 
 export default class Pumpkin extends Enemy {
   constructor(game, x, y) {
@@ -10,6 +10,7 @@ export default class Pumpkin extends Enemy {
     this.speed = 2
     this.lives = Math.floor(Math.random() * 3) + 1
     this.color = 'orange'
+    this.type = 'pumpkin'
   }
 
   update(player) {
