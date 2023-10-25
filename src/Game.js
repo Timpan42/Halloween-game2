@@ -11,7 +11,6 @@ export default class Game {
     this.input = new InputHandler(this)
     this.ui = new UserInterface(this)
     this.keys = []
-    this.enemies = []
     this.gameOver = false
     this.gravity = 1
     this.debug = false

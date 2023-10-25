@@ -53,6 +53,7 @@ export default class UserInterface {
         125
       )
       context.fillText(`keys: ${this.game.keys}`, this.game.width - 20, 150)
+      context.fillText(`Enemies: ${this.game.enemies.length}`, this.game.width - 20, 175)
     }
 
     context.restore()
