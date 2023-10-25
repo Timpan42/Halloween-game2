@@ -3,6 +3,7 @@ import Player from './Player.js'
 import UserInterface from './UserInterface.js'
 import Pumpkin from './Enemies/Pumpkin.js'
 import Heal from './PickupsObject/Heal.js'
+import Enemy from './Enemy.js'
 export default class Game {
   constructor(width, height, canvasPosition) {
     this.width = width
@@ -64,14 +65,10 @@ export default class Game {
 
       if (this.checkCollision(this.player, pickUps)) {
         pickUps.markedForDeletion = true
-
-        if (pickUps.type === 'heal') {
-          this.player.lives += 1
-          this.healPickups++
-        }
+        this.stats(pickUps.type)
+        console.log(pickUps.type)
       }
     })
-
 
 
     //Span enemy
@@ -87,6 +84,7 @@ export default class Game {
       } else {
         x = Math.random() * this.width // if on bottom edge, randomize x position
       }
+
       this.enemies.push(new Pumpkin(this, x, y))
       this.enemyTimer = 0
     } else {
@@ -101,8 +99,9 @@ export default class Game {
       if (this.checkCollision(this.player, enemy)) {
         enemy.markedForDeletion = true
 
-        if (enemy.type === 'pumpkin') {
+        if (enemy.type === "pumpkin") {
           this.player.lives--
+          this.stats(enemy)
         }
       }
 
@@ -113,10 +112,11 @@ export default class Game {
             enemy.lives -= projectile.damage
           } else {
 
-            this.points()
-
+            if (enemy.type === "pumpkin") {
+              this.points += 10
+            }
+            this.stats(enemy)
             enemy.markedForDeletion = true
-            this.enemyKills++
           }
           projectile.markedForDeletion = true
         }
@@ -130,15 +130,30 @@ export default class Game {
     this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
   }
 
-  stats(typ) {
+  stats(type) {
 
+    if (type === 'heal') {
+      this.player.lives += 1
+      this.healPickups++
+    } else if (type instanceof Enemy) {
+      this.enemyKills++
+    }
   }
 
-  points(enemyTyp) {
-    if (enemy.type === "pumpkin") {
+  points(enemyType) {
+    console.log(enemyType)
+
+    if (enemyType === "pumpkin") {
       this.points += 10
     }
+  }
 
+  damagePlayer(enemyType) {
+    console.log(enemyType)
+
+    if (enemyType === "pumpkin") {
+      this.player.lives--
+    }
   }
 
   draw(context) {
