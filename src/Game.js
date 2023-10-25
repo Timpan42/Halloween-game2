@@ -29,7 +29,7 @@ export default class Game {
     }
 
     if (this.gameOver) {
-
+      return
     }
 
     if (this.enemyTimer > this.enemyInterval) {
