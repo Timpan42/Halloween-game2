@@ -13,12 +13,14 @@ export default class UserInterface {
     context.shadowOffsetY = 2
     context.shadowColor = 'black'
 
+    // stats in the left
     context.textAlign = 'left'
     context.font = `${this.fontSize}px ${this.fontFamily}`
     context.fillText(`Lives: ${this.game.player.lives}`, 20, 30)
     context.fillText(`Ammo: ${this.game.player.ammo}`, 20, 60)
     context.fillText(`Time: ${(this.game.gameTime * 0.001).toFixed(1)}`, 20, 90)
 
+    // draw game over 
     if (this.game.gameOver) {
       context.textAlign = 'center'
       context.font = `50px ${this.fontFamily}`
@@ -29,7 +31,7 @@ export default class UserInterface {
       )
     }
 
-    // debug
+    // debug display 
     if (this.game.debug) {
       context.font = `15px Arial`
       context.textAlign = 'right'

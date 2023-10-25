@@ -24,14 +24,17 @@ export default class Game {
   }
 
   update(deltaTime) {
+    //stop clock 
     if (!this.gameOver) {
       this.gameTime += deltaTime
     }
 
+    //stop game
     if (this.gameOver) {
       return
     }
 
+    //Span enemy
     if (this.enemyTimer > this.enemyInterval) {
       let x = Math.random() < 0.5 ? 0 : this.width // spawn on left or right edge
       let y = Math.random() < 0.5 ? 0 : this.height // spawn on top or bottom edge
@@ -55,7 +58,9 @@ export default class Game {
     }
     this.player.update(deltaTime)
 
+    // collision check 
     this.enemies.forEach((enemy) => {
+      // collision with enemy and player 
       enemy.update(this.player)
       if (this.checkCollision(this.player, enemy)) {
         this.player.lives--
@@ -64,6 +69,8 @@ export default class Game {
           this.player.ammo += 5
         }
       }
+
+      // collision with enemy and projectile  
       this.player.projectiles.forEach((projectile) => {
         if (this.checkCollision(projectile, enemy)) {
           if (enemy.lives > 1) {

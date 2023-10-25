@@ -56,6 +56,7 @@ export default class Player {
     this.y += this.speedY
     this.x += this.speedX
 
+    // Ammo over time 
     if (this.ammoTimer > this.ammoInterval && this.ammo < this.maxAmmo) {
       this.ammoTimer = 0
       this.ammo++
@@ -76,7 +77,9 @@ export default class Player {
     // player color
     context.fillStyle = '#f00'
     context.fillRect(this.x, this.y, this.width, this.height)
+
     if (this.game.debug) {
+      // lines around player enemy 
       context.strokeStyle = '#000'
       context.strokeRect(this.x, this.y, this.width, this.height)
       context.lineWidth = 1
@@ -104,6 +107,7 @@ export default class Player {
       mouseX - (this.x + this.width / 2)
     )
 
+    // ca use ammo 
     if (this.ammo > 0) {
       this.ammo--
       this.projectiles.push(
