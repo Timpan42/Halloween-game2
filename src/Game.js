@@ -44,6 +44,7 @@ export default class Game {
 
     //stop game
     if (this.gameOver) {
+      this.player.ammo = 0
       return
     }
 
@@ -66,7 +67,6 @@ export default class Game {
       if (this.checkCollision(this.player, pickUps)) {
         pickUps.markedForDeletion = true
         this.stats(pickUps.type)
-        console.log(pickUps.type)
       }
     })
 
@@ -99,10 +99,8 @@ export default class Game {
       if (this.checkCollision(this.player, enemy)) {
         enemy.markedForDeletion = true
 
-        if (enemy.type === "pumpkin") {
-          this.player.lives--
-          this.stats(enemy)
-        }
+        this.damagePlayer(enemy.type)
+        this.stats(enemy)
       }
 
       // collision with enemy and projectile  
@@ -128,7 +126,7 @@ export default class Game {
     this.pickUpsArray = this.pickUpsArray.filter((pickUps) => !pickUps.markedForDeletion)
     this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
   }
-
+  // Puts information under the category Stats 
   stats(type) {
     if (type === 'heal') {
       this.player.lives += 1
@@ -137,16 +135,15 @@ export default class Game {
       this.enemyKills++
     }
   }
-
+  // Puts points in points
   countPoints(enemyType) {
     if (enemyType === "pumpkin") {
       this.points += 10
     }
   }
 
+  // Damage the player 
   damagePlayer(enemyType) {
-    console.log(enemyType)
-
     if (enemyType === "pumpkin") {
       this.player.lives--
     }
