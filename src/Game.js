@@ -112,9 +112,8 @@ export default class Game {
             enemy.lives -= projectile.damage
           } else {
 
-            if (enemy.type === "pumpkin") {
-              this.points += 10
-            }
+            this.countPoints(enemy.type)
+
             this.stats(enemy)
             enemy.markedForDeletion = true
           }
@@ -131,7 +130,6 @@ export default class Game {
   }
 
   stats(type) {
-
     if (type === 'heal') {
       this.player.lives += 1
       this.healPickups++
@@ -140,9 +138,7 @@ export default class Game {
     }
   }
 
-  points(enemyType) {
-    console.log(enemyType)
-
+  countPoints(enemyType) {
     if (enemyType === "pumpkin") {
       this.points += 10
     }
