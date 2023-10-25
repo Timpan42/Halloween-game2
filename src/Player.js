@@ -10,15 +10,18 @@ export default class Player {
 
     this.projectiles = []
 
+    //Move Speed
     this.speedX = 0
     this.speedY = 0
     this.maxSpeed = 6
 
+    //Gun
     this.maxAmmo = 20
     this.ammo = 20
     this.ammoTimer = 0
     this.ammoInterval = 500
 
+    //Lives
     this.lives = 10
   }
 
@@ -27,6 +30,7 @@ export default class Player {
       this.game.gameOver = true
     }
 
+    //Movement 
     if (this.game.keys.includes('ArrowLeft') || this.game.keys.includes('a')) {
       this.speedX = -this.maxSpeed
     } else if (
@@ -69,6 +73,7 @@ export default class Player {
   }
 
   draw(context) {
+    // player color
     context.fillStyle = '#f00'
     context.fillRect(this.x, this.y, this.width, this.height)
     if (this.game.debug) {

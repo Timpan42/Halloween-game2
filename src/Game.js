@@ -28,6 +28,10 @@ export default class Game {
       this.gameTime += deltaTime
     }
 
+    if (this.gameOver) {
+
+    }
+
     if (this.enemyTimer > this.enemyInterval) {
       let x = Math.random() < 0.5 ? 0 : this.width // spawn on left or right edge
       let y = Math.random() < 0.5 ? 0 : this.height // spawn on top or bottom edge
