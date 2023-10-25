@@ -2,19 +2,22 @@ import InputHandler from './InputHandler.js'
 import Player from './Player.js'
 import UserInterface from './UserInterface.js'
 import Pumpkin from './Enemies/Pumpkin.js'
-import Candy from './PickupsObject/Candy.js'
+import Heal from './PickupsObject/Heal.js'
 export default class Game {
   constructor(width, height, canvasPosition) {
     this.width = width
     this.height = height
+
     this.canvasPosition = canvasPosition
     this.input = new InputHandler(this)
     this.ui = new UserInterface(this)
+
     this.keys = []
-    this.gameOver = false
+    this.points = 0
     this.gravity = 1
-    this.debug = false
     this.gameTime = 0
+    this.gameOver = false
+    this.debug = false
 
     this.pickUpsArray = []
     this.pickUpsTimer = 0
@@ -23,6 +26,11 @@ export default class Game {
     this.enemies = []
     this.enemyTimer = 0
     this.enemyInterval = 1000
+
+    // statistik 
+    this.enemyKills = 0
+    this.healPickups = 0
+
 
     this.player = new Player(this)
   }
@@ -43,7 +51,7 @@ export default class Game {
       let x = Math.random() * (this.width - 100) // spawn on left or right edge
       let y = Math.random() * (this.height - 100) // spawn on top or bottom edge
 
-      this.pickUpsArray.push(new Candy(this, x, y))
+      this.pickUpsArray.push(new Heal(this, x, y))
       this.pickUpsTimer = 0
     } else {
       this.pickUpsTimer += deltaTime
@@ -57,8 +65,9 @@ export default class Game {
       if (this.checkCollision(this.player, pickUps)) {
         pickUps.markedForDeletion = true
 
-        if (pickUps.type === 'candy') {
+        if (pickUps.type === 'heal') {
           this.player.lives += 1
+          this.healPickups++
         }
       }
     })
@@ -103,7 +112,11 @@ export default class Game {
           if (enemy.lives > 1) {
             enemy.lives -= projectile.damage
           } else {
+
+            this.points()
+
             enemy.markedForDeletion = true
+            this.enemyKills++
           }
           projectile.markedForDeletion = true
         }
@@ -117,8 +130,18 @@ export default class Game {
     this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
   }
 
+  stats(typ) {
+
+  }
+
+  points(enemyTyp) {
+    if (enemy.type === "pumpkin") {
+      this.points += 10
+    }
+
+  }
+
   draw(context) {
-    this.ui.draw(context)
     this.player.draw(context)
     this.pickUpsArray.forEach((pickUps) => {
       pickUps.draw(context)
@@ -126,6 +149,8 @@ export default class Game {
     this.enemies.forEach((enemy) => {
       enemy.draw(context)
     })
+    this.ui.draw(context)
+
   }
 
   checkCollision(object1, object2) {

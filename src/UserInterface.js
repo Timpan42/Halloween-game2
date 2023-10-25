@@ -19,6 +19,7 @@ export default class UserInterface {
     context.fillText(`Lives: ${this.game.player.lives}`, 20, 30)
     context.fillText(`Ammo: ${this.game.player.ammo}`, 20, 60)
     context.fillText(`Time: ${(this.game.gameTime * 0.001).toFixed(1)}`, 20, 90)
+    context.fillText(`Points: ${this.game.points}`, 20, 120)
 
     // draw game over 
     if (this.game.gameOver) {
@@ -55,6 +56,10 @@ export default class UserInterface {
       context.fillText(`keys: ${this.game.keys}`, this.game.width - 20, 150)
       context.fillText(`Enemies: ${this.game.enemies.length}`, this.game.width - 20, 175)
       context.fillText(`Pickups: ${this.game.pickUpsArray.length}`, this.game.width - 20, 200)
+
+      //stats
+      context.fillText(`Kills: ${this.game.enemyKills}`, this.game.width - 20, 225)
+      context.fillText(`Heals: ${this.game.healPickups}`, this.game.width - 20, 250)
 
     }
 
