@@ -20,15 +20,21 @@ export default class Game {
     this.gameOver = false
     this.debug = false
 
+    // Pickups
     this.pickUpsArray = []
     this.pickUpsTimer = 0
     this.pickUpsInterval = 2000
 
+    // Pickups Block
+    this.healBlock = 0
+    this.healBlockMax = 5
+
+    // Enemies
     this.enemies = []
     this.enemyTimer = 0
     this.enemyInterval = 1000
 
-    // statistik 
+    // statistic 
     this.enemyKills = 0
     this.healPickups = 0
 
@@ -48,17 +54,23 @@ export default class Game {
       return
     }
 
+    //PICKUPS
+
     //Spawn pickups
     if (this.pickUpsTimer > this.pickUpsInterval) {
       let x = Math.random() * (this.width - 100) // spawn on left or right edge
       let y = Math.random() * (this.height - 100) // spawn on top or bottom edge
 
-      this.pickUpsArray.push(new Heal(this, x, y))
+      if (this.healBlock < this.healBlockMax) {
+        this.pickUpsArray.push(new Heal(this, x, y))
+        let objectSpawn = this.pickUpsArray[this.pickUpsArray.length - 1]
+        this.spawnStats(objectSpawn.type)
+      }
+
       this.pickUpsTimer = 0
     } else {
       this.pickUpsTimer += deltaTime
     }
-
 
     // collision check pickups
     this.pickUpsArray.forEach((pickUps) => {
@@ -66,10 +78,12 @@ export default class Game {
 
       if (this.checkCollision(this.player, pickUps)) {
         pickUps.markedForDeletion = true
-        this.stats(pickUps.type)
+        this.pickUpsStats(pickUps.type)
       }
     })
 
+
+    // ENEMIES
 
     //Span enemy
     if (this.enemyTimer > this.enemyInterval) {
@@ -100,7 +114,7 @@ export default class Game {
         enemy.markedForDeletion = true
 
         this.damagePlayer(enemy.type)
-        this.stats(enemy)
+        this.pickUpsStats(enemy)
 
       }
 
@@ -112,7 +126,7 @@ export default class Game {
           } else {
 
             this.countPoints(enemy.type)
-            this.stats(enemy)
+            this.pickUpsStats(enemy)
 
             enemy.markedForDeletion = true
           }
@@ -121,7 +135,7 @@ export default class Game {
       })
     })
 
-
+    //UPDATE
 
     this.player.update(deltaTime)
     this.pickUpsArray = this.pickUpsArray.filter((pickUps) => !pickUps.markedForDeletion)
@@ -129,11 +143,19 @@ export default class Game {
   }
 
   //FUNCTIONS 
+
+  spawnStats(objectSpawn) {
+    if (objectSpawn === 'heal') {
+      this.healBlock++
+    }
+  }
+
   // Puts information under the category Stats 
-  stats(type) {
+  pickUpsStats(type) {
     if (type === 'heal') {
       this.player.lives += 1
       this.healPickups++
+      this.healBlock--
     } else if (type instanceof Enemy) {
       this.enemyKills++
     }
