@@ -27,6 +27,7 @@ export default class InputHandler {
     window.addEventListener('keyup', (event) => {
       if (this.game.keys.indexOf(event.key) > -1) {
         this.game.keys.splice(this.game.keys.indexOf(event.key), 1)
+        this.shootTimer = 0
       }
     })
 

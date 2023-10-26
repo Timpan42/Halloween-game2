@@ -15,6 +15,11 @@ export default class Player {
     this.speedY = 0
     this.maxSpeed = 6
 
+    //Shoot
+    this.canShoot = true
+    this.shootTimer = 0
+    this.shootInterval = 500
+
     //Gun
     this.maxAmmo = 20
     this.ammo = 20
@@ -73,6 +78,13 @@ export default class Player {
     this.projectiles = this.projectiles.filter(
       (projectile) => !projectile.markedForDeletion
     )
+
+    // Can shoot logic 
+    if (this.shootTimer > this.shootInterval) {
+      this.canShoot = true
+    } else {
+      this.shootTimer += deltaTime
+    }
   }
 
   draw(context) {
@@ -103,25 +115,29 @@ export default class Player {
   }
 
   shoot(mouseX, mouseY) {
-    // get angle between player and mouse
-    const angle = Math.atan2(
-      mouseY - (this.y + this.height / 2),
-      mouseX - (this.x + this.width / 2)
-    )
-
-    // ca use ammo 
-    if (this.ammo > 0) {
-      this.ammo--
-      this.projectiles.push(
-        new Projectile(
-          this.game,
-          this.x + this.width / 2,
-          this.y + this.height / 2,
-          angle
-        )
+    if (this.canShoot) {
+      // get angle between player and mouse
+      const angle = Math.atan2(
+        mouseY - (this.y + this.height / 2),
+        mouseX - (this.x + this.width / 2)
       )
-    } else {
-      console.log('out of ammo')
+
+      // ca use ammo 
+      if (this.ammo > 0) {
+        this.canShoot = false
+        this.shootTimer = 0
+        this.ammo--
+        this.projectiles.push(
+          new Projectile(
+            this.game,
+            this.x + this.width / 2,
+            this.y + this.height / 2,
+            angle
+          )
+        )
+      } else {
+        console.log('out of ammo')
+      }
     }
   }
 }
