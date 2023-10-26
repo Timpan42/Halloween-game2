@@ -1,4 +1,4 @@
-import Projectile from './Projectile.js'
+import Projectile from './Wepons/Projectile.js'
 
 export default class Player {
   constructor(game) {

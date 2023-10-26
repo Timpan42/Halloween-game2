@@ -1,4 +1,4 @@
-import PickUps from '../PickUps'
+import PickUps from './PickUps'
 
 export default class Heal extends PickUps {
   constructor(game, x, y) {

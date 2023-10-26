@@ -1,9 +1,9 @@
-import InputHandler from './InputHandler.js'
-import Player from './Player.js'
+import InputHandler from './Player/InputHandler.js'
+import Player from './Player/Player.js'
 import UserInterface from './UserInterface.js'
 import Pumpkin from './Enemies/Pumpkin.js'
 import Heal from './PickupsObject/Heal.js'
-import Enemy from './Enemy.js'
+import Enemy from './Enemies/Enemy.js'
 export default class Game {
   constructor(width, height, canvasPosition) {
     this.width = width
@@ -101,6 +101,7 @@ export default class Game {
 
         this.damagePlayer(enemy.type)
         this.stats(enemy)
+
       }
 
       // collision with enemy and projectile  
@@ -111,8 +112,8 @@ export default class Game {
           } else {
 
             this.countPoints(enemy.type)
-
             this.stats(enemy)
+
             enemy.markedForDeletion = true
           }
           projectile.markedForDeletion = true
@@ -126,6 +127,8 @@ export default class Game {
     this.pickUpsArray = this.pickUpsArray.filter((pickUps) => !pickUps.markedForDeletion)
     this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
   }
+
+  //FUNCTIONS 
   // Puts information under the category Stats 
   stats(type) {
     if (type === 'heal') {
