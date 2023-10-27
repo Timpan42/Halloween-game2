@@ -1,7 +1,7 @@
 # Att göra lista 
 
 ## Idag
-* Göra vägar som man inte kan gå förbi, player områdenpm
+* Göra vägar som man inte kan gå förbi, player området
 * Wave mekanik för enemy
 
 ## Måste göra för att göra klart 

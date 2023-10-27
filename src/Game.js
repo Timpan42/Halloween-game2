@@ -4,6 +4,7 @@ import UserInterface from './UserInterface.js'
 import Pumpkin from './Enemies/Pumpkin.js'
 import Heal from './PickupsObject/Heal.js'
 import Enemy from './Enemies/Enemy.js'
+import Wall from './NotMovableObject/Wall.js'
 export default class Game {
   constructor(width, height, canvasPosition) {
     this.width = width
@@ -12,6 +13,14 @@ export default class Game {
     this.canvasPosition = canvasPosition
     this.input = new InputHandler(this)
     this.ui = new UserInterface(this)
+
+    this.wallArray = [
+      new Wall(this, 1400, 32, 0, 0),
+      new Wall(this, 32, 800, 0, 0),
+      new Wall(this, 32, 800, 1368, 0),
+      new Wall(this, 1400, 32, 0, 768)
+    ]
+
 
     this.keys = []
     this.points = 0
@@ -53,6 +62,14 @@ export default class Game {
       this.player.ammo = 0
       return
     }
+
+
+    this.wallArray.forEach((wall) => {
+
+      if (this.checkCollision(this.player, wall)) {
+
+      }
+    })
 
 
     //PICKUPS
@@ -175,6 +192,9 @@ export default class Game {
   }
 
   draw(context) {
+    this.wallArray.forEach((wall) => {
+      wall.draw(context)
+    })
     this.player.draw(context)
     this.pickUpsArray.forEach((pickUps) => {
       pickUps.draw(context)
