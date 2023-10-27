@@ -21,7 +21,9 @@ export default class Projectile {
     this.x += velocity.x * (deltaTime / 1000)
     this.y += velocity.y * (deltaTime / 1000)
 
-    if (this.x > this.game.width) {
+    if (this.x > (this.game.width + 20) || this.x < -10) {
+      this.markedForDeletion = true
+    } else if (this.y > (this.game.height + 20) || this.y < -10) {
       this.markedForDeletion = true
     }
   }

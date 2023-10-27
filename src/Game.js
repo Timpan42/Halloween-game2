@@ -54,8 +54,8 @@ export default class Game {
       return
     }
 
-    //PICKUPS
 
+    //PICKUPS
     //Spawn pickups
     if (this.pickUpsTimer > this.pickUpsInterval) {
       let x = Math.random() * (this.width - 100) // spawn on left or right edge
