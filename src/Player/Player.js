@@ -8,6 +8,13 @@ export default class Player {
     this.x = this.game.width / 2 - this.width / 2
     this.y = this.game.height / 2 - this.height / 2
 
+    //For collision 
+    this.halfW = this.width / 2
+    this.halfH = this.height / 2
+
+    this.centerX = this.x + this.halfW
+    this.centerY = this.y + this.halfH
+
     this.projectiles = []
 
     //Move Speed
@@ -35,6 +42,9 @@ export default class Player {
       this.game.gameOver = true
     }
 
+    this.centerX = this.x + this.halfW
+    this.centerY = this.y + this.halfH
+
     //Movement 
     if (this.game.keys.includes('ArrowLeft') || this.game.keys.includes('a')) {
       this.speedX = -this.maxSpeed
@@ -60,8 +70,6 @@ export default class Player {
 
     this.y += this.speedY
     this.x += this.speedX
-
-
 
     // Ammo over time 
     if (this.ammoTimer > this.ammoInterval && this.ammo < this.maxAmmo) {
@@ -122,7 +130,7 @@ export default class Player {
         mouseX - (this.x + this.width / 2)
       )
 
-      // ca use ammo 
+      // can use ammo 
       if (this.ammo > 0) {
         this.canShoot = false
         this.shootTimer = 0

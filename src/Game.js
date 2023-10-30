@@ -63,14 +63,15 @@ export default class Game {
       return
     }
 
-
+    // WALL
+    // Wall collision 
     this.wallArray.forEach((wall) => {
 
       if (this.checkCollision(this.player, wall)) {
-
+        this.checkSmartCollision(this.player, wall)
       }
-    })
 
+    })
 
     //PICKUPS
     //Spawn pickups
@@ -101,66 +102,63 @@ export default class Game {
 
 
     // ENEMIES
-
     //Span enemy
-    if (this.enemyTimer > this.enemyInterval) {
-      let x = Math.random() < 0.5 ? 0 : this.width // spawn on left or right edge
-      let y = Math.random() < 0.5 ? 0 : this.height // spawn on top or bottom edge
-      if (x === 0) {
-        y = Math.random() * this.height // if on left edge, randomize y position
-      } else if (x === this.width) {
-        y = Math.random() * this.height // if on right edge, randomize y position
-      } else if (y === 0) {
-        x = Math.random() * this.width // if on top edge, randomize x position
-      } else {
-        x = Math.random() * this.width // if on bottom edge, randomize x position
-      }
+    // if (this.enemyTimer > this.enemyInterval) {
+    //   let x = Math.random() < 0.5 ? 0 : this.width // spawn on left or right edge
+    //   let y = Math.random() < 0.5 ? 0 : this.height // spawn on top or bottom edge
+    //   if (x === 0) {
+    //     y = Math.random() * this.height // if on left edge, randomize y position
+    //   } else if (x === this.width) {
+    //     y = Math.random() * this.height // if on right edge, randomize y position
+    //   } else if (y === 0) {
+    //     x = Math.random() * this.width // if on top edge, randomize x position
+    //   } else {
+    //     x = Math.random() * this.width // if on bottom edge, randomize x position
+    //   }
 
-      this.enemies.push(new Pumpkin(this, x, y))
-      this.enemyTimer = 0
-    } else {
-      this.enemyTimer += deltaTime
-    }
+    //   this.enemies.push(new Pumpkin(this, x, y))
+    //   this.enemyTimer = 0
+    // } else {
+    //   this.enemyTimer += deltaTime
+    // }
 
-    // collision check enemy
-    this.enemies.forEach((enemy) => {
-      // collision with enemy and player 
-      enemy.update(this.player)
+    // // collision check enemy
+    // this.enemies.forEach((enemy) => {
+    //   // collision with enemy and player 
+    //   enemy.update(this.player)
 
-      if (this.checkCollision(this.player, enemy)) {
-        enemy.markedForDeletion = true
+    //   if (this.checkCollision(this.player, enemy)) {
+    //     enemy.markedForDeletion = true
 
-        this.damagePlayer(enemy.type)
-        this.pickUpsStats(enemy)
+    //     this.damagePlayer(enemy.type)
+    //     this.pickUpsStats(enemy)
 
-      }
+    //   }
 
-      // collision with enemy and projectile  
-      this.player.projectiles.forEach((projectile) => {
-        if (this.checkCollision(projectile, enemy)) {
-          if (enemy.lives > 1) {
-            enemy.lives -= projectile.damage
-          } else {
+    //   // collision with enemy and projectile  
+    //   this.player.projectiles.forEach((projectile) => {
+    //     if (this.checkCollision(projectile, enemy)) {
+    //       if (enemy.lives > 1) {
+    //         enemy.lives -= projectile.damage
+    //       } else {
 
-            this.countPoints(enemy.type)
-            this.pickUpsStats(enemy)
+    //         this.countPoints(enemy.type)
+    //         this.pickUpsStats(enemy)
 
-            enemy.markedForDeletion = true
-          }
-          projectile.markedForDeletion = true
-        }
-      })
-    })
+    //         enemy.markedForDeletion = true
+    //       }
+    //       projectile.markedForDeletion = true
+    //     }
+    //   })
+    // })
 
     //UPDATE
-
     this.player.update(deltaTime)
     this.pickUpsArray = this.pickUpsArray.filter((pickUps) => !pickUps.markedForDeletion)
-    this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
+    // this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
   }
 
   //FUNCTIONS 
-
   spawnStats(objectSpawn) {
     if (objectSpawn === 'heal') {
       this.healBlock++
@@ -199,9 +197,9 @@ export default class Game {
     this.pickUpsArray.forEach((pickUps) => {
       pickUps.draw(context)
     })
-    this.enemies.forEach((enemy) => {
-      enemy.draw(context)
-    })
+    // this.enemies.forEach((enemy) => {
+    //   enemy.draw(context)
+    // })
     this.ui.draw(context)
 
   }
@@ -214,4 +212,44 @@ export default class Game {
       object1.height + object1.y > object2.y
     )
   }
+
+  checkSmartCollision(object1, object2) {
+    this.diffX = object1.centerX - object2.centerX
+    this.diffY = object1.centerY - object2.centerY
+    this.minXDist = object1.halfW + object2.halfW
+    this.minYDist = object1.halfH + object2.halfH
+    this.depthX = this.diffX > 0 ? this.minXDist - this.diffX : -this.minXDist - this.diffX
+    this.depthY = this.diffY > 0 ? this.minYDist - this.diffY : -this.minYDist - this.diffY
+
+
+    if (this.depthX != 0 && this.depthY != 0) {
+      if (Math.abs(this.depthX) < Math.abs(this.depthY)) {
+        // Collision along the X axis.
+        if (this.depthX > 0) {
+          // Left side collision
+          console.log(this.depthX)
+          console.log("vänster sida coalition")
+        }
+        else {
+          // Right side collision
+          console.log(this.depthX)
+          console.log("höger sida coalition")
+        }
+      }
+      else {
+        // Collision along the Y axis.
+        if (this.depthY > 0) {
+          // Top side collision
+          console.log("top sida coalition")
+
+        }
+        else {
+          // Bottom side collision
+          console.log("bot sida coalition")
+
+        }
+      }
+    }
+  }
+
 }

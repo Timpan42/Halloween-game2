@@ -10,5 +10,13 @@ export default class Wall extends Object {
         this.y = y
         this.color = '#08f'
         this.type = 'wall'
+
+        //For collision 
+        this.halfW = this.width / 2
+        this.halfH = this.height / 2
+        this.centerX = x + this.halfW
+        this.centerY = y + this.halfH
+
+
     }
 }
