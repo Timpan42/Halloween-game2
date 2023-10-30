@@ -1,23 +1,47 @@
 # Att göra lista 
 
-## Idag
-* Göra vägar som man inte kan gå förbi, player området
+## Att göra Idag
+* Göra vägar som man inte kan gå förbi, player området (fixa collation)
 * Wave mekanik för enemy
+* Få knappar att funka i UI
+* Starting UI
 
 ## Måste göra för att göra klart 
+### Allmänt
+* Ljud
+* Halloween sprites 
+
+### Enemies
+* Bossar på Wave 5 
+* Varje tre Waves en ny Enemy 
+* Tank (Mycket hp rör sig långsam, gör inte så mycket damage)
+* Glasskanon (Lite hp, snabb och gör mycket skada)
+
+
+### Pickups
+* Coins 
+*  
+
+### Olika vapen
+* En typ av trippel projectile vapen
+* 
+
+### stats 
+* Har coins som man kan köpa uppgraderingar 
+* Mellan varje 5 waves kan man få uppgradera sina stats 
 * Göra om points systemet så man använder en array som man går igenom istället för många if satser  
-* Halloween sprites
-* Ljud 
-* Mer Enemies 
-* Mer PickUps 
+
+### UI
+* Restart Game UI (Game over)
+* Fixa UI till stats sidan 
 
 
 ## Om det finns tid (Extra saker)
 * små bug fixande 
 * Animation för sprites 
-* Mer vapen att använda 
 * Bättre UI
 * Vissa HP på enemies 
+* En map maker i spelet på en annan Game instans, för ett visuell sätt att göra mer waves baner och enemies
 
 
 ## Klar 
