@@ -34,7 +34,7 @@ export default class UserInterface {
         this.game.height / 2 - 20
       )
 
-      button(context, 300, 300, 100, 100, 'button', this.color, this.black, this.fontFamily)
+      this.button(context, 650, 400, 100, 50, 'button', this.color, this.black, this.fontFamily)
 
       // context.fillStyle = '#eeaa00';
       // context.fillRect(this.game.width / 2 - 90, this.game.height / 2, 200, 75);
