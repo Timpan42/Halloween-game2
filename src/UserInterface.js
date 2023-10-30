@@ -16,10 +16,11 @@ export default class UserInterface {
     // stats in the left
     context.textAlign = 'left'
     context.font = `${this.fontSize}px ${this.fontFamily}`
-    context.fillText(`Lives: ${this.game.player.lives}`, 20, 30)
-    context.fillText(`Ammo: ${this.game.player.ammo}`, 20, 60)
-    context.fillText(`Time: ${(this.game.gameTime * 0.001).toFixed(1)}`, 20, 90)
-    context.fillText(`Points: ${this.game.points}`, 20, 120)
+    context.fillText(`Wave: ${this.game.wave}`, 30, 50)
+    context.fillText(`Lives: ${this.game.player.lives}`, 30, 90)
+    context.fillText(`Ammo: ${this.game.player.ammo}`, 30, 130)
+    context.fillText(`Time: ${(this.game.gameTime * 0.001).toFixed(1)}`, 30, 170)
+    context.fillText(`Points: ${this.game.points}`, 30, 210)
 
     // draw game over 
     if (this.game.gameOver) {

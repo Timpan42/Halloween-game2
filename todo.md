@@ -1,8 +1,6 @@
 # Att göra lista 
 
 ## Att göra Idag
-* Göra vägar som man inte kan gå förbi, player området (fixa collation)
-* Wave mekanik för enemy
 * Få knappar att funka i UI
 * Starting UI
 
@@ -50,3 +48,5 @@
 * Kan bara skjuta med mus vänster klick 
 * Göra skoten snabbare 
 * Kan bara ha 5 hp block ute samtidigt 
+* Göra vägar som man inte kan gå förbi, player området (fixa collation)
+* Wave mekanik för enemy

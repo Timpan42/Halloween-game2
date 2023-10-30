@@ -47,6 +47,13 @@ export default class Game {
     this.enemyKills = 0
     this.healPickups = 0
 
+    // Wave
+    this.wave = 1
+    this.waveSpawned = 0
+    this.waveSpawnAmount = 5
+    this.waveSpawnAmountMultiply = 1.1
+    this.waveKilled = 0
+
 
     this.player = new Player(this)
   }
@@ -76,8 +83,8 @@ export default class Game {
     //PICKUPS
     //Spawn pickups
     if (this.pickUpsTimer > this.pickUpsInterval) {
-      let x = Math.random() * (this.width - 100) // spawn on left or right edge
-      let y = Math.random() * (this.height - 100) // spawn on top or bottom edge
+      let x = Math.random() * (this.width - 200) // spawn on left or right edge
+      let y = Math.random() * (this.height - 200) // spawn on top or bottom edge
 
       if (this.healBlock < this.healBlockMax) {
         this.pickUpsArray.push(new Heal(this, x, y))
@@ -103,23 +110,34 @@ export default class Game {
 
     // ENEMIES
     //Span enemy
-    if (this.enemyTimer > this.enemyInterval) {
-      let x = Math.random() < 0.5 ? 0 : this.width // spawn on left or right edge
-      let y = Math.random() < 0.5 ? 0 : this.height // spawn on top or bottom edge
-      if (x === 0) {
-        y = Math.random() * this.height // if on left edge, randomize y position
-      } else if (x === this.width) {
-        y = Math.random() * this.height // if on right edge, randomize y position
-      } else if (y === 0) {
-        x = Math.random() * this.width // if on top edge, randomize x position
-      } else {
-        x = Math.random() * this.width // if on bottom edge, randomize x position
-      }
+    if (this.waveSpawned < this.waveSpawnAmount) {
+      if (this.enemyTimer > this.enemyInterval) {
+        let x = Math.random() < 0.5 ? 0 : this.width // spawn on left or right edge
+        let y = Math.random() < 0.5 ? 0 : this.height // spawn on top or bottom edge
+        if (x === 0) {
+          y = Math.random() * this.height // if on left edge, randomize y position
+        } else if (x === this.width) {
+          y = Math.random() * this.height // if on right edge, randomize y position
+        } else if (y === 0) {
+          x = Math.random() * this.width // if on top edge, randomize x position
+        } else {
+          x = Math.random() * this.width // if on bottom edge, randomize x position
+        }
 
-      this.enemies.push(new Pumpkin(this, x, y))
-      this.enemyTimer = 0
+        this.enemies.push(new Pumpkin(this, x, y))
+        this.waveSpawned++
+        this.enemyTimer = 0
+      } else {
+        this.enemyTimer += deltaTime
+      }
+    } else if (this.waveKilled < this.waveSpawnAmount) {
+
     } else {
-      this.enemyTimer += deltaTime
+      this.waveKilled = 0
+      this.waveSpawned = 0
+      this.waveSpawnAmount = this.waveSpawnAmount + Math.floor(2 * this.waveSpawnAmountMultiply)
+      this.waveSpawnAmountMultiply += 0.1
+      this.wave++
     }
 
     // collision check enemy
@@ -129,6 +147,7 @@ export default class Game {
 
       if (this.checkCollision(this.player, enemy)) {
         enemy.markedForDeletion = true
+        this.waveKilled++
 
         this.damagePlayer(enemy.type)
         this.pickUpsStats(enemy)
@@ -145,6 +164,7 @@ export default class Game {
             this.countPoints(enemy.type)
             this.pickUpsStats(enemy)
 
+            this.waveKilled++
             enemy.markedForDeletion = true
           }
           projectile.markedForDeletion = true
