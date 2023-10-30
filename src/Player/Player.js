@@ -8,10 +8,10 @@ export default class Player {
     this.x = this.game.width / 2 - this.width / 2
     this.y = this.game.height / 2 - this.height / 2
 
+
     //For collision 
     this.halfW = this.width / 2
     this.halfH = this.height / 2
-
     this.centerX = this.x + this.halfW
     this.centerY = this.y + this.halfH
 
@@ -49,9 +49,7 @@ export default class Player {
     if (this.game.keys.includes('ArrowLeft') || this.game.keys.includes('a')) {
       this.speedX = -this.maxSpeed
     } else if (
-      this.game.keys.includes('ArrowRight') ||
-      this.game.keys.includes('d')
-    ) {
+      this.game.keys.includes('ArrowRight') || this.game.keys.includes('d')) {
       this.speedX = this.maxSpeed
     } else {
       this.speedX = 0
@@ -59,10 +57,7 @@ export default class Player {
 
     if (this.game.keys.includes('ArrowUp') || this.game.keys.includes('w')) {
       this.speedY = -this.maxSpeed
-    } else if (
-      this.game.keys.includes('ArrowDown') ||
-      this.game.keys.includes('s')
-    ) {
+    } else if (this.game.keys.includes('ArrowDown') || this.game.keys.includes('s')) {
       this.speedY = this.maxSpeed
     } else {
       this.speedY = 0
