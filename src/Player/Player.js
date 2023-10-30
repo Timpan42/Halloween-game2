@@ -8,7 +8,6 @@ export default class Player {
     this.x = this.game.width / 2 - this.width / 2
     this.y = this.game.height / 2 - this.height / 2
 
-
     //For collision 
     this.halfW = this.width / 2
     this.halfH = this.height / 2

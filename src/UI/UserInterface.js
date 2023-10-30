@@ -1,9 +1,11 @@
+
 export default class UserInterface {
   constructor(game) {
     this.game = game
     this.fontSize = 25
     this.fontFamily = 'Arial'
     this.color = 'white'
+    this.black = 'black'
   }
 
   draw(context) {
@@ -31,6 +33,15 @@ export default class UserInterface {
         this.game.width / 2,
         this.game.height / 2 - 20
       )
+
+      button(context, 300, 300, 100, 100, 'button', this.color, this.black, this.fontFamily)
+
+      // context.fillStyle = '#eeaa00';
+      // context.fillRect(this.game.width / 2 - 90, this.game.height / 2, 200, 75);
+      // context.fillStyle = '#001122';
+      // context.textAlign = 'center';
+      // context.font = `25px ${this.fontFamily}`;
+      // context.fillText('Start Game', this.game.width / 2 + 10, this.game.height / 2 + 45, 200);
     }
 
     // debug display 
@@ -65,5 +76,14 @@ export default class UserInterface {
     }
 
     context.restore()
+  }
+
+  button(context, x, y, width, height, text, fillColor, textColor, font) {
+    context.fillStyle = fillColor;
+    context.fillRect(x, y, width, height);
+    context.fillStyle = textColor;
+    context.textAlign = 'middle';
+    context.font = `25px ${font}`;
+    context.fillText(text, x + width / 2, y + height / 2, width);
   }
 }

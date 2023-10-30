@@ -1,6 +1,6 @@
 import InputHandler from './Player/InputHandler.js'
 import Player from './Player/Player.js'
-import UserInterface from './UserInterface.js'
+import UserInterface from './UI/UserInterface.js'
 import Pumpkin from './Enemies/Pumpkin.js'
 import Heal from './PickupsObject/Heal.js'
 import Enemy from './Enemies/Enemy.js'
@@ -26,7 +26,7 @@ export default class Game {
     this.points = 0
     this.gravity = 1
     this.gameTime = 0
-    this.gameOver = false
+    this.gameOver = true
     this.debug = false
 
     // Pickups
@@ -66,7 +66,7 @@ export default class Game {
 
     //stop game
     if (this.gameOver) {
-      this.player.ammo = 0
+      this.player.canShoot = false
       return
     }
 

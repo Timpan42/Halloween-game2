@@ -1,5 +1,4 @@
 # Att göra lista 
-
 ## Att göra Idag
 * Få knappar att funka i UI
 * Starting UI
@@ -33,6 +32,8 @@
 * Restart Game UI (Game over)
 * Fixa UI till stats sidan 
 
+### Bugs 
+* Vars skottet far är inte det samma som vars musen är 
 
 ## Om det finns tid (Extra saker)
 * små bug fixande 
