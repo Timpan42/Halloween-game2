@@ -1,3 +1,4 @@
+import Button from "./Button"
 
 export default class UserInterface {
   constructor(game) {
@@ -6,6 +7,15 @@ export default class UserInterface {
     this.fontFamily = 'Arial'
     this.color = 'white'
     this.black = 'black'
+    this.gameOverButton
+
+
+
+    window.addEventListener('mousedown', (event) => {
+      if (this.isInsideButton(this.gameOverButton.x, this.gameOverButton.y, this.gameOverButton.width, this.gameOverButton.height)) {
+        console.log("Button Clickt")
+      }
+    })
   }
 
   draw(context) {
@@ -33,15 +43,7 @@ export default class UserInterface {
         this.game.width / 2,
         this.game.height / 2 - 20
       )
-
-      this.button(context, 650, 400, 100, 50, 'button', this.color, this.black, this.fontFamily)
-
-      // context.fillStyle = '#eeaa00';
-      // context.fillRect(this.game.width / 2 - 90, this.game.height / 2, 200, 75);
-      // context.fillStyle = '#001122';
-      // context.textAlign = 'center';
-      // context.font = `25px ${this.fontFamily}`;
-      // context.fillText('Start Game', this.game.width / 2 + 10, this.game.height / 2 + 45, 200);
+      this.gameOverButton = new Button(this.game, context, this.game.width / 2 - 45, this.game.height / 2 + 20, 100, 50, 'button', this.color, this.black, this.fontFamily)
     }
 
     // debug display 
@@ -78,12 +80,9 @@ export default class UserInterface {
     context.restore()
   }
 
-  button(context, x, y, width, height, text, fillColor, textColor, font) {
-    context.fillStyle = fillColor;
-    context.fillRect(x, y, width, height);
-    context.fillStyle = textColor;
-    context.textAlign = 'middle';
-    context.font = `25px ${font}`;
-    context.fillText(text, x + width / 2, y + height / 2, width);
+  isInsideButton(x, y, width, height) {
+    if (this.game.input.mouseX > x && this.game.input.mouseX < x + width && this.game.input.mouseY > y && this.game.input.mouseY < y + height) {
+      return (true)
+    }
   }
 }

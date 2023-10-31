@@ -15,10 +15,10 @@ export default class Game {
     this.ui = new UserInterface(this)
 
     this.wallArray = [
-      new Wall(this, 1400, 32, 0, 0),
-      new Wall(this, 32, 800, 0, 0),
-      new Wall(this, 32, 800, 1368, 0),
-      new Wall(this, 1400, 32, 0, 768)
+      new Wall(this, width, 16, 0, 0),
+      new Wall(this, 16, height, 0, 0),
+      new Wall(this, 16, height, width - 16, 0),
+      new Wall(this, width, 16, 0, height - 16)
     ]
 
 
