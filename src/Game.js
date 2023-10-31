@@ -14,13 +14,14 @@ export default class Game {
     this.input = new InputHandler(this)
     this.ui = new UserInterface(this)
 
+    this.gameReset = false
+
     this.wallArray = [
       new Wall(this, width, 16, 0, 0),
       new Wall(this, 16, height, 0, 0),
       new Wall(this, 16, height, width - 16, 0),
       new Wall(this, width, 16, 0, height - 16)
     ]
-
 
     this.keys = []
     this.points = 0
@@ -59,6 +60,12 @@ export default class Game {
   }
 
   update(deltaTime) {
+    if (this.gameReset) {
+      this.reset()
+      this.player = new Player(this)
+      this.gameReset = false
+    }
+
     //stop clock 
     if (!this.gameOver) {
       this.gameTime += deltaTime
@@ -179,6 +186,25 @@ export default class Game {
   }
 
   //FUNCTIONS 
+  reset() {
+    this.keys = []
+    this.points = 0
+    this.gameTime = 0
+    this.gameOver = false
+    this.pickUpsArray = []
+    this.pickUpsTimer = 0
+    this.healBlock = 0
+    this.enemies = []
+    this.enemyTimer = 0
+    this.enemyKills = 0
+    this.healPickups = 0
+    this.wave = 1
+    this.waveSpawned = 0
+    this.waveSpawnAmount = 5
+    this.waveSpawnAmountMultiply = 1.1
+    this.waveKilled = 0
+  }
+
   spawnStats(objectSpawn) {
     if (objectSpawn === 'heal') {
       this.healBlock++

@@ -5,7 +5,7 @@ export default class UserInterface {
     this.game = game
     this.fontSize = 25
     this.fontFamily = 'Arial'
-    this.color = 'white'
+    this.white = 'white'
     this.black = 'black'
     this.gameOverButton
 
@@ -14,7 +14,7 @@ export default class UserInterface {
     window.addEventListener('mousedown', (event) => {
       if (this.game.gameOver) {
         if (this.isInsideButton(this.gameOverButton.x, this.gameOverButton.y, this.gameOverButton.width, this.gameOverButton.height)) {
-          this.game.gameOver = false
+          this.game.gameReset = true
         }
       }
     })
@@ -22,7 +22,7 @@ export default class UserInterface {
 
   draw(context) {
     context.save()
-    context.fillStyle = this.color
+    context.fillStyle = this.white
     context.shadowOffsetX = 2
     context.shadowOffsetY = 2
     context.shadowColor = 'black'
@@ -45,7 +45,7 @@ export default class UserInterface {
         this.game.width / 2,
         this.game.height / 2 - 20
       )
-      this.gameOverButton = new Button(this.game, context, this.game.width / 2 - 45, this.game.height / 2 + 20, 100, 50, 'Start Over', this.color, this.black, this.fontFamily)
+      this.gameOverButton = new Button(this.game, context, this.game.width / 2 - 45, this.game.height / 2 + 20, 100, 50, 'Start Over', this.white, this.black, this.fontFamily)
     }
 
     // debug display 

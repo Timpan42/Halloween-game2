@@ -33,7 +33,7 @@ export default class Player {
     this.ammoInterval = 500
 
     //Lives
-    this.lives = 10
+    this.lives = 5
   }
 
   update(deltaTime) {
