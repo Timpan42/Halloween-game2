@@ -7,11 +7,18 @@ export default class UserInterface {
     this.fontFamily = 'Arial'
     this.white = 'white'
     this.black = 'black'
+    this.startGameButton
     this.gameOverButton
 
 
 
     window.addEventListener('mousedown', (event) => {
+      if (!this.game.startGame) {
+        if (this.isInsideButton(this.startGameButton.x, this.startGameButton.y, this.startGameButton.width, this.startGameButton.height)) {
+          this.game.startGame = true
+        }
+      }
+
       if (this.game.gameOver) {
         if (this.isInsideButton(this.gameOverButton.x, this.gameOverButton.y, this.gameOverButton.width, this.gameOverButton.height)) {
           this.game.gameReset = true
@@ -25,16 +32,7 @@ export default class UserInterface {
     context.fillStyle = this.white
     context.shadowOffsetX = 2
     context.shadowOffsetY = 2
-    context.shadowColor = 'black'
-
-    // stats in the left
-    context.textAlign = 'left'
-    context.font = `${this.fontSize}px ${this.fontFamily}`
-    context.fillText(`Wave: ${this.game.wave}`, 30, 50)
-    context.fillText(`Lives: ${this.game.player.lives}`, 30, 90)
-    context.fillText(`Ammo: ${this.game.player.ammo}`, 30, 130)
-    context.fillText(`Time: ${(this.game.gameTime * 0.001).toFixed(1)}`, 30, 170)
-    context.fillText(`Points: ${this.game.points}`, 30, 210)
+    context.shadowColor = this.black
 
     // draw game over 
     if (this.game.gameOver) {
@@ -43,9 +41,62 @@ export default class UserInterface {
       context.fillText(
         'Game over',
         this.game.width / 2,
-        this.game.height / 2 - 20
+        this.game.height / 2 - 100
       )
-      this.gameOverButton = new Button(this.game, context, this.game.width / 2 - 45, this.game.height / 2 + 20, 100, 50, 'Start Over', this.white, this.black, this.fontFamily)
+      this.gameOverButton = new Button(
+        this.game,
+        context,
+        this.game.width / 2 - 100,
+        this.game.height / 2 + 30,
+        200,
+        50,
+        'Start Over',
+        this.white,
+        this.black,
+        35,
+        this.fontFamily,
+        0,
+        10
+      )
+      context.fillStyle = this.white;
+    }
+
+    // when the game has not started 
+    if (!this.game.startGame) {
+      context.textAlign = 'center'
+      context.font = `50px ${this.fontFamily}`
+      context.fillText(
+        'Starting screen',
+        this.game.width / 2,
+        this.game.height / 2 - 200
+      )
+      this.startGameButton = new Button(
+        this.game,
+        context,
+        this.game.width / 2 - 100,
+        this.game.height / 2 + 30,
+        200,
+        50,
+        'Start',
+        this.white,
+        this.black,
+        40,
+        this.fontFamily,
+        0,
+        10
+      )
+    }
+
+    // when game is running 
+    if (this.game.startGame) {
+      // stats in the left
+      context.textAlign = 'left'
+      context.font = `${this.fontSize}px ${this.fontFamily}`
+      context.fillText(`Wave: ${this.game.wave}`, 30, 50)
+      context.fillText(`Lives: ${this.game.player.lives}`, 30, 90)
+      context.fillText(`Ammo: ${this.game.player.ammo}`, 30, 130)
+      context.fillText(`Time: ${(this.game.gameTime * 0.001).toFixed(1)}`, 30, 170)
+      context.fillText(`Points: ${this.game.points}`, 30, 210)
     }
 
     // debug display 

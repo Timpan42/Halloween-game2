@@ -1,6 +1,7 @@
 # Att göra lista 
 ## Att göra Idag
 * Starting UI
+* Fixa UI till stats sidan
 
 ## Måste göra för att göra klart 
 ### Allmänt
@@ -28,7 +29,6 @@
 * Göra om points systemet så man använder en array som man går igenom istället för många if satser  
 
 ### UI
-* Fixa UI till stats sidan 
 
 ### Bugs 
 * Vars skottet far är inte det samma som vars musen är 

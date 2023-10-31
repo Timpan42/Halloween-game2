@@ -15,6 +15,9 @@ export default class Game {
     this.ui = new UserInterface(this)
 
     this.gameReset = false
+    this.startGame = false
+    this.gameOver = false
+    this.debug = false
 
     this.wallArray = [
       new Wall(this, width, 16, 0, 0),
@@ -27,8 +30,7 @@ export default class Game {
     this.points = 0
     this.gravity = 1
     this.gameTime = 0
-    this.gameOver = false
-    this.debug = false
+
 
     // Pickups
     this.pickUpsArray = []
@@ -60,6 +62,11 @@ export default class Game {
   }
 
   update(deltaTime) {
+
+    if (!this.startGame) {
+      return
+    }
+
     if (this.gameReset) {
       this.reset()
       this.player = new Player(this)
