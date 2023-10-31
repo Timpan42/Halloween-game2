@@ -1,4 +1,5 @@
-# Att göra lista 
+# Att göra lista
+
 ## Att göra Idag
 
 ## Måste göra för att göra klart 
@@ -15,7 +16,6 @@
 
 ### Pickups
 * Coins 
-*  
 
 ### Olika vapen
 * En typ av trippel projectile vapen
@@ -27,6 +27,7 @@
 * Göra om points systemet så man använder en array som man går igenom istället för många if satser  
 
 ### UI
+* Coins shop UI
 
 ### Bugs 
 * Vars skottet far är inte det samma som vars musen är 
