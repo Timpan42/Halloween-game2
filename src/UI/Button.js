@@ -12,7 +12,10 @@ export default class Button {
         context.font = `${fontSize}px ${font}`;
         context.shadowColor = 'transparent'
         context.fillText(text, x + width / 2 + textXFix, y + height / 2 + textYFix, width);
+
+        //Reset
         context.shadowColor = this.game.ui.black
+        context.fillStyle = this.game.ui.white;
 
     }
 }

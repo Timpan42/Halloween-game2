@@ -7,20 +7,42 @@ export default class UserInterface {
     this.fontFamily = 'Arial'
     this.white = 'white'
     this.black = 'black'
+    this.blue = 'blue'
+
+    //stats window
+    this.statWindow = true
+    // buttons 
     this.startGameButton
+    this.statsButton
+    this.backButton
     this.gameOverButton
+    this.menuButton
 
 
 
     window.addEventListener('mousedown', (event) => {
-      if (!this.game.startGame) {
+      if (!this.game.startGame && !this.statWindow) {
         if (this.isInsideButton(this.startGameButton.x, this.startGameButton.y, this.startGameButton.width, this.startGameButton.height)) {
           this.game.startGame = true
         }
+        else if (this.isInsideButton(this.statsButton.x, this.statsButton.y, this.statsButton.width, this.statsButton.height)) {
+          this.statWindow = true
+        }
       }
+      else if (!this.game.startGame && this.statWindow) {
+        if (this.isInsideButton(this.backButton.x, this.backButton.y, this.backButton.width, this.backButton.height)) {
+          this.statWindow = false
+        }
+      }
+
 
       if (this.game.gameOver) {
         if (this.isInsideButton(this.gameOverButton.x, this.gameOverButton.y, this.gameOverButton.width, this.gameOverButton.height)) {
+          this.game.gameReset = true
+        }
+        else if (this.isInsideButton(this.menuButton.x, this.menuButton.y, this.menuButton.width, this.menuButton.height)) {
+          this.game.startGame = false
+          this.game.gameOver = false
           this.game.gameReset = true
         }
       }
@@ -58,11 +80,27 @@ export default class UserInterface {
         0,
         10
       )
-      context.fillStyle = this.white;
+
+      this.menuButton = new Button(
+        this.game,
+        context,
+        this.game.width / 2 - 100,
+        this.game.height / 2 + 120,
+        200,
+        50,
+        'Main Menu',
+        this.white,
+        this.black,
+        35,
+        this.fontFamily,
+        0,
+        10
+      )
+
     }
 
     // when the game has not started 
-    if (!this.game.startGame) {
+    if (!this.game.startGame && !this.statWindow) {
       context.textAlign = 'center'
       context.font = `50px ${this.fontFamily}`
       context.fillText(
@@ -77,10 +115,68 @@ export default class UserInterface {
         this.game.height / 2 + 30,
         200,
         50,
-        'Start',
+        'Start Game',
         this.white,
         this.black,
-        40,
+        35,
+        this.fontFamily,
+        0,
+        10
+      )
+      this.statsButton = new Button(
+        this.game,
+        context,
+        this.game.width / 2 - 100,
+        this.game.height / 2 + 120,
+        200,
+        50,
+        'Player Stats',
+        this.white,
+        this.black,
+        35,
+        this.fontFamily,
+        0,
+        10
+      )
+    }
+
+    // Stat Window
+    else if (!this.game.startGame && this.statWindow) {
+      this.data = this.getData()
+      context.fillStyle = this.blue;
+      context.fillRect(190, 50, 900, 600);
+      context.fillStyle = this.black;
+      context.textAlign = 'middle';
+      context.font = `45px ${this.fontFamily}`;
+
+      context.fillStyle = this.white
+      context.textAlign = 'center'
+      context.font = `50px ${this.fontFamily}`
+      context.fillText(
+        'Your Statistics',
+        this.game.width / 2,
+        this.game.height / 2 - 200
+      )
+
+      context.textAlign = 'center'
+      context.font = `${this.fontSize}px ${this.fontFamily}`
+      context.fillText(`Time played: ${(this.data[0].playTime * 0.001).toFixed(0)} sek`, 550, 225)
+      context.fillText(`All time points: ${this.data[0].points}`, 550, 275)
+      context.fillText(`All time kills: ${this.data[0].kills}`, 550, 325)
+      context.fillText(`All time heals: ${this.data[0].heals}`, 550, 375)
+
+
+      this.backButton = new Button(
+        this.game,
+        context,
+        this.game.width / 2 - 100,
+        this.game.height / 2 + 200,
+        200,
+        50,
+        'Back',
+        this.white,
+        this.black,
+        35,
         this.fontFamily,
         0,
         10
@@ -137,5 +233,8 @@ export default class UserInterface {
     if (this.game.input.mouseX > x && this.game.input.mouseX < x + width && this.game.input.mouseY > y && this.game.input.mouseY < y + height) {
       return (true)
     }
+  }
+  getData() {
+    return JSON.parse(localStorage.getItem('data')) || [{ playTime: 0, points: 0, kills: 0, heals: 0 }]
   }
 }

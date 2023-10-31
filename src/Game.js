@@ -19,6 +19,13 @@ export default class Game {
     this.gameOver = false
     this.debug = false
 
+
+    //LocalStorage 
+    this.data = JSON.parse(localStorage.getItem('data')) || [{ playTime: 0, points: 0, kills: 0, heals: 0 }]
+    console.log(this.data)
+
+    this.dataLimiter = 0
+
     this.wallArray = [
       new Wall(this, width, 16, 0, 0),
       new Wall(this, 16, height, 0, 0),
@@ -73,13 +80,13 @@ export default class Game {
       this.gameReset = false
     }
 
-    //stop clock 
     if (!this.gameOver) {
       this.gameTime += deltaTime
     }
 
     //stop game
     if (this.gameOver) {
+      this.storeLocal()
       this.player.canShoot = false
       return
     }
@@ -210,6 +217,22 @@ export default class Game {
     this.waveSpawnAmount = 5
     this.waveSpawnAmountMultiply = 1.1
     this.waveKilled = 0
+    this.dataLimiter = 0
+  }
+
+  storeLocal() {
+
+    if (this.dataLimiter < 1) {
+      this.data[0].playTime = this.data[0].playTime + this.gameTime
+      this.data[0].points = this.data[0].points + this.points
+      this.data[0].kills = this.data[0].kills + this.enemyKills
+      this.data[0].heals = this.data[0].heals + this.healPickups
+
+      localStorage.setItem('data', JSON.stringify(this.data))
+      this.dataLimiter++
+    } else {
+      console.log("can only store data once")
+    }
   }
 
   spawnStats(objectSpawn) {

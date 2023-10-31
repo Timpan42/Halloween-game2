@@ -1,7 +1,5 @@
 # Att göra lista 
 ## Att göra Idag
-* Starting UI
-* Fixa UI till stats sidan
 
 ## Måste göra för att göra klart 
 ### Allmänt
@@ -52,3 +50,5 @@
 * Få knappar att funka i UI
 * gamer over UI
 * Restart Game UI (Game over)
+* Starting UI
+* Fixa UI till stats sidan
