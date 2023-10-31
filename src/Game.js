@@ -26,7 +26,7 @@ export default class Game {
     this.points = 0
     this.gravity = 1
     this.gameTime = 0
-    this.gameOver = true
+    this.gameOver = false
     this.debug = false
 
     // Pickups

@@ -12,8 +12,10 @@ export default class UserInterface {
 
 
     window.addEventListener('mousedown', (event) => {
-      if (this.isInsideButton(this.gameOverButton.x, this.gameOverButton.y, this.gameOverButton.width, this.gameOverButton.height)) {
-        console.log("Button Clickt")
+      if (this.game.gameOver) {
+        if (this.isInsideButton(this.gameOverButton.x, this.gameOverButton.y, this.gameOverButton.width, this.gameOverButton.height)) {
+          this.game.gameOver = false
+        }
       }
     })
   }
@@ -43,7 +45,7 @@ export default class UserInterface {
         this.game.width / 2,
         this.game.height / 2 - 20
       )
-      this.gameOverButton = new Button(this.game, context, this.game.width / 2 - 45, this.game.height / 2 + 20, 100, 50, 'button', this.color, this.black, this.fontFamily)
+      this.gameOverButton = new Button(this.game, context, this.game.width / 2 - 45, this.game.height / 2 + 20, 100, 50, 'Start Over', this.color, this.black, this.fontFamily)
     }
 
     // debug display 

@@ -1,6 +1,6 @@
 # Att göra lista 
 ## Att göra Idag
-* Få knappar att funka i UI
+* gamer over UI (måste starta om spelet)
 * Starting UI
 
 ## Måste göra för att göra klart 
@@ -51,3 +51,4 @@
 * Kan bara ha 5 hp block ute samtidigt 
 * Göra vägar som man inte kan gå förbi, player området (fixa collation)
 * Wave mekanik för enemy
+* Få knappar att funka i UI
