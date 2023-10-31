@@ -1,6 +1,5 @@
 # Att göra lista 
 ## Att göra Idag
-* gamer over UI (måste starta om spelet)
 * Starting UI
 
 ## Måste göra för att göra klart 
@@ -29,7 +28,6 @@
 * Göra om points systemet så man använder en array som man går igenom istället för många if satser  
 
 ### UI
-* Restart Game UI (Game over)
 * Fixa UI till stats sidan 
 
 ### Bugs 
@@ -52,3 +50,5 @@
 * Göra vägar som man inte kan gå förbi, player området (fixa collation)
 * Wave mekanik för enemy
 * Få knappar att funka i UI
+* gamer over UI
+* Restart Game UI (Game over)
