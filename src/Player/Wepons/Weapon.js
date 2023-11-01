@@ -19,6 +19,8 @@ export default class Weapon {
         this.shootTimer = 0
         this.shootInterval = 500
 
+        this.damage = 1
+
     }
 
     update(deltaTime, x, y) {

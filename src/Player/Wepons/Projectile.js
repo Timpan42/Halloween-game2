@@ -8,7 +8,6 @@ export default class Projectile {
     this.angle = angle
 
     this.speed = 1000
-    this.damage = 1
     this.markedForDeletion = false
   }
 

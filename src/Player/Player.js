@@ -23,6 +23,7 @@ export default class Player {
     // For UI
     this.projectiles = []
     this.ammo
+    this.damage
 
     //Lives
     this.lives = 5
@@ -67,11 +68,12 @@ export default class Player {
       this.doubleShot.update(deltaTime, this.x, this.y)
       this.projectiles = this.doubleShot.projectiles
       this.ammo = this.doubleShot.ammo
+      this.damage = this.doubleShot.damage
     } else {
       this.weapon.update(deltaTime, this.x, this.y)
       this.projectiles = this.weapon.projectiles
       this.ammo = this.weapon.ammo
-
+      this.damage.weapon.damage
     }
   }
 

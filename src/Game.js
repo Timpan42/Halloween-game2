@@ -185,18 +185,7 @@ export default class Game {
       // collision with enemy and projectile  
       this.player.projectiles.forEach((projectile) => {
         if (this.checkCollision(projectile, enemy)) {
-          if (enemy.lives > 1) {
-            enemy.lives -= projectile.damage
-          } else {
-
-            let coinWorth = enemy.givCoinWorth()
-            this.countCoins(coinWorth, enemy.coinSpawnChans, enemy.x, enemy.y)
-            this.countPoints(enemy.type)
-            this.pickUpsStats(enemy)
-
-            this.waveKilled++
-            enemy.markedForDeletion = true
-          }
+          this.enemyCollision(enemy)
           projectile.markedForDeletion = true
         }
       })
@@ -240,6 +229,29 @@ export default class Game {
 
       localStorage.setItem('data', JSON.stringify(this.data))
       this.dataLimiter++
+    }
+  }
+
+  enemyCollision(enemy) {
+    if (enemy.lives > 0) {
+      enemy.lives -= this.player.damage
+      if (enemy.lives <= 0) {
+        let coinWorth = enemy.givCoinWorth()
+        this.countCoins(coinWorth, enemy.coinSpawnChans, enemy.x, enemy.y)
+        this.countPoints(enemy.type)
+        this.pickUpsStats(enemy)
+
+        this.waveKilled++
+        enemy.markedForDeletion = true
+      }
+    } else {
+      let coinWorth = enemy.givCoinWorth()
+      this.countCoins(coinWorth, enemy.coinSpawnChans, enemy.x, enemy.y)
+      this.countPoints(enemy.type)
+      this.pickUpsStats(enemy)
+
+      this.waveKilled++
+      enemy.markedForDeletion = true
     }
   }
 

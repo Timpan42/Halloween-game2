@@ -14,6 +14,5 @@ export default class Coins extends PickUps {
         this.coinPercentIncrease = 1.00
 
         this.coinWorth = (givenCoinWorth * this.coinPercentIncrease)
-        console.log(this.coinWorth)
     }
 }
