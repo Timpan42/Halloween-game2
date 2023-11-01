@@ -1,4 +1,5 @@
 import Weapon from "./Wepons/Weapon"
+import DoubleShot from "./Wepons/DoubleShot"
 
 export default class Player {
   constructor(game) {
@@ -19,10 +20,17 @@ export default class Player {
     this.speedY = 0
     this.maxSpeed = 6
 
+    // For UI
+    this.projectiles = []
+    this.ammo
+
     //Lives
     this.lives = 5
 
+    this.useDoubleShot = true
+
     this.weapon = new Weapon(game, this.x, this.y, this.width, this.height)
+    this.doubleShot = new DoubleShot(game, this.x, this.y, this.width, this.height)
   }
 
   update(deltaTime) {
@@ -54,7 +62,17 @@ export default class Player {
     this.y += this.speedY
     this.x += this.speedX
 
-    this.weapon.update(deltaTime, this.x, this.y)
+
+    if (this.useDoubleShot) {
+      this.doubleShot.update(deltaTime, this.x, this.y)
+      this.projectiles = this.doubleShot.projectiles
+      this.ammo = this.doubleShot.ammo
+    } else {
+      this.weapon.update(deltaTime, this.x, this.y)
+      this.projectiles = this.weapon.projectiles
+      this.ammo = this.weapon.ammo
+
+    }
   }
 
   draw(context) {
@@ -78,6 +96,10 @@ export default class Player {
       context.lineTo(x, y)
       context.stroke()
     }
-    this.weapon.draw(context)
+    if (this.useDoubleShot) {
+      this.doubleShot.draw(context)
+    } else {
+      this.weapon.draw(context)
+    }
   }
 }

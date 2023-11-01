@@ -191,7 +191,7 @@ export default class UserInterface {
       context.font = `${this.fontSize}px ${this.fontFamily}`
       context.fillText(`Wave: ${this.game.wave}`, 30, 50)
       context.fillText(`Lives: ${this.game.player.lives}`, 30, 90)
-      context.fillText(`Ammo: ${this.game.player.weapon.ammo}`, 30, 130)
+      context.fillText(`Ammo: ${this.game.player.ammo}`, 30, 130)
       context.fillText(`Time: ${(this.game.gameTime * 0.001).toFixed(1)}`, 30, 170)
       context.fillText(`Points: ${this.game.points}`, 30, 210)
       context.fillText(`Coins ${this.game.coins}`, 30, 250)

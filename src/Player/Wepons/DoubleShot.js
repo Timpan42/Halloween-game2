@@ -1,8 +1,8 @@
-import Projectile from './Projectile.js'
+import Weapon from "./Weapon.js";
 
-export default class Weapon {
+export default class DoubleShot extends Weapon {
     constructor(game, x, y, width, height) {
-        this.game = game
+        super(game)
         this.x = x
         this.y = y
         this.width = width
@@ -17,8 +17,7 @@ export default class Weapon {
 
         this.canShoot = true
         this.shootTimer = 0
-        this.shootInterval = 500
-
+        this.shootInterval = 100
     }
 
     update(deltaTime, x, y) {
@@ -56,30 +55,4 @@ export default class Weapon {
         })
 
     }
-
-    shoot() {
-        if (this.canShoot && this.game.startGame) {
-
-            // get angle between player and mouse
-            const angle = Math.atan2(
-                this.game.input.mouseY - (this.y + this.height / 2),
-                this.game.input.mouseX - (this.x + this.width / 2)
-            )
-
-            // can use ammo 
-            if (this.ammo > 0) {
-                this.canShoot = false
-                this.shootTimer = 0
-                this.ammo--
-                this.projectiles.push(
-                    new Projectile(
-                        this.game,
-                        this.x + this.width / 2,
-                        this.y + this.height / 2,
-                        angle
-                    )
-                )
-            }
-        }
-    }
-} 
+}
