@@ -22,6 +22,17 @@ export default class InputHandler {
       if (event.key === 'p') {
         this.game.debug = !this.game.debug
       }
+
+      if (event.key === '1') {
+        this.game.player.useTrippelShot = false
+        this.game.player.useDoubleShot = false
+      } else if (event.key === '2') {
+        this.game.player.useTrippelShot = false
+        this.game.player.useDoubleShot = true
+      } else if (event.key === '3') {
+        this.game.player.useTrippelShot = true
+        this.game.player.useDoubleShot = false
+      }
     })
 
     window.addEventListener('keyup', (event) => {
@@ -40,7 +51,6 @@ export default class InputHandler {
       if (this.game.player.weapon.canShoot) {
         if (this.game.player.useTrippelShot) {
           this.game.player.trippelShot.shoot(this.mouseX, this.mouseY)
-
         }
         else if (this.game.player.useDoubleShot) {
           this.game.player.doubleShot.shoot(this.mouseX, this.mouseY)

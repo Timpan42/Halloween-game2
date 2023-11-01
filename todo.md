@@ -1,7 +1,6 @@
 # Att göra lista
 
 ## Att göra Idag
-* En typ av trippel projectile vapen
 
 ## Måste göra för att göra klart 
 ### Allmänt
@@ -24,6 +23,7 @@
 
 ### UI
 * Coins shop UI
+* (UI) Vissa vilket vapen spelaren använder 
 
 ### Bugs 
 * Vars skottet far är inte det samma som vars musen är 
@@ -53,3 +53,4 @@
 * Coins pickups
 * Enemies kan droppa coins 
 * vapen som skjuter med två projektiler 
+* En typ av trippel projectile vapen

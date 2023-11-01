@@ -22,42 +22,6 @@ export default class DoubleShot extends Weapon {
         this.damage = 0.5
     }
 
-    update(deltaTime, x, y) {
-        this.x = x
-        this.y = y
-        // Ammo over time 
-        if (this.ammoTimer > this.ammoInterval && this.ammo < this.maxAmmo) {
-            this.ammoTimer = 0
-            this.ammo++
-        } else {
-            this.ammoTimer += deltaTime
-        }
-
-        // projectiles
-        this.projectiles.forEach((projectile) => {
-            projectile.update(deltaTime)
-        })
-        this.projectiles = this.projectiles.filter(
-            (projectile) => !projectile.markedForDeletion
-        )
-
-        // Can shoot logic 
-        if (this.shootTimer > this.shootInterval) {
-            this.canShoot = true
-        } else {
-            this.shootTimer += deltaTime
-        }
-
-    }
-
-    draw(context) {
-
-        this.projectiles.forEach((projectile) => {
-            projectile.draw(context)
-        })
-
-    }
-
     shoot() {
         if (this.canShoot && this.game.startGame) {
 

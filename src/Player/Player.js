@@ -29,7 +29,7 @@ export default class Player {
     //Lives
     this.lives = 5
 
-    this.useDoubleShot = true
+    this.useDoubleShot = false
     this.useTrippelShot = false
 
 
@@ -108,7 +108,10 @@ export default class Player {
       context.lineTo(x, y)
       context.stroke()
     }
-    if (this.useDoubleShot) {
+    if (this.useTrippelShot) {
+      this.trippelShot.draw(context)
+    }
+    else if (this.useDoubleShot) {
       this.doubleShot.draw(context)
     } else {
       this.weapon.draw(context)
