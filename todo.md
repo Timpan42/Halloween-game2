@@ -1,9 +1,8 @@
 # Att göra lista
 
 ## Att göra Idag
-* En typ av trippel projectile vapen
 * vapen som skjuter med två projektiler 
-* Göra om points systemet så man använder en array som man går igenom istället för många if satser  
+* En typ av trippel projectile vapen
 
 ## Måste göra för att göra klart 
 ### Allmänt
@@ -35,6 +34,7 @@
 * Animation för sprites 
 * Bättre UI
 * Vissa HP på enemies 
+* Göra om points systemet så man använder en array som man går igenom istället för många if satser
 * En map maker i spelet på en annan Game instans, för ett visuell sätt att göra mer waves baner och enemies
 
 
