@@ -1,6 +1,9 @@
 # Att göra lista
 
 ## Att göra Idag
+* En typ av trippel projectile vapen
+* vapen som skjuter med två projektiler 
+* Göra om points systemet så man använder en array som man går igenom istället för många if satser  
 
 ## Måste göra för att göra klart 
 ### Allmänt
@@ -13,18 +16,13 @@
 * Tank (Mycket hp rör sig långsam, gör inte så mycket damage)
 * Glasskanon (Lite hp, snabb och gör mycket skada)
 
-
 ### Pickups
-* Coins 
 
 ### Olika vapen
-* En typ av trippel projectile vapen
-* 
 
 ### stats 
 * Har coins som man kan köpa uppgraderingar 
 * Mellan varje 5 waves kan man få uppgradera sina stats 
-* Göra om points systemet så man använder en array som man går igenom istället för många if satser  
 
 ### UI
 * Coins shop UI
@@ -53,3 +51,5 @@
 * Restart Game UI (Game over)
 * Starting UI
 * Fixa UI till stats sidan
+* Coins pickups
+* Enemies kan droppa coins 

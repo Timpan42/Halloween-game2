@@ -5,6 +5,7 @@ import Pumpkin from './Enemies/Pumpkin.js'
 import Heal from './PickupsObject/Heal.js'
 import Enemy from './Enemies/Enemy.js'
 import Wall from './NotMovableObject/Wall.js'
+import Coins from './PickupsObject/Coins.js'
 export default class Game {
   constructor(width, height, canvasPosition) {
     this.width = width
@@ -21,7 +22,7 @@ export default class Game {
 
 
     //LocalStorage 
-    this.data = JSON.parse(localStorage.getItem('data')) || [{ playTime: 0, points: 0, kills: 0, heals: 0 }]
+    this.data = JSON.parse(localStorage.getItem('data')) || [{ playTime: 0, coins: 0, points: 0, kills: 0, heals: 0 }]
     console.log(this.data)
 
     this.dataLimiter = 0
@@ -42,11 +43,14 @@ export default class Game {
     // Pickups
     this.pickUpsArray = []
     this.pickUpsTimer = 0
-    this.pickUpsInterval = 2000
+    this.pickUpsInterval = 3000
 
     // Pickups Block
     this.healBlock = 0
     this.healBlockMax = 5
+
+    this.coinsBlock = 0
+    this.coins = 0
 
     // Enemies
     this.enemies = []
@@ -124,7 +128,7 @@ export default class Game {
 
       if (this.checkCollision(this.player, pickUps)) {
         pickUps.markedForDeletion = true
-        this.pickUpsStats(pickUps.type)
+        this.pickUpsStats(pickUps)
       }
     })
 
@@ -182,6 +186,8 @@ export default class Game {
             enemy.lives -= projectile.damage
           } else {
 
+            let coinWorth = enemy.givCoinWorth()
+            this.countCoins(coinWorth, enemy.coinSpawnChans, enemy.x, enemy.y)
             this.countPoints(enemy.type)
             this.pickUpsStats(enemy)
 
@@ -218,20 +224,20 @@ export default class Game {
     this.waveSpawnAmountMultiply = 1.1
     this.waveKilled = 0
     this.dataLimiter = 0
+    this.coins = 0
+    this.coinsBlock = 0
   }
 
   storeLocal() {
-
     if (this.dataLimiter < 1) {
       this.data[0].playTime = this.data[0].playTime + this.gameTime
+      this.data[0].coins = this.data[0].coins + this.coins
       this.data[0].points = this.data[0].points + this.points
       this.data[0].kills = this.data[0].kills + this.enemyKills
       this.data[0].heals = this.data[0].heals + this.healPickups
 
       localStorage.setItem('data', JSON.stringify(this.data))
       this.dataLimiter++
-    } else {
-      console.log("can only store data once")
     }
   }
 
@@ -239,18 +245,42 @@ export default class Game {
     if (objectSpawn === 'heal') {
       this.healBlock++
     }
+    else if (objectSpawn === 'coin') {
+      this.coinsBlock++
+    }
   }
 
   // Puts information under the category Stats 
-  pickUpsStats(type) {
-    if (type === 'heal') {
+  pickUpsStats(object) {
+    if (object.type === 'heal') {
       this.player.lives += 1
       this.healPickups++
       this.healBlock--
-    } else if (type instanceof Enemy) {
+    }
+    else if (object instanceof Enemy) {
       this.enemyKills++
     }
+    else if (object.type === 'coin') {
+      this.coins += object.coinWorth
+      this.coinsBlock--
+    }
   }
+
+  countCoins(coinsWorth, coinSpawnChans, enemyX, enemyY) {
+    let spawn = (Math.random() * (10 - 1 + 1) + 1) * coinSpawnChans
+    if (spawn > 5) {
+      let x = enemyX // spawn on left or right edge
+      let y = enemyY// spawn on top or bottom edge
+
+
+      let newCoin = new Coins(this, x, y, coinsWorth)
+      this.pickUpsArray.push(newCoin)
+      let objectSpawn = this.pickUpsArray[this.pickUpsArray.length - 1]
+      this.spawnStats(objectSpawn.type)
+
+    }
+  }
+
   // Puts points in points
   countPoints(enemyType) {
     if (enemyType === "pumpkin") {

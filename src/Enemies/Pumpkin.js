@@ -11,6 +11,8 @@ export default class Pumpkin extends Enemy {
     this.lives = Math.floor(Math.random() * 3) + 1
     this.color = 'orange'
     this.type = 'pumpkin'
+    this.coinMax = 3
+    this.coinMin = 1
   }
 
   update(player) {

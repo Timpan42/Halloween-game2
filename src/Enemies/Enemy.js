@@ -8,6 +8,16 @@ export default class Enemy {
     this.markedForDeletion = false
     this.color = color
     this.type = 'enemy'
+    this.coinSpawnChans = 1.3
+    this.coinWorth
+    this.coinMax
+    this.coinMin
+  }
+
+  givCoinWorth() {
+    this.coinMin = Math.ceil(this.coinMin)
+    this.coinMax = Math.floor(this.coinMax)
+    return this.coinWorth = Math.floor(Math.random() * (this.coinMax - this.coinMin + 1) + this.coinMin)
   }
 
   update() {

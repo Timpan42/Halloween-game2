@@ -10,7 +10,7 @@ export default class UserInterface {
     this.blue = 'blue'
 
     //stats window
-    this.statWindow = true
+    this.statWindow = false
     // buttons 
     this.startGameButton
     this.statsButton
@@ -160,10 +160,11 @@ export default class UserInterface {
 
       context.textAlign = 'center'
       context.font = `${this.fontSize}px ${this.fontFamily}`
-      context.fillText(`Time played: ${(this.data[0].playTime * 0.001).toFixed(0)} sek`, 550, 225)
-      context.fillText(`All time points: ${this.data[0].points}`, 550, 275)
-      context.fillText(`All time kills: ${this.data[0].kills}`, 550, 325)
-      context.fillText(`All time heals: ${this.data[0].heals}`, 550, 375)
+      context.fillText(`Time played: ${(this.data[0].playTime * 0.001).toFixed(0)} sek`, this.game.width / 2, 225)
+      context.fillText(`All time Coins: ${this.data[0].coins}`, this.game.width / 2 - 15, 275)
+      context.fillText(`All time points: ${this.data[0].points}`, this.game.width / 2 - 13, 325)
+      context.fillText(`All time kills: ${this.data[0].kills}`, this.game.width / 2 - 25, 375)
+      context.fillText(`All time heals: ${this.data[0].heals}`, this.game.width / 2 - 16, 425)
 
 
       this.backButton = new Button(
@@ -193,6 +194,7 @@ export default class UserInterface {
       context.fillText(`Ammo: ${this.game.player.ammo}`, 30, 130)
       context.fillText(`Time: ${(this.game.gameTime * 0.001).toFixed(1)}`, 30, 170)
       context.fillText(`Points: ${this.game.points}`, 30, 210)
+      context.fillText(`Coins ${this.game.coins}`, 30, 250)
     }
 
     // debug display 
@@ -223,6 +225,7 @@ export default class UserInterface {
       //stats
       context.fillText(`Kills: ${this.game.enemyKills}`, this.game.width - 20, 225)
       context.fillText(`Heals: ${this.game.healPickups}`, this.game.width - 20, 250)
+      context.fillText(`Coin blocks: ${this.game.coinsBlock}`, this.game.width - 20, 275)
 
     }
 
@@ -235,6 +238,6 @@ export default class UserInterface {
     }
   }
   getData() {
-    return JSON.parse(localStorage.getItem('data')) || [{ playTime: 0, points: 0, kills: 0, heals: 0 }]
+    return JSON.parse(localStorage.getItem('data')) || [{ playTime: 0, coins: 0, points: 0, kills: 0, heals: 0 }]
   }
 }
