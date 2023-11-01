@@ -1,7 +1,6 @@
 # Att göra lista
 
 ## Att göra Idag
-* vapen som skjuter med två projektiler 
 * En typ av trippel projectile vapen
 
 ## Måste göra för att göra klart 
@@ -53,3 +52,4 @@
 * Fixa UI till stats sidan
 * Coins pickups
 * Enemies kan droppa coins 
+* vapen som skjuter med två projektiler 

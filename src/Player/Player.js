@@ -1,5 +1,6 @@
-import Weapon from "./Wepons/Weapon"
-import DoubleShot from "./Wepons/DoubleShot"
+import Weapon from "./Weapons/Weapon"
+import DoubleShot from "./Weapons/DoubleShot"
+import TrippelShot from "./Weapons/TrippelShot"
 
 export default class Player {
   constructor(game) {
@@ -29,9 +30,12 @@ export default class Player {
     this.lives = 5
 
     this.useDoubleShot = true
+    this.useTrippelShot = false
+
 
     this.weapon = new Weapon(game, this.x, this.y, this.width, this.height)
     this.doubleShot = new DoubleShot(game, this.x, this.y, this.width, this.height)
+    this.trippelShot = new TrippelShot(game, this.x, this.y, this.width, this.height)
   }
 
   update(deltaTime) {
@@ -64,7 +68,13 @@ export default class Player {
     this.x += this.speedX
 
 
-    if (this.useDoubleShot) {
+    if (this.useTrippelShot) {
+      this.trippelShot.update(deltaTime, this.x, this.y)
+      this.projectiles = this.trippelShot.projectiles
+      this.ammo = this.trippelShot.ammo
+      this.damage = this.trippelShot.damage
+    }
+    else if (this.useDoubleShot) {
       this.doubleShot.update(deltaTime, this.x, this.y)
       this.projectiles = this.doubleShot.projectiles
       this.ammo = this.doubleShot.ammo
@@ -73,7 +83,7 @@ export default class Player {
       this.weapon.update(deltaTime, this.x, this.y)
       this.projectiles = this.weapon.projectiles
       this.ammo = this.weapon.ammo
-      this.damage.weapon.damage
+      this.damage = this.weapon.damage
     }
   }
 

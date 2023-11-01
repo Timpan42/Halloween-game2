@@ -38,7 +38,11 @@ export default class InputHandler {
 
     window.addEventListener('mousedown', (event) => {
       if (this.game.player.weapon.canShoot) {
-        if (this.game.player.useDoubleShot) {
+        if (this.game.player.useTrippelShot) {
+          this.game.player.trippelShot.shoot(this.mouseX, this.mouseY)
+
+        }
+        else if (this.game.player.useDoubleShot) {
           this.game.player.doubleShot.shoot(this.mouseX, this.mouseY)
         } else {
           this.game.player.weapon.shoot(this.mouseX, this.mouseY)
