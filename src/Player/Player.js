@@ -1,4 +1,4 @@
-import Projectile from './Wepons/Projectile.js'
+import Weapon from "./Wepons/Weapon"
 
 export default class Player {
   constructor(game) {
@@ -14,26 +14,15 @@ export default class Player {
     this.centerX = this.x + this.halfW
     this.centerY = this.y + this.halfH
 
-    this.projectiles = []
-
     //Move Speed
     this.speedX = 0
     this.speedY = 0
     this.maxSpeed = 6
 
-    //Shoot
-    this.canShoot = true
-    this.shootTimer = 0
-    this.shootInterval = 500
-
-    //Gun
-    this.maxAmmo = 20
-    this.ammo = 20
-    this.ammoTimer = 0
-    this.ammoInterval = 500
-
     //Lives
     this.lives = 5
+
+    this.weapon = new Weapon(game, this.x, this.y, this.width, this.height)
   }
 
   update(deltaTime) {
@@ -65,28 +54,7 @@ export default class Player {
     this.y += this.speedY
     this.x += this.speedX
 
-    // Ammo over time 
-    if (this.ammoTimer > this.ammoInterval && this.ammo < this.maxAmmo) {
-      this.ammoTimer = 0
-      this.ammo++
-    } else {
-      this.ammoTimer += deltaTime
-    }
-
-    // projectiles
-    this.projectiles.forEach((projectile) => {
-      projectile.update(deltaTime)
-    })
-    this.projectiles = this.projectiles.filter(
-      (projectile) => !projectile.markedForDeletion
-    )
-
-    // Can shoot logic 
-    if (this.shootTimer > this.shootInterval) {
-      this.canShoot = true
-    } else {
-      this.shootTimer += deltaTime
-    }
+    this.weapon.update(deltaTime, this.x, this.y)
   }
 
   draw(context) {
@@ -110,36 +78,6 @@ export default class Player {
       context.lineTo(x, y)
       context.stroke()
     }
-
-    this.projectiles.forEach((projectile) => {
-      projectile.draw(context)
-    })
-  }
-
-  shoot(mouseX, mouseY) {
-    if (this.canShoot && this.game.startGame) {
-      // get angle between player and mouse
-      const angle = Math.atan2(
-        mouseY - (this.y + this.height / 2),
-        mouseX - (this.x + this.width / 2)
-      )
-
-      // can use ammo 
-      if (this.ammo > 0) {
-        this.canShoot = false
-        this.shootTimer = 0
-        this.ammo--
-        this.projectiles.push(
-          new Projectile(
-            this.game,
-            this.x + this.width / 2,
-            this.y + this.height / 2,
-            angle
-          )
-        )
-      } else {
-        console.log('out of ammo')
-      }
-    }
+    this.weapon.draw(context)
   }
 }

@@ -91,9 +91,12 @@ export default class Game {
     //stop game
     if (this.gameOver) {
       this.storeLocal()
-      this.player.canShoot = false
+      this.player.weapon.canShoot = false
       return
     }
+
+    this.player.update(deltaTime)
+
 
     // WALL
     // Wall collision 
@@ -180,7 +183,7 @@ export default class Game {
       }
 
       // collision with enemy and projectile  
-      this.player.projectiles.forEach((projectile) => {
+      this.player.weapon.projectiles.forEach((projectile) => {
         if (this.checkCollision(projectile, enemy)) {
           if (enemy.lives > 1) {
             enemy.lives -= projectile.damage
@@ -200,7 +203,6 @@ export default class Game {
     })
 
     //UPDATE
-    this.player.update(deltaTime)
     this.pickUpsArray = this.pickUpsArray.filter((pickUps) => !pickUps.markedForDeletion)
     this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
   }
