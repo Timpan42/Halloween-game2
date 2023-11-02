@@ -6,6 +6,8 @@ import Heal from './PickupsObject/Heal.js'
 import Enemy from './Enemies/Enemy.js'
 import Wall from './NotMovableObject/Wall.js'
 import Coins from './PickupsObject/Coins.js'
+import GummyBear from './Enemies/GummyBear.js'
+import CandyEye from './Enemies/CandyEye.js'
 export default class Game {
   constructor(width, height, canvasPosition) {
     this.width = width
@@ -56,6 +58,12 @@ export default class Game {
     this.enemies = []
     this.enemyTimer = 0
     this.enemyInterval = 1000
+
+    this.gummyBearSpawn = 0
+    this.gummyBearMultiply = 1.0
+
+    this.candyEyeSpawn = 0
+    this.candyEyeMultiply = 1.0
 
     // statistic 
     this.enemyKills = 0
@@ -152,20 +160,18 @@ export default class Game {
           x = Math.random() * this.width // if on bottom edge, randomize x position
         }
 
-        this.enemies.push(new Pumpkin(this, x, y))
-        this.waveSpawned++
-        this.enemyTimer = 0
+        this.enemySpawner(x, y)
       } else {
         this.enemyTimer += deltaTime
       }
     } else if (this.waveKilled < this.waveSpawnAmount) {
+      // When there is to many enemies the game waits so the wave is killed 
 
     } else {
+      this.wave++
       this.waveKilled = 0
       this.waveSpawned = 0
-      this.waveSpawnAmount = this.waveSpawnAmount + Math.floor(2 * this.waveSpawnAmountMultiply)
-      this.waveSpawnAmountMultiply += 0.1
-      this.wave++
+      this.increaseSpawns()
     }
 
     // collision check enemy
@@ -177,7 +183,7 @@ export default class Game {
         enemy.markedForDeletion = true
         this.waveKilled++
 
-        this.damagePlayer(enemy.type)
+        this.damagePlayer(enemy)
         this.pickUpsStats(enemy)
 
       }
@@ -232,13 +238,58 @@ export default class Game {
     }
   }
 
+
+  enemySpawner(x, y) {
+    if (this.wave >= 3 && this.wave <= 5) {
+      if (this.gummyBearSpawn > 0) {
+        this.enemies.push(new GummyBear(this, x, y))
+        this.gummyBearSpawn--
+      }
+      else {
+        this.enemies.push(new Pumpkin(this, x, y))
+      }
+    }
+    else if (this.wave >= 6) {
+      if (this.candyEyeSpawn > 0) {
+        this.enemies.push(new CandyEye(this, x, y))
+        this.candyEyeSpawn--
+
+      }
+      else if (this.gummyBearSpawn > 0) {
+        this.enemies.push(new GummyBear(this, x, y))
+        this.gummyBearSpawn--
+      }
+      else {
+        this.enemies.push(new Pumpkin(this, x, y))
+      }
+    }
+    else {
+      this.enemies.push(new Pumpkin(this, x, y))
+    }
+    this.waveSpawned++
+    this.enemyTimer = 0
+  }
+
+  increaseSpawns() {
+    if (this.wave >= 2) {
+      this.gummyBearSpawn += Math.floor(1 * this.gummyBearMultiply)
+      this.gummyBearMultiply += 0.2
+    }
+    if (this.wave >= 5) {
+      this.candyEyeSpawn += Math.floor(1 * this.candyEyeMultiply)
+      this.candyEyeMultiply += 0.3
+    }
+    this.waveSpawnAmount = this.waveSpawnAmount + Math.floor(2 * this.waveSpawnAmountMultiply)
+    this.waveSpawnAmountMultiply += 0.1
+  }
+
   enemyCollision(enemy) {
     if (enemy.lives > 0) {
       enemy.lives -= this.player.damage
       if (enemy.lives <= 0) {
         let coinWorth = enemy.givCoinWorth()
         this.countCoins(coinWorth, enemy.coinSpawnChans, enemy.x, enemy.y)
-        this.countPoints(enemy.type)
+        this.countPoints(enemy)
         this.pickUpsStats(enemy)
 
         this.waveKilled++
@@ -247,7 +298,7 @@ export default class Game {
     } else {
       let coinWorth = enemy.givCoinWorth()
       this.countCoins(coinWorth, enemy.coinSpawnChans, enemy.x, enemy.y)
-      this.countPoints(enemy.type)
+      this.countPoints(enemy)
       this.pickUpsStats(enemy)
 
       this.waveKilled++
@@ -274,6 +325,10 @@ export default class Game {
     else if (object instanceof Enemy) {
       this.enemyKills++
     }
+    else if (object instanceof Pumpkin) {
+      this.enemyKills++
+
+    }
     else if (object.type === 'coin') {
       this.coins += object.coinWorth
       this.coinsBlock--
@@ -296,17 +351,13 @@ export default class Game {
   }
 
   // Puts points in points
-  countPoints(enemyType) {
-    if (enemyType === "pumpkin") {
-      this.points += 10
-    }
+  countPoints(enemy) {
+    this.points += enemy.points
   }
 
   // Damage the player 
-  damagePlayer(enemyType) {
-    if (enemyType === "pumpkin") {
-      this.player.lives--
-    }
+  damagePlayer(enemy) {
+    this.player.lives -= enemy.damage
   }
 
   draw(context) {

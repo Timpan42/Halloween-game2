@@ -1,32 +1,28 @@
 # Att göra lista
 
 ## Att göra Idag
+* Bossar på Wave 5 
 
+* Coins shop UI
+* Mellan varje 5 waves kan man få uppgradera sina stats 
+* (UI) Vissa vilket vapen spelaren använder 
 ## Måste göra för att göra klart 
 ### Allmänt
 * Ljud
 * Halloween sprites 
 
 ### Enemies
-* Bossar på Wave 5 
-* Varje tre Waves en ny Enemy 
-* Tank (Mycket hp rör sig långsam, gör inte så mycket damage)
-* Glasskanon (Lite hp, snabb och gör mycket skada)
 
 ### Pickups
 
 ### Olika vapen
 
 ### stats 
-* Har coins som man kan köpa uppgraderingar 
-* Mellan varje 5 waves kan man få uppgradera sina stats 
 
 ### UI
-* Coins shop UI
-* (UI) Vissa vilket vapen spelaren använder 
 
 ### Bugs 
-* Vars skottet far är inte det samma som vars musen är 
+
 
 ## Om det finns tid (Extra saker)
 * små bug fixande 
@@ -54,3 +50,7 @@
 * Enemies kan droppa coins 
 * vapen som skjuter med två projektiler 
 * En typ av trippel projectile vapen
+* Har coins som man kan köpa uppgraderingar
+* Varje tre Waves en ny Enemy 
+* Tank (Mycket hp rör sig långsam, gör inte så mycket damage)
+* Glasskanon (Lite hp, snabb och gör mycket skada)
