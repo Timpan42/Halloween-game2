@@ -19,6 +19,10 @@ export default class InputHandler {
         this.game.keys.push(event.key)
       }
 
+      if (event.key === 'u') {
+        this.game.upgradeScreen === false ? this.game.upgradeScreen = true : this.game.upgradeScreen = false
+      }
+
       if (event.key === 'p') {
         this.game.debug = !this.game.debug
         this.game.player.doubleShot.ammo = 1000

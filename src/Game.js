@@ -23,7 +23,7 @@ export default class Game {
     this.startGame = false
     this.gameOver = false
     this.debug = false
-
+    this.upgradeScreen = false
 
     //LocalStorage 
     this.data = JSON.parse(localStorage.getItem('data')) || [{ playTime: 0, coins: 0, points: 0, kills: 0, heals: 0 }]
@@ -97,13 +97,18 @@ export default class Game {
       this.gameReset = false
     }
 
-    if (!this.gameOver) {
+    if (!this.gameOver && !this.upgradeScreen) {
       this.gameTime += deltaTime
     }
 
     //stop game
     if (this.gameOver) {
       this.storeLocal()
+      this.player.weapon.canShoot = false
+      return
+    }
+
+    if (this.upgradeScreen) {
       this.player.weapon.canShoot = false
       return
     }

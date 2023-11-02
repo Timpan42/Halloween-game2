@@ -1,4 +1,5 @@
 import Button from "./Button"
+import UpgradeButton from "./UpgradeButton"
 
 export default class UserInterface {
   constructor(game) {
@@ -17,6 +18,16 @@ export default class UserInterface {
     this.backButton
     this.gameOverButton
     this.menuButton
+
+    // Upgrade Screen 
+    this.damageButton // X
+    this.attackSpeedButton // X
+    this.movementSpeedButton // X
+    this.maxHPButton // X
+    this.maxAmmoButton // X
+    this.ammoRegenIncreaseButton // X
+    this.coinIncreaseButton // X
+
 
 
 
@@ -195,6 +206,171 @@ export default class UserInterface {
       context.fillText(`Time: ${(this.game.gameTime * 0.001).toFixed(1)}`, 30, 170)
       context.fillText(`Points: ${this.game.points}`, 30, 210)
       context.fillText(`Coins ${this.game.coins}`, 30, 250)
+
+
+      if (this.game.upgradeScreen) {
+        context.fillStyle = this.blue;
+        context.fillRect(190, 25, 900, 650);
+        context.fillStyle = this.black;
+
+        context.fillStyle = this.white
+        context.textAlign = 'center'
+        context.font = `50px ${this.fontFamily}`
+        context.fillText(
+          'Upgrade Screen',
+          this.game.width / 2,
+          this.game.height / 2 - 250
+        )
+        this.damageButton = new UpgradeButton(
+          this.game,
+          context,
+          this.game.width / 2 - 400,
+          this.game.height / 2 - 220,
+          500,
+          50,
+          'Damage',
+          'text',
+          -20,
+          25,
+          this.white,
+          this.black,
+          30,
+          this.fontFamily,
+          0,
+          10
+        )
+
+        this.attackSpeedButton = new UpgradeButton(
+          this.game,
+          context,
+          this.game.width / 2 - 400,
+          this.game.height / 2 - 110,
+          500,
+          50,
+          'Attack Speed',
+          'text',
+          -20,
+          25,
+          this.white,
+          this.black,
+          30,
+          this.fontFamily,
+          0,
+          10
+        )
+
+        this.movementSpeedButton = new UpgradeButton(
+          this.game,
+          context,
+          this.game.width / 2 - 400,
+          this.game.height / 2,
+          500,
+          50,
+          'Movement Speed',
+          'text',
+          -20,
+          25,
+          this.white,
+          this.black,
+          30,
+          this.fontFamily,
+          0,
+          10
+        )
+
+        this.maxHPButton = new UpgradeButton(
+          this.game,
+          context,
+          this.game.width / 2 + 10,
+          this.game.height / 2 - 220,
+          500,
+          50,
+          'Max HP',
+          'text',
+          -20,
+          25,
+          this.white,
+          this.black,
+          30,
+          this.fontFamily,
+          0,
+          10
+        )
+
+        this.maxAmmoButton = new UpgradeButton(
+          this.game,
+          context,
+          this.game.width / 2 + 10,
+          this.game.height / 2 - 110,
+          500,
+          50,
+          'Max Ammo',
+          'text',
+          -20,
+          25,
+          this.white,
+          this.black,
+          30,
+          this.fontFamily,
+          0,
+          10
+        )
+
+        this.ammoRegenIncreaseButton = new UpgradeButton(
+          this.game,
+          context,
+          this.game.width / 2 + 10,
+          this.game.height / 2,
+          500,
+          50,
+          'Ammo Regen',
+          'text',
+          -20,
+          25,
+          this.white,
+          this.black,
+          30,
+          this.fontFamily,
+          0,
+          10
+        )
+
+        this.coinIncreaseButton = new UpgradeButton(
+          this.game,
+          context,
+          this.game.width / 2 - 200,
+          this.game.height / 2 + 110,
+          500,
+          50,
+          'More Coins',
+          'text',
+          -20,
+          25,
+          this.white,
+          this.black,
+          30,
+          this.fontFamily,
+          0,
+          10
+        )
+
+        this.backButton = new Button(
+          this.game,
+          context,
+          this.game.width / 2 - 100,
+          this.game.height / 2 + 250,
+          200,
+          50,
+          'Back',
+          this.white,
+          this.black,
+          35,
+          this.fontFamily,
+          0,
+          10
+        )
+      }
+
     }
 
     // debug display 

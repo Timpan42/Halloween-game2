@@ -1,11 +1,9 @@
 # Att göra lista
 
 ## Att göra Idag
-* Bossar på Wave 5 
-
 * Coins shop UI
-* Mellan varje 5 waves kan man få uppgradera sina stats 
-* (UI) Vissa vilket vapen spelaren använder 
+* fixa shop knappar, text, koppling med game/player
+
 ## Måste göra för att göra klart 
 ### Allmänt
 * Ljud
@@ -33,6 +31,7 @@
 
 ### Enemies
 * Mer Enemies
+* Mer Bossar 
 
 ### Pickups
 
@@ -41,6 +40,7 @@
 ### stats 
 
 ### UI
+* (UI) Vissa vilket vapen spelaren använder 
 * Bättre UI
 * Vissa HP på enemies 
 
@@ -68,3 +68,4 @@
 * Varje tre Waves en ny Enemy 
 * Tank (Mycket hp rör sig långsam, gör inte så mycket damage)
 * Glasskanon (Lite hp, snabb och gör mycket skada)
+* Bossar på Wave 5 
