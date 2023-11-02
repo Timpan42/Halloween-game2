@@ -25,13 +25,27 @@
 
 
 ## Om det finns tid (Extra saker)
-* små bug fixande 
+### Allmänt
+* Rundorna blir för långa efter drygt runda 8
 * Animation för sprites 
-* Bättre UI
-* Vissa HP på enemies 
 * Göra om points systemet så man använder en array som man går igenom istället för många if satser
 * En map maker i spelet på en annan Game instans, för ett visuell sätt att göra mer waves baner och enemies
 
+### Enemies
+* Mer Enemies
+
+### Pickups
+
+### Olika vapen
+
+### stats 
+
+### UI
+* Bättre UI
+* Vissa HP på enemies 
+
+### Bugs 
+* den byter runda än om man inte har döda alla enemies, dock är det bara runt två som överlever till nästa runda 
 
 ## Klar 
 * ta bort skotten när dem är utan för kameran  

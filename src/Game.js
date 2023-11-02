@@ -8,6 +8,8 @@ import Wall from './NotMovableObject/Wall.js'
 import Coins from './PickupsObject/Coins.js'
 import GummyBear from './Enemies/GummyBear.js'
 import CandyEye from './Enemies/CandyEye.js'
+import BossPumpkin from './Enemies/BossPumpkin.js'
+
 export default class Game {
   constructor(width, height, canvasPosition) {
     this.width = width
@@ -64,6 +66,9 @@ export default class Game {
 
     this.candyEyeSpawn = 0
     this.candyEyeMultiply = 1.0
+
+    this.bossSpawn = 1
+    this.bossWave = 5
 
     // statistic 
     this.enemyKills = 0
@@ -241,6 +246,13 @@ export default class Game {
 
   enemySpawner(x, y) {
     if (this.wave >= 3 && this.wave <= 5) {
+      if (this.wave == this.bossWave) {
+        if (this.bossSpawn > 0) {
+          this.enemies.push(new BossPumpkin(this, x, y))
+          this.bossSpawn--
+        }
+      }
+
       if (this.gummyBearSpawn > 0) {
         this.enemies.push(new GummyBear(this, x, y))
         this.gummyBearSpawn--
@@ -249,7 +261,15 @@ export default class Game {
         this.enemies.push(new Pumpkin(this, x, y))
       }
     }
+
     else if (this.wave >= 6) {
+      if (this.wave == this.bossWave && this.wave > 5) {
+        if (this.bossSpawn > 0) {
+          this.enemies.push(new BossPumpkin(this, x, y))
+          this.bossSpawn--
+        }
+      }
+
       if (this.candyEyeSpawn > 0) {
         this.enemies.push(new CandyEye(this, x, y))
         this.candyEyeSpawn--
@@ -263,14 +283,21 @@ export default class Game {
         this.enemies.push(new Pumpkin(this, x, y))
       }
     }
+
     else {
       this.enemies.push(new Pumpkin(this, x, y))
+
     }
     this.waveSpawned++
     this.enemyTimer = 0
   }
 
   increaseSpawns() {
+    if (this.wave == (this.bossWave + 1)) {
+      this.bossWave += 5
+      this.bossSpawn = Math.floor(1 * this.waveSpawnAmountMultiply)
+    }
+
     if (this.wave >= 2) {
       this.gummyBearSpawn += Math.floor(1 * this.gummyBearMultiply)
       this.gummyBearMultiply += 0.2
@@ -338,8 +365,8 @@ export default class Game {
   countCoins(coinsWorth, coinSpawnChans, enemyX, enemyY) {
     let spawn = (Math.random() * (10 - 1 + 1) + 1) * coinSpawnChans
     if (spawn > 5) {
-      let x = enemyX // spawn on left or right edge
-      let y = enemyY// spawn on top or bottom edge
+      let x = enemyX
+      let y = enemyY
 
 
       let newCoin = new Coins(this, x, y, coinsWorth)

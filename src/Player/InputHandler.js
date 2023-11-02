@@ -22,6 +22,7 @@ export default class InputHandler {
       if (event.key === 'p') {
         this.game.debug = !this.game.debug
         this.game.player.doubleShot.ammo = 1000
+        this.game.player.doubleShot.damage = 10
       }
 
       if (event.key === '1') {
