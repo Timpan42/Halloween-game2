@@ -1,7 +1,6 @@
 # Att göra lista
 
 ## Att göra Idag
-* Coins shop UI
 * fixa shop knappar, text, koppling med game/player
 
 ## Måste göra för att göra klart 
@@ -45,6 +44,7 @@
 * Vissa HP på enemies 
 
 ### Bugs 
+* efter att använt shopen så kan man inte använda andra vapen än den första, men efter ett tag så funkar den igen, behöver byta från förta vapnet sen till en annan plus vänta 
 * den byter runda än om man inte har döda alla enemies, dock är det bara runt två som överlever till nästa runda 
 
 ## Klar 
@@ -69,3 +69,4 @@
 * Tank (Mycket hp rör sig långsam, gör inte så mycket damage)
 * Glasskanon (Lite hp, snabb och gör mycket skada)
 * Bossar på Wave 5 
+* Coins shop UI
