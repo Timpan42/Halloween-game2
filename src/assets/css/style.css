@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Eater&display=swap');
+
 :root {
-  font-family: sans-serif;
+  font-family: 'Eater', serif;
   line-height: 1.5;
   font-weight: 400;
 
