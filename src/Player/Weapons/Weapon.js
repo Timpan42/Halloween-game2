@@ -26,10 +26,13 @@ export default class Weapon {
     update(deltaTime, x, y) {
         this.x = x
         this.y = y
+        this.damage = (1 + this.game.player.damageIncrease)
+        this.shootInterval = (500 - this.game.player.attackSpeedIncrease)
+        this.maxAmmo = (20 + this.game.player.maxAmmoIncrease)
         // Ammo over time 
         if (this.ammoTimer > this.ammoInterval && this.ammo < this.maxAmmo) {
             this.ammoTimer = 0
-            this.ammo++
+            this.ammo += (1 + this.game.player.ammoRegenIncrease)
         } else {
             this.ammoTimer += deltaTime
         }

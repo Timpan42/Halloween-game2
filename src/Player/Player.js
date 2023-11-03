@@ -16,6 +16,15 @@ export default class Player {
     this.centerX = this.x + this.halfW
     this.centerY = this.y + this.halfH
 
+
+    //Increase for shop logic
+    this.damageIncrease = 1 //X
+    this.attackSpeedIncrease = 0 //X
+    this.movementSpeedIncrease = 0 //X
+    this.maxHPIncrease = 0 //X
+    this.maxAmmoIncrease = 0 //X
+    this.ammoRegenIncrease = 0 //X
+
     //Move Speed
     this.speedX = 0
     this.speedY = 0
@@ -28,6 +37,7 @@ export default class Player {
 
     //Lives
     this.lives = 5
+    this.maxLives = 10
 
     this.useDoubleShot = false
     this.useTrippelShot = false
@@ -39,6 +49,10 @@ export default class Player {
   }
 
   update(deltaTime) {
+    this.maxLives = 10 + this.maxHPIncrease
+    this.maxSpeed = 6 + this.movementSpeedIncrease
+
+
     if (this.lives <= 0) {
       this.game.gameOver = true
     }
@@ -66,7 +80,6 @@ export default class Player {
 
     this.y += this.speedY
     this.x += this.speedX
-
 
     if (this.useTrippelShot) {
       this.trippelShot.update(deltaTime, this.x, this.y)

@@ -1,10 +1,12 @@
 export default class UpgradeButton {
-    constructor(game, context, x, y, width, height, text, botText, botTextX, botTextY, fillColor, textColor, fontSize, font, textXFix, textYFix) {
+    constructor(game, context, x, y, width, height, text, botText, botTextX, botTextY, fillColor, textColor, fontSize, font, textXFix, textYFix, typ, fee) {
         this.game = game
         this.x = x
         this.y = y
         this.width = 400
         this.height = 100
+        this.typ = typ
+        this.fee = fee
         context.fillStyle = fillColor;
         context.fillRect(x, y, this.width, this.height);
         context.fillStyle = "black";
@@ -15,7 +17,8 @@ export default class UpgradeButton {
         context.shadowColor = 'transparent'
         context.fillText(text, x + width / 2 + textXFix, y + height / 2 + textYFix, width);
         context.font = `${fontSize - 5}px ${font}`;
-        context.fillText(botText, (x + width / 2 + textXFix) + 20, (y + height / 2 + textYFix) + 25, width);
+        context.fillText(botText, (x + width / 2 + textXFix) + botTextX, (y + height / 2 + textYFix) + botTextY, width);
+
 
         //Reset
         context.shadowColor = this.game.ui.black

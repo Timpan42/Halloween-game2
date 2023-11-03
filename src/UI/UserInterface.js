@@ -20,6 +20,8 @@ export default class UserInterface {
     this.menuButton
 
     // Upgrade Screen 
+
+    this.upgradeScreenButtons = []
     this.damageButton // X
     this.attackSpeedButton // X
     this.movementSpeedButton // X
@@ -44,6 +46,14 @@ export default class UserInterface {
         if (this.isInsideButton(this.backButton.x, this.backButton.y, this.backButton.width, this.backButton.height)) {
           this.statWindow = false
         }
+      }
+
+      if (this.game.startGame && this.game.upgradeScreen) {
+        this.upgradeScreenButtons.forEach(element => {
+          if (this.isInsideButton(element.x, element.y, element.width, element.height)) {
+            this.upgradeScreenButtonCheck(element)
+          }
+        });
       }
 
 
@@ -208,6 +218,7 @@ export default class UserInterface {
       context.fillText(`Coins ${this.game.coins}`, 30, 250)
 
 
+      // When you press u 
       if (this.game.upgradeScreen) {
         context.fillStyle = this.blue;
         context.fillRect(190, 25, 900, 650);
@@ -237,6 +248,8 @@ export default class UserInterface {
           30,
           this.fontFamily,
           0,
+          10,
+          'DAIN',
           10
         )
 
@@ -256,7 +269,9 @@ export default class UserInterface {
           30,
           this.fontFamily,
           0,
-          10
+          10,
+          'ATSP',
+          20
         )
 
         this.movementSpeedButton = new UpgradeButton(
@@ -275,7 +290,9 @@ export default class UserInterface {
           30,
           this.fontFamily,
           0,
-          10
+          10,
+          'MOSP',
+          20
         )
 
         this.maxHPButton = new UpgradeButton(
@@ -294,6 +311,8 @@ export default class UserInterface {
           30,
           this.fontFamily,
           0,
+          10,
+          'MAHP',
           10
         )
 
@@ -313,7 +332,9 @@ export default class UserInterface {
           30,
           this.fontFamily,
           0,
-          10
+          10,
+          'MAAM',
+          5
         )
 
         this.ammoRegenIncreaseButton = new UpgradeButton(
@@ -332,7 +353,9 @@ export default class UserInterface {
           30,
           this.fontFamily,
           0,
-          10
+          10,
+          'AMREIN',
+          30
         )
 
         this.coinIncreaseButton = new UpgradeButton(
@@ -351,7 +374,9 @@ export default class UserInterface {
           30,
           this.fontFamily,
           0,
-          10
+          10,
+          'COIN',
+          50
         )
 
         this.backButton = new Button(
@@ -369,6 +394,8 @@ export default class UserInterface {
           0,
           10
         )
+        this.upgradeScreenButtons.splice(0, this.upgradeScreenButtons.length);
+        this.upgradeScreenButtons.push(this.damageButton, this.attackSpeedButton, this.movementSpeedButton, this.maxHPButton, this.maxAmmoButton, this.ammoRegenIncreaseButton, this.coinIncreaseButton, this.backButton)
       }
 
     }
@@ -416,4 +443,54 @@ export default class UserInterface {
   getData() {
     return JSON.parse(localStorage.getItem('data')) || [{ playTime: 0, coins: 0, points: 0, kills: 0, heals: 0 }]
   }
+  upgradeScreenButtonCheck(element) {
+    if (element instanceof Button) {
+      this.game.upgradeScreen = false
+    } else {
+      this.shopLogic(element)
+    }
+  }
+  shopLogic(element) {
+    if (this.game.coins >= element.fee) {
+      this.game.coins -= element.fee
+      switch (element.typ) {
+        case 'DAIN':
+          this.game.player.damageIncrease += 0.5
+          element.fee += 2
+          break;
+        case 'ATSP':
+          this.game.player.attackSpeedIncrease += 30
+          element.fee += 2
+          break;
+        case 'MOSP':
+          this.game.player.movementSpeedIncrease += 1
+          element.fee += 2
+          break;
+        case 'MAHP':
+          console.log("max hp")
+          console.log(this.game.player.maxHPIncrease)
+          this.game.player.maxHPIncrease += 2
+          console.log(this.game.player.maxHPIncrease)
+
+          element.fee += 2
+          break;
+        case 'MAAM':
+          this.game.player.maxAmmoIncrease += 2
+          element.fee += 2
+          break;
+        case 'AMREIN':
+          this.game.player.ammoRegenIncrease += 1
+          element.fee += 2
+          break;
+        case 'COIN':
+          this.game.coinIncrease += 1
+          element.fee += 50
+          break;
+      }
+    }
+    else {
+      console.log("You are POOR! Get more Coins!")
+    }
+  }
+
 }

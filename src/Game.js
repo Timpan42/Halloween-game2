@@ -55,6 +55,7 @@ export default class Game {
 
     this.coinsBlock = 0
     this.coins = 0
+    this.coinIncrease = 0
 
     // Enemies
     this.enemies = []
@@ -233,6 +234,14 @@ export default class Game {
     this.dataLimiter = 0
     this.coins = 0
     this.coinsBlock = 0
+    this.coinIncrease = 0
+
+    this.player.damageIncrease = 1 //X
+    this.player.attackSpeedIncrease = 0 //X
+    this.player.movementSpeedIncrease = 0 //X
+    this.player.maxHPIncrease = 0 //X
+    this.player.maxAmmoIncrease = 0 //X
+    this.player.ammoRegenIncrease = 0 //X
   }
 
   storeLocal() {
@@ -350,7 +359,9 @@ export default class Game {
   // Puts information under the category Stats 
   pickUpsStats(object) {
     if (object.type === 'heal') {
-      this.player.lives += 1
+      if (this.player.lives < this.player.maxLives) {
+        this.player.lives += 1
+      }
       this.healPickups++
       this.healBlock--
     }
@@ -374,7 +385,7 @@ export default class Game {
       let y = enemyY
 
 
-      let newCoin = new Coins(this, x, y, coinsWorth)
+      let newCoin = new Coins(this, x, y, coinsWorth, this.coinIncrease)
       this.pickUpsArray.push(newCoin)
       let objectSpawn = this.pickUpsArray[this.pickUpsArray.length - 1]
       this.spawnStats(objectSpawn.type)
