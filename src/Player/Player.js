@@ -37,7 +37,7 @@ export default class Player {
 
     //Lives
     this.lives = 5
-    this.maxLives = 10
+    this.livesMax = 10
 
     this.useDoubleShot = false
     this.useTrippelShot = false
@@ -49,13 +49,12 @@ export default class Player {
   }
 
   update(deltaTime) {
-    this.maxLives = 10 + this.maxHPIncrease
-    this.maxSpeed = 6 + this.movementSpeedIncrease
-
-
     if (this.lives <= 0) {
       this.game.gameOver = true
     }
+
+    this.maxLives = 10 + this.maxHPIncrease
+    this.maxSpeed = 6 + this.movementSpeedIncrease
 
     this.centerX = this.x + this.halfW
     this.centerY = this.y + this.halfH
@@ -80,6 +79,7 @@ export default class Player {
 
     this.y += this.speedY
     this.x += this.speedX
+
 
     if (this.useTrippelShot) {
       this.trippelShot.update(deltaTime, this.x, this.y)
