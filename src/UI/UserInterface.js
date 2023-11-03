@@ -20,7 +20,6 @@ export default class UserInterface {
     this.menuButton
 
     // Upgrade Screen 
-
     this.upgradeScreenButtons = []
     this.damageButton // X
     this.attackSpeedButton // X
@@ -29,6 +28,14 @@ export default class UserInterface {
     this.maxAmmoButton // X
     this.ammoRegenIncreaseButton // X
     this.coinIncreaseButton // X
+
+    this.feeDamage = 10
+    this.feeAttackSpeed = 20
+    this.feeMovement = 20
+    this.feeHp = 10
+    this.feeMaxAmmo = 5
+    this.feeAmmoRegen = 30
+    this.feeCoin = 50
 
 
 
@@ -250,7 +257,7 @@ export default class UserInterface {
           0,
           10,
           'DAIN',
-          10
+          this.feeDamage
         )
 
         this.attackSpeedButton = new UpgradeButton(
@@ -271,7 +278,7 @@ export default class UserInterface {
           0,
           10,
           'ATSP',
-          20
+          this.feeAttackSpeed
         )
 
         this.movementSpeedButton = new UpgradeButton(
@@ -292,7 +299,7 @@ export default class UserInterface {
           0,
           10,
           'MOSP',
-          20
+          this.feeMovement
         )
 
         this.maxHPButton = new UpgradeButton(
@@ -313,7 +320,7 @@ export default class UserInterface {
           0,
           10,
           'MAHP',
-          10
+          this.feeHp
         )
 
         this.maxAmmoButton = new UpgradeButton(
@@ -334,7 +341,7 @@ export default class UserInterface {
           0,
           10,
           'MAAM',
-          5
+          this.feeMaxAmmo
         )
 
         this.ammoRegenIncreaseButton = new UpgradeButton(
@@ -355,7 +362,7 @@ export default class UserInterface {
           0,
           10,
           'AMREIN',
-          30
+          this.feeAmmoRegen
         )
 
         this.coinIncreaseButton = new UpgradeButton(
@@ -376,7 +383,7 @@ export default class UserInterface {
           0,
           10,
           'COIN',
-          50
+          this.feeCoin
         )
 
         this.backButton = new Button(
@@ -456,35 +463,32 @@ export default class UserInterface {
       switch (element.typ) {
         case 'DAIN':
           this.game.player.damageIncrease += 0.5
-          element.fee += 2
+          this.feeDamage += 2
           break;
         case 'ATSP':
           this.game.player.attackSpeedIncrease += 30
-          element.fee += 2
+          this.feeAttackSpeed += 2
           break;
         case 'MOSP':
           this.game.player.movementSpeedIncrease += 1
-          element.fee += 2
+          this.feeMovement += 2
           break;
         case 'MAHP':
           console.log("max hp")
-          console.log(this.game.player.maxHPIncrease)
           this.game.player.maxHPIncrease += 2
-          console.log(this.game.player.maxHPIncrease)
-
-          element.fee += 2
+          this.feeHp += 2
           break;
         case 'MAAM':
           this.game.player.maxAmmoIncrease += 2
-          element.fee += 2
+          this.feeMaxAmmo += 2
           break;
         case 'AMREIN':
           this.game.player.ammoRegenIncrease += 1
-          element.fee += 2
+          this.feeAmmoRegen += 2
           break;
         case 'COIN':
           this.game.coinIncrease += 1
-          element.fee += 50
+          this.feeCoin += 50
           break;
       }
     }
