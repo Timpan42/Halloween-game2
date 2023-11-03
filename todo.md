@@ -1,7 +1,6 @@
 # Att göra lista
 
 ## Att göra Idag
-* fixa shop text, samt priset 
 * font
 * färger  
 * Ljud
@@ -72,3 +71,4 @@
 * Glasskanon (Lite hp, snabb och gör mycket skada)
 * Bossar på Wave 5 
 * Coins shop UI
+* fixa shop text, samt priset 

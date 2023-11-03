@@ -16,10 +16,10 @@ export default class UpgradeButton {
         context.font = `${fontSize}px ${font}`;
         context.shadowColor = 'transparent'
         context.fillText(text, x + width / 2 + textXFix, y + height / 2 + textYFix, width);
-        context.font = `${fontSize - 10}px ${font}`;
+        context.font = `${fontSize - 14}px ${font}`;
         context.fillText(botText, (x + width / 2 + textXFix) + botTextX, (y + height / 2 + textYFix) + botTextY, width);
         context.font = `${fontSize - 10}px ${font}`;
-        context.fillText(this.fee + ' coins', (x + width / 2 + textXFix) + botTextX + 20, (y + height / 2 + textYFix) + 55, width);
+        context.fillText(this.fee + ' coins', (x + width / 2 + textXFix), (y + height / 2 + textYFix) + 55, width);
 
 
         //Reset
