@@ -1,12 +1,14 @@
 # Att göra lista
 
 ## Att göra Idag
-* fixa shop knappar, text, koppling med game/player
+* fixa shop text, samt priset 
+* font
+* färger  
+* Ljud
+* Halloween sprites 
 
 ## Måste göra för att göra klart 
 ### Allmänt
-* Ljud
-* Halloween sprites 
 
 ### Enemies
 
