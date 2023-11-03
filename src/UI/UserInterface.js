@@ -9,9 +9,10 @@ export default class UserInterface {
     this.white = 'white'
     this.black = 'black'
     this.blue = 'blue'
+    this.
 
-    //stats window
-    this.statWindow = false
+      //stats window
+      this.statWindow = false
     // buttons 
     this.startGameButton
     this.statsButton
