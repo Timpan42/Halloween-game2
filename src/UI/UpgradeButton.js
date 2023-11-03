@@ -1,5 +1,5 @@
 export default class UpgradeButton {
-    constructor(game, context, x, y, width, height, text, botText, botTextX, botTextY, fillColor, textColor, fontSize, font, textXFix, textYFix, typ, fee) {
+    constructor(game, context, x, y, width, height, text, botText, botTextX, botTextY, fillColor, fillColorSmall, textColor, fontSize, font, textXFix, textYFix, typ, fee) {
         this.game = game
         this.x = x
         this.y = y
@@ -9,7 +9,7 @@ export default class UpgradeButton {
         this.fee = fee
         context.fillStyle = fillColor;
         context.fillRect(x, y, this.width, this.height);
-        context.fillStyle = "black";
+        context.fillStyle = fillColorSmall;
         context.fillRect(x + 10, y + 10, this.width / 4, this.height - 20);
         context.fillStyle = textColor;
         context.textAlign = 'middle';

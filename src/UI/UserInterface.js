@@ -9,10 +9,13 @@ export default class UserInterface {
     this.white = 'white'
     this.black = 'black'
     this.blue = 'blue'
-    this.
+    this.purple = '#640080'
+    this.green = '#08e600'
+    this.red = '#cc0600'
+    this.orange = '#ff9a00'
 
-      //stats window
-      this.statWindow = false
+    //stats window
+    this.statWindow = false
     // buttons 
     this.startGameButton
     this.statsButton
@@ -102,8 +105,8 @@ export default class UserInterface {
         200,
         50,
         'Start Over',
-        this.white,
         this.black,
+        this.orange,
         35,
         this.fontFamily,
         0,
@@ -118,8 +121,8 @@ export default class UserInterface {
         200,
         50,
         'Main Menu',
-        this.white,
         this.black,
+        this.orange,
         35,
         this.fontFamily,
         0,
@@ -145,8 +148,8 @@ export default class UserInterface {
         200,
         50,
         'Start Game',
-        this.white,
         this.black,
+        this.orange,
         35,
         this.fontFamily,
         0,
@@ -160,8 +163,8 @@ export default class UserInterface {
         200,
         50,
         'Player Stats',
-        this.white,
         this.black,
+        this.orange,
         35,
         this.fontFamily,
         0,
@@ -172,13 +175,9 @@ export default class UserInterface {
     // Stat Window
     else if (!this.game.startGame && this.statWindow) {
       this.data = this.getData()
-      context.fillStyle = this.blue;
+      context.fillStyle = this.purple;
       context.fillRect(190, 50, 900, 600);
-      context.fillStyle = this.black;
-      context.textAlign = 'middle';
-      context.font = `45px ${this.fontFamily}`;
-
-      context.fillStyle = this.white
+      context.fillStyle = this.green
       context.textAlign = 'center'
       context.font = `50px ${this.fontFamily}`
       context.fillText(
@@ -190,10 +189,10 @@ export default class UserInterface {
       context.textAlign = 'center'
       context.font = `${this.fontSize}px ${this.fontFamily}`
       context.fillText(`Time played: ${(this.data[0].playTime * 0.001).toFixed(0)} sek`, this.game.width / 2, 225)
-      context.fillText(`All time Coins: ${this.data[0].coins}`, this.game.width / 2 - 15, 275)
-      context.fillText(`All time points: ${this.data[0].points}`, this.game.width / 2 - 13, 325)
-      context.fillText(`All time kills: ${this.data[0].kills}`, this.game.width / 2 - 25, 375)
-      context.fillText(`All time heals: ${this.data[0].heals}`, this.game.width / 2 - 16, 425)
+      context.fillText(`All time Coins: ${this.data[0].coins}`, this.game.width / 2, 275)
+      context.fillText(`All time points: ${this.data[0].points}`, this.game.width / 2, 325)
+      context.fillText(`All time kills: ${this.data[0].kills}`, this.game.width / 2, 375)
+      context.fillText(`All time heals: ${this.data[0].heals}`, this.game.width / 2, 425)
 
 
       this.backButton = new Button(
@@ -204,8 +203,8 @@ export default class UserInterface {
         200,
         50,
         'Back',
-        this.white,
         this.black,
+        this.orange,
         35,
         this.fontFamily,
         0,
@@ -228,11 +227,9 @@ export default class UserInterface {
 
       // When you press u 
       if (this.game.upgradeScreen) {
-        context.fillStyle = this.blue;
+        context.fillStyle = this.purple;
         context.fillRect(190, 25, 900, 650);
-        context.fillStyle = this.black;
-
-        context.fillStyle = this.white
+        context.fillStyle = this.green;
         context.textAlign = 'center'
         context.font = `50px ${this.fontFamily}`
         context.fillText(
@@ -252,6 +249,7 @@ export default class UserInterface {
           5,
           25,
           this.white,
+          this.red,
           this.black,
           30,
           this.fontFamily,
@@ -273,6 +271,7 @@ export default class UserInterface {
           5,
           25,
           this.white,
+          this.red,
           this.black,
           30,
           this.fontFamily,
@@ -294,6 +293,7 @@ export default class UserInterface {
           5,
           25,
           this.white,
+          this.red,
           this.black,
           30,
           this.fontFamily,
@@ -315,6 +315,7 @@ export default class UserInterface {
           5,
           25,
           this.white,
+          this.red,
           this.black,
           30,
           this.fontFamily,
@@ -336,6 +337,7 @@ export default class UserInterface {
           5,
           25,
           this.white,
+          this.red,
           this.black,
           30,
           this.fontFamily,
@@ -357,6 +359,7 @@ export default class UserInterface {
           5,
           25,
           this.white,
+          this.red,
           this.black,
           30,
           this.fontFamily,
@@ -378,6 +381,7 @@ export default class UserInterface {
           5,
           25,
           this.white,
+          this.red,
           this.black,
           30,
           this.fontFamily,
@@ -395,8 +399,8 @@ export default class UserInterface {
           200,
           50,
           'Back',
-          this.white,
           this.black,
+          this.orange,
           35,
           this.fontFamily,
           0,

@@ -8,7 +8,7 @@ export default class Wall extends Object {
         this.height = height
         this.x = x
         this.y = y
-        this.color = '#08f'
+        this.color = '#640080'
         this.type = 'wall'
 
         //For collision 
