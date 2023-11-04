@@ -1,13 +1,9 @@
 import Pumpkin from "./Pumpkin";
 
 export default class BossPumpkin extends Pumpkin {
-    constructor(game, x, y) {
-        super(game)
-        this.width = 48
-        this.height = 40
+    constructor(game, x, y, width, height) {
+        super(game, x, y, width, height)
         this.bossMultiply = 3
-        this.x = x
-        this.y = y
         this.speed = 2.5
         this.lives = Math.floor((Math.random() * (3 - 1 + 1) + 1) * this.bossMultiply)
         this.damage = 1 * this.bossMultiply

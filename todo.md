@@ -6,9 +6,8 @@ https://fonts.google.com/specimen/VT323?query=eter
 https://fonts.google.com/specimen/Special+Elite?category=Serif,Sans+Serif,Display,Monospace
 
 ## Att göra Idag
-* font
-* färger
-* Halloween sprites 
+* Halloween sprites (player, pickups)
+* fixa update för upgrade så den inte föröver till nästa spel  
 
 ## Måste göra för att göra klart 
 ### Allmänt
@@ -33,6 +32,7 @@ https://fonts.google.com/specimen/Special+Elite?category=Serif,Sans+Serif,Displa
 * Göra om points systemet så man använder en array som man går igenom istället för många if satser
 * En map maker i spelet på en annan Game instans, för ett visuell sätt att göra mer waves baner och enemies
 * Ljud
+* font
 
 ### Enemies
 * Mer Enemies
@@ -77,3 +77,4 @@ https://fonts.google.com/specimen/Special+Elite?category=Serif,Sans+Serif,Displa
 * Bossar på Wave 5 
 * Coins shop UI
 * fixa shop text, samt priset 
+* färger

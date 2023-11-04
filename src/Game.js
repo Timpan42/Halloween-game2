@@ -262,44 +262,44 @@ export default class Game {
     if (this.wave >= 3 && this.wave <= 5) {
       if (this.wave == this.bossWave) {
         if (this.bossSpawn > 0) {
-          this.enemies.push(new BossPumpkin(this, x, y))
+          this.enemies.push(new BossPumpkin(this, x, y, 31 * 2, 43 * 2))
           this.bossSpawn--
         }
       }
 
       if (this.gummyBearSpawn > 0) {
-        this.enemies.push(new GummyBear(this, x, y))
+        this.enemies.push(new GummyBear(this, x, y, 28 * 1.3, 42 * 1.3))
         this.gummyBearSpawn--
       }
       else {
-        this.enemies.push(new Pumpkin(this, x, y))
+        this.enemies.push(new Pumpkin(this, x, y, 31 * 1.3, 43 * 1.3))
       }
     }
 
     else if (this.wave >= 6) {
       if (this.wave == this.bossWave && this.wave > 5) {
         if (this.bossSpawn > 0) {
-          this.enemies.push(new BossPumpkin(this, x, y))
+          this.enemies.push(new BossPumpkin(this, x, y, 32 * 2, 32 * 2))
           this.bossSpawn--
         }
       }
 
       if (this.candyEyeSpawn > 0) {
-        this.enemies.push(new CandyEye(this, x, y))
+        this.enemies.push(new CandyEye(this, x, y, 44 * 1.3, 13 * 1.3))
         this.candyEyeSpawn--
 
       }
       else if (this.gummyBearSpawn > 0) {
-        this.enemies.push(new GummyBear(this, x, y))
+        this.enemies.push(new GummyBear(this, x, y, 28 * 1.3, 42 * 1.3))
         this.gummyBearSpawn--
       }
       else {
-        this.enemies.push(new Pumpkin(this, x, y))
+        this.enemies.push(new Pumpkin(this, x, y, 31 * 1.3, 43 * 1.3))
       }
     }
 
     else {
-      this.enemies.push(new Pumpkin(this, x, y))
+      this.enemies.push(new Pumpkin(this, x, y, 31, 43))
 
     }
     this.waveSpawned++
