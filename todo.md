@@ -28,9 +28,9 @@ https://fonts.google.com/specimen/Special+Elite?category=Serif,Sans+Serif,Displa
 * Rundorna blir för långa efter drygt runda 8
 * Animation för sprites 
 * Göra om points systemet så man använder en array som man går igenom istället för många if satser
-* En map maker i spelet på en annan Game instans, för ett visuell sätt att göra mer waves baner och enemies
 * Ljud
 * font
+* En map maker i spelet på en annan Game instans, för ett visuell sätt att göra mer waves baner och enemies
 
 ### Enemies
 * Mer Enemies
