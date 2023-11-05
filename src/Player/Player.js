@@ -1,14 +1,22 @@
 import Weapon from "./Weapons/Weapon"
 import DoubleShot from "./Weapons/DoubleShot"
 import TrippelShot from "./Weapons/TrippelShot"
+const image = 'src/assets/img/player.webp'
 
 export default class Player {
   constructor(game) {
     this.game = game
-    this.width = 32
-    this.height = 64
+    this.width = 16 * 3
+    this.height = 19 * 3
     this.x = this.game.width / 2 - this.width / 2
     this.y = this.game.height / 2 - this.height / 2
+
+    this.image = new Image()
+    this.image.onload = () => {
+      this.width
+      this.height
+    }
+    this.image.src = image
 
     //For collision 
     this.halfW = this.width / 2
@@ -101,9 +109,10 @@ export default class Player {
   }
 
   draw(context) {
-    // player color
-    context.fillStyle = '#f00'
-    context.fillRect(this.x, this.y, this.width, this.height)
+    // player image
+    if (this.image.complete && this.width && this.height) {
+      context.drawImage(this.image, this.x, this.y, this.width, this.height)
+    }
 
     if (this.game.debug) {
       // lines around player enemy 

@@ -134,7 +134,7 @@ export default class Game {
       let y = Math.random() * (this.height - 200) // spawn on top or bottom edge
 
       if (this.healBlock < this.healBlockMax) {
-        this.pickUpsArray.push(new Heal(this, x, y))
+        this.pickUpsArray.push(new Heal(this, x, y, 14 * 2.5, 16 * 2.5))
         let objectSpawn = this.pickUpsArray[this.pickUpsArray.length - 1]
         this.spawnStats(objectSpawn.type)
       }
@@ -385,7 +385,7 @@ export default class Game {
       let y = enemyY
 
 
-      let newCoin = new Coins(this, x, y, coinsWorth, this.coinIncrease)
+      let newCoin = new Coins(this, x, y, 13 * 2, 16 * 2, coinsWorth, this.coinIncrease)
       this.pickUpsArray.push(newCoin)
       let objectSpawn = this.pickUpsArray[this.pickUpsArray.length - 1]
       this.spawnStats(objectSpawn.type)

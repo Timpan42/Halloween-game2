@@ -1,12 +1,10 @@
 import PickUps from "./PickUps"
+const image = 'src/assets/img/coin.webp'
+
 
 export default class Coins extends PickUps {
-    constructor(game, x, y, givenCoinWorth, coinIncrease) {
-        super(game)
-        this.width = 16
-        this.height = 16
-        this.x = x
-        this.y = y
+    constructor(game, x, y, width, height, givenCoinWorth, coinIncrease) {
+        super(game, image, x, y, width, height)
         this.speed = 0
         this.lives = 1
         this.color = '#D1D100'
