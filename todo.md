@@ -6,7 +6,6 @@ https://fonts.google.com/specimen/VT323?query=eter
 https://fonts.google.com/specimen/Special+Elite?category=Serif,Sans+Serif,Display,Monospace
 
 ## Att göra Idag
-* fixa update för upgrade så den inte föröver till nästa spel  
 
 ## Måste göra för att göra klart 
 ### Allmänt
@@ -78,3 +77,4 @@ https://fonts.google.com/specimen/Special+Elite?category=Serif,Sans+Serif,Displa
 * fixa shop text, samt priset 
 * färger
 * Halloween sprites (player, pickups)
+* fixa update för upgrade så den inte föröver till nästa spel  

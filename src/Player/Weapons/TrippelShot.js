@@ -18,9 +18,10 @@ export default class TrippelShot extends Weapon {
 
         this.canShoot = true
         this.shootTimer = 0
-        this.shootInterval = 500
+        this.shootInterval = 700
 
-        this.damage = 0.5
+        this.startingDamage = 1
+        this.damage = this.startingDamage
     }
 
     shoot() {

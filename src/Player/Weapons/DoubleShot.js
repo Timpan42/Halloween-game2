@@ -19,7 +19,8 @@ export default class DoubleShot extends Weapon {
         this.shootTimer = 0
         this.shootInterval = 300
 
-        this.damage = 0.5
+        this.startingDamage = 0.5
+        this.damage = this.startingDamage
     }
 
     shoot() {
