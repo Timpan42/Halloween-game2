@@ -186,7 +186,7 @@ export default class UserInterface {
         this.game.height / 2 + 210,
         200,
         50,
-        'Game Info',
+        'How to Play',
         this.black,
         this.orange,
         35,
@@ -201,7 +201,7 @@ export default class UserInterface {
 
       this.data = this.getData()
       context.fillStyle = this.purple;
-      context.fillRect(190, 50, 900, 600);
+      context.fillRect(140, 50, 1000, 600);
       context.fillStyle = this.green
       context.textAlign = 'center'
       context.font = `50px ${this.fontFamily}`
@@ -240,7 +240,7 @@ export default class UserInterface {
     else if (!this.game.startGame && !this.statWindow && this.gameInfo) {
       this.data = this.getData()
       context.fillStyle = this.purple;
-      context.fillRect(190, 50, 900, 600);
+      context.fillRect(140, 50, 1000, 600);
       context.fillStyle = this.green
       context.textAlign = 'center'
       context.font = `50px ${this.fontFamily}`

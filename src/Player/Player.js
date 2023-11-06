@@ -50,6 +50,7 @@ export default class Player {
     this.useDoubleShot = false
     this.useTrippelShot = false
 
+    this.canShoot = true
 
     this.weapon = new Weapon(game, this.x, this.y, this.width, this.height)
     this.doubleShot = new DoubleShot(game, this.x, this.y, this.width, this.height)
@@ -94,13 +95,28 @@ export default class Player {
       this.projectiles = this.trippelShot.projectiles
       this.ammo = this.trippelShot.ammo
       this.damage = this.trippelShot.damage
+      if (this.trippelShot.shootTimer > this.trippelShot.shootInterval) {
+        this.canShoot = true
+      } else {
+        this.trippelShot.shootTimer += deltaTime
+      }
     }
     else if (this.useDoubleShot) {
+      if (this.doubleShot.shootTimer > this.doubleShot.shootInterval) {
+        this.canShoot = true
+      } else {
+        this.doubleShot.shootTimer += deltaTime
+      }
       this.doubleShot.update(deltaTime, this.x, this.y)
       this.projectiles = this.doubleShot.projectiles
       this.ammo = this.doubleShot.ammo
       this.damage = this.doubleShot.damage
     } else {
+      if (this.weapon.shootTimer > this.weapon.shootInterval) {
+        this.canShoot = true
+      } else {
+        this.weapon.shootTimer += deltaTime
+      }
       this.weapon.update(deltaTime, this.x, this.y)
       this.projectiles = this.weapon.projectiles
       this.ammo = this.weapon.ammo

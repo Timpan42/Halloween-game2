@@ -21,7 +21,7 @@ export default class InputHandler {
 
       if (event.key === 'u') {
         this.game.upgradeScreen === false ? this.game.upgradeScreen = true : this.game.upgradeScreen = false
-        //this.game.player.weapon
+        this.game.player.update
       }
 
       if (event.key === 'p') {
@@ -53,8 +53,9 @@ export default class InputHandler {
     })
 
     window.addEventListener('mousedown', (event) => {
-      if (this.game.player.weapon.canShoot) {
+      if (this.game.player.canShoot) {
         if (this.game.player.useTrippelShot) {
+
           this.game.player.trippelShot.shoot(this.mouseX, this.mouseY)
         }
         else if (this.game.player.useDoubleShot) {

@@ -16,7 +16,6 @@ export default class TrippelShot extends Weapon {
 
         this.projectiles = []
 
-        this.canShoot = true
         this.shootTimer = 0
         this.shootInterval = 700
 
@@ -25,7 +24,7 @@ export default class TrippelShot extends Weapon {
     }
 
     shoot() {
-        if (this.canShoot && this.game.startGame) {
+        if (this.game.player.canShoot && this.game.startGame) {
 
             // get angle between player and mouse
             const angle1 = Math.atan2(
@@ -43,7 +42,7 @@ export default class TrippelShot extends Weapon {
 
             // can use ammo 
             if (this.ammo >= 3) {
-                this.canShoot = false
+                this.game.player.canShoot = false
                 this.shootTimer = 0
                 this.ammo -= 3
                 this.projectiles.push(

@@ -15,7 +15,6 @@ export default class DoubleShot extends Weapon {
 
         this.projectiles = []
 
-        this.canShoot = true
         this.shootTimer = 0
         this.shootInterval = 300
 
@@ -24,7 +23,7 @@ export default class DoubleShot extends Weapon {
     }
 
     shoot() {
-        if (this.canShoot && this.game.startGame) {
+        if (this.game.player.canShoot && this.game.startGame) {
 
             // get angle between player and mouse
             const angle = Math.atan2(
@@ -34,7 +33,7 @@ export default class DoubleShot extends Weapon {
 
             // can use ammo 
             if (this.ammo >= 2) {
-                this.canShoot = false
+                this.game.player.canShoot = false
                 this.shootTimer = 0
                 this.ammo -= 2
                 this.projectiles.push(

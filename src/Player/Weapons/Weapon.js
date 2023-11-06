@@ -15,7 +15,6 @@ export default class Weapon {
 
         this.projectiles = []
 
-        this.canShoot = true
         this.shootTimer = 0
         this.shootInterval = 500
 
@@ -46,13 +45,6 @@ export default class Weapon {
             (projectile) => !projectile.markedForDeletion
         )
 
-        // Can shoot logic 
-        if (this.shootTimer > this.shootInterval) {
-            this.canShoot = true
-        } else {
-            this.shootTimer += deltaTime
-        }
-
     }
 
     draw(context) {
@@ -64,7 +56,7 @@ export default class Weapon {
     }
 
     shoot() {
-        if (this.canShoot && this.game.startGame) {
+        if (this.game.player.canShoot && this.game.startGame) {
 
             // get angle between player and mouse
             const angle = Math.atan2(
@@ -74,7 +66,7 @@ export default class Weapon {
 
             // can use ammo 
             if (this.ammo > 0) {
-                this.canShoot = false
+                this.game.player.canShoot = false
                 this.shootTimer = 0
                 this.ammo--
                 this.projectiles.push(
