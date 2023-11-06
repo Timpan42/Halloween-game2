@@ -1,7 +1,7 @@
 import Weapon from "./Weapons/Weapon"
 import DoubleShot from "./Weapons/DoubleShot"
 import TrippelShot from "./Weapons/TrippelShot"
-const image = 'src/assets/img/player.png'
+import image from '../assets/img/player.png'
 
 export default class Player {
   constructor(game) {

@@ -1,6 +1,6 @@
 import Enemy from "./Enemy";
 
-const image = 'src/assets/img/Bat.png'
+import image from '../assets/img/Bat.png'
 
 
 export default class CandyEye extends Enemy {
