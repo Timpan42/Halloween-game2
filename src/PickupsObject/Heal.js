@@ -1,5 +1,5 @@
 import PickUps from './PickUps'
-const image = 'src/assets/img/healBlock.png'
+import image from '../assets/img/healBlock.png'
 
 
 export default class Heal extends PickUps {
