@@ -14,14 +14,15 @@ export default class UserInterface {
     this.red = '#cc0600'
     this.orange = '#ff9a00'
 
-    //stats window
     this.statWindow = false
+    this.gameInfo = true
     // buttons 
     this.startGameButton
     this.statsButton
     this.backButton
     this.gameOverButton
     this.menuButton
+    this.gameInfoButton
 
     // Upgrade Screen 
     this.upgradeScreenButtons = []
@@ -45,12 +46,20 @@ export default class UserInterface {
 
 
     window.addEventListener('mousedown', (event) => {
-      if (!this.game.startGame && !this.statWindow) {
+      if (this.gameInfo) {
+        if (this.isInsideButton(this.backButton.x, this.backButton.y, this.backButton.width, this.backButton.height)) {
+          this.gameInfo = false
+        }
+      }
+      if (!this.game.startGame && !this.statWindow && !this.gameInfo) {
         if (this.isInsideButton(this.startGameButton.x, this.startGameButton.y, this.startGameButton.width, this.startGameButton.height)) {
           this.game.startGame = true
         }
         else if (this.isInsideButton(this.statsButton.x, this.statsButton.y, this.statsButton.width, this.statsButton.height)) {
           this.statWindow = true
+        }
+        else if (this.isInsideButton(this.gameInfoButton.x, this.gameInfoButton.y, this.gameInfoButton.width, this.gameInfoButton.height)) {
+          this.gameInfo = true
         }
       }
       else if (!this.game.startGame && this.statWindow) {
@@ -132,7 +141,7 @@ export default class UserInterface {
     }
 
     // when the game has not started 
-    if (!this.game.startGame && !this.statWindow) {
+    if (!this.game.startGame && !this.statWindow && !this.gameInfo) {
       context.textAlign = 'center'
       context.font = `50px ${this.fontFamily}`
       context.fillText(
@@ -163,6 +172,21 @@ export default class UserInterface {
         200,
         50,
         'Player Stats',
+        this.black,
+        this.orange,
+        35,
+        this.fontFamily,
+        0,
+        10
+      )
+      this.gameInfoButton = new Button(
+        this.game,
+        context,
+        this.game.width / 2 - 100,
+        this.game.height / 2 + 210,
+        200,
+        50,
+        'Game Info',
         this.black,
         this.orange,
         35,
@@ -211,6 +235,69 @@ export default class UserInterface {
         10
       )
     }
+
+    else if (!this.game.startGame && this.gameInfo) {
+      this.data = this.getData()
+      context.fillStyle = this.purple;
+      context.fillRect(190, 50, 900, 600);
+      context.fillStyle = this.green
+      context.textAlign = 'center'
+      context.font = `50px ${this.fontFamily}`
+      context.fillText(
+        'How to play the game',
+        this.game.width / 2,
+        this.game.height / 2 - 200
+      )
+      context.textAlign = 'left'
+      context.font = `30px ${this.fontFamily}`
+      context.fillText(
+        'To move use, WASD or the arrow keys',
+        this.game.width / 2 - 400,
+        this.game.height / 2 - 150
+      )
+      context.fillText(
+        'WARNING if caps-lock is on you cant use normal inputs',
+        this.game.width / 2 - 400,
+        this.game.height / 2 - 100
+      )
+      context.fillText(
+        'Aim with the mouse and shoot with left mouse click',
+        this.game.width / 2 - 400,
+        this.game.height / 2 - 50
+      )
+      context.fillText(
+        'Enemies has a chance to drop coins, that can used for upgrades',
+        this.game.width / 2 - 400,
+        this.game.height / 2
+      )
+      context.fillText(
+        'Press U to open the upgrade shop',
+        this.game.width / 2 - 400,
+        this.game.height / 2 + 50
+      )
+      context.fillText(
+        'The green candy gives you health on pick up',
+        this.game.width / 2 - 400,
+        this.game.height / 2 + 100
+      )
+      context.textAlign = 'center'
+      this.backButton = new Button(
+        this.game,
+        context,
+        this.game.width / 2 - 100,
+        this.game.height / 2 + 200,
+        200,
+        50,
+        'Back',
+        this.black,
+        this.orange,
+        35,
+        this.fontFamily,
+        0,
+        10
+      )
+    }
+
 
     // when game is running 
     if (this.game.startGame) {
