@@ -1,5 +1,5 @@
 import PickUps from "./PickUps"
-const image = 'src/assets/img/coin.webp'
+const image = 'src/assets/img/coin.png'
 
 
 export default class Coins extends PickUps {

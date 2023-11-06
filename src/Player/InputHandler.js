@@ -21,6 +21,7 @@ export default class InputHandler {
 
       if (event.key === 'u') {
         this.game.upgradeScreen === false ? this.game.upgradeScreen = true : this.game.upgradeScreen = false
+        //this.game.player.weapon
       }
 
       if (event.key === 'p') {
