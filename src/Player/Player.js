@@ -51,6 +51,7 @@ export default class Player {
     this.useTrippelShot = false
 
     this.canShoot = true
+    this.flip = true
 
     this.weapon = new Weapon(game, this.x, this.y, this.width, this.height)
     this.doubleShot = new DoubleShot(game, this.x, this.y, this.width, this.height)
@@ -122,13 +123,16 @@ export default class Player {
       this.ammo = this.weapon.ammo
       this.damage = this.weapon.damage
     }
+
+    if (this.speedX > 0) {
+      this.flip = false
+    } else if (this.speedX < 0) {
+      this.flip = true
+    }
   }
 
   draw(context) {
     // player image
-    if (this.image.complete && this.width && this.height) {
-      context.drawImage(this.image, this.x, this.y, this.width, this.height)
-    }
 
     if (this.game.debug) {
       // lines around player enemy 
@@ -154,5 +158,14 @@ export default class Player {
     } else {
       this.weapon.draw(context)
     }
+
+    if (this.flip) {
+      context.save()
+      context.scale(-1, 1)
+    }
+    if (this.image.complete && this.width && this.height) {
+      context.drawImage(this.image, this.flip ? this.x * -1 - this.width : this.x, this.y, this.width, this.height)
+    }
+    context.restore()
   }
 }

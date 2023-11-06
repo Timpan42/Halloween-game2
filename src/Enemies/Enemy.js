@@ -13,7 +13,7 @@ export default class Enemy {
     }
     this.image.src = image
 
-
+    this.flip = true
     this.type = 'enemy'
     this.coinSpawnChans = 1.3
     this.coinWorth
@@ -40,12 +40,15 @@ export default class Enemy {
     const speedY = (dy / distance) * this.speed // calculate the y speed towards the player
     this.x += speedX // move the enemy towards the player on the x axis
     this.y += speedY // move the enemy towards the player on the y axis
+
+    if (speedX > 0) {
+      this.flip = true
+    } else if (speedX < 0) {
+      this.flip = false
+    }
   }
 
   draw(context) {
-    if (this.image.complete && this.width && this.height) {
-      context.drawImage(this.image, this.x, this.y, this.width, this.height)
-    }
 
     if (this.game.debug) {
       context.strokeRect(this.x, this.y, this.width, this.height)
@@ -56,5 +59,13 @@ export default class Enemy {
       context.fillText(`x: ${this.x.toFixed()}`, this.x + 20, this.y - 5)
       context.fillText(`y: ${this.y.toFixed()}`, this.x + 20, this.y - 20)
     }
+    if (this.flip) {
+      context.save()
+      context.scale(-1, 1)
+    }
+    if (this.image.complete && this.width && this.height) {
+      context.drawImage(this.image, this.flip ? this.x * -1 - this.width : this.x, this.y, this.width, this.height)
+    }
+    context.restore()
   }
 }

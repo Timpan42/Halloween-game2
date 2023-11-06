@@ -6,8 +6,6 @@ https://fonts.google.com/specimen/VT323?query=eter
 https://fonts.google.com/specimen/Special+Elite?category=Serif,Sans+Serif,Display,Monospace
 
 ## Att göra Idag
-* efter att använt shopen så kan man inte använda andra vapen än den första, men efter ett tag så funkar den igen, behöver byta från förta vapnet sen till en annan plus vänta 
-* flippa player när den går vänster, samma för enemy 
 
 ## Måste göra för att göra klart 
 ### Allmänt
@@ -79,3 +77,5 @@ https://fonts.google.com/specimen/Special+Elite?category=Serif,Sans+Serif,Displa
 * färger
 * Halloween sprites (player, pickups)
 * fixa update för upgrade så den inte föröver till nästa spel  
+* efter att använt shopen så kan man inte använda andra vapen än den första, men efter ett tag så funkar den igen, behöver byta från förta vapnet sen till en annan plus vänta 
+* flippa player när den går vänster, samma för enemy 
