@@ -46,11 +46,6 @@ export default class UserInterface {
 
 
     window.addEventListener('mousedown', (event) => {
-      if (this.gameInfo) {
-        if (this.isInsideButton(this.backButton.x, this.backButton.y, this.backButton.width, this.backButton.height)) {
-          this.gameInfo = false
-        }
-      }
       if (!this.game.startGame && !this.statWindow && !this.gameInfo) {
         if (this.isInsideButton(this.startGameButton.x, this.startGameButton.y, this.startGameButton.width, this.startGameButton.height)) {
           this.game.startGame = true
@@ -65,6 +60,11 @@ export default class UserInterface {
       else if (!this.game.startGame && this.statWindow) {
         if (this.isInsideButton(this.backButton.x, this.backButton.y, this.backButton.width, this.backButton.height)) {
           this.statWindow = false
+        }
+      } else if (!this.game.startGame && this.gameInfo) {
+        if (this.isInsideButton(this.backButton.x, this.backButton.y, this.backButton.width, this.backButton.height)) {
+          this.gameInfo = false
+          console.log("button")
         }
       }
 
@@ -197,7 +197,8 @@ export default class UserInterface {
     }
 
     // Stat Window
-    else if (!this.game.startGame && this.statWindow) {
+    else if (!this.game.startGame && this.statWindow && !this.gameInfo) {
+
       this.data = this.getData()
       context.fillStyle = this.purple;
       context.fillRect(190, 50, 900, 600);
@@ -236,7 +237,7 @@ export default class UserInterface {
       )
     }
 
-    else if (!this.game.startGame && this.gameInfo) {
+    else if (!this.game.startGame && !this.statWindow && this.gameInfo) {
       this.data = this.getData()
       context.fillStyle = this.purple;
       context.fillRect(190, 50, 900, 600);
