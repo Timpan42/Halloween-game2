@@ -42,7 +42,7 @@ export default class TrippelShot extends Weapon {
             )
 
             // can use ammo 
-            if (this.ammo >= 2) {
+            if (this.ammo >= 3) {
                 this.canShoot = false
                 this.shootTimer = 0
                 this.ammo -= 3
