@@ -1,7 +1,9 @@
 import Weapon from "./Weapons/Weapon"
 import DoubleShot from "./Weapons/DoubleShot"
 import TrippelShot from "./Weapons/TrippelShot"
-import IdleSkel from '../assets/img/IdleSkel.png'
+import IdleSkel from '../assets/img/IdleSkelly.png'
+import WalkSkel from '../assets/img/WalkSkelly.png'
+
 
 export default class Player {
   constructor(game) {
