@@ -202,7 +202,7 @@ export default class UserInterface {
       this.data = this.getData()
       context.fillStyle = this.purple;
       context.fillRect(140, 50, 1000, 600);
-      context.fillStyle = this.green
+      context.fillStyle = this.white
       context.textAlign = 'center'
       context.font = `50px ${this.fontFamily}`
       context.fillText(
@@ -241,7 +241,7 @@ export default class UserInterface {
       this.data = this.getData()
       context.fillStyle = this.purple;
       context.fillRect(140, 50, 1000, 600);
-      context.fillStyle = this.green
+      context.fillStyle = this.white
       context.textAlign = 'center'
       context.font = `50px ${this.fontFamily}`
       context.fillText(
