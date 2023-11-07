@@ -13,18 +13,22 @@ export default class InputHandler {
           event.key === 'w' ||
           event.key === 'a' ||
           event.key === 's' ||
-          event.key === 'd') &&
+          event.key === 'd' ||
+          event.key === 'W' ||
+          event.key === 'A' ||
+          event.key === 'S' ||
+          event.key === 'D') &&
         this.game.keys.indexOf(event.key) === -1
       ) {
         this.game.keys.push(event.key)
       }
 
-      if (event.key === 'u') {
+      if (event.key === 'u' || event.key === 'U') {
         this.game.upgradeScreen === false ? this.game.upgradeScreen = true : this.game.upgradeScreen = false
         this.game.player.update
       }
 
-      if (event.key === 'p') {
+      if (event.key === 'p' || event.key === 'P') {
         this.game.debug = !this.game.debug
       }
 

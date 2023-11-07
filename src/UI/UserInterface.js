@@ -257,12 +257,12 @@ export default class UserInterface {
         this.game.height / 2 - 150
       )
       context.fillText(
-        'WARNING if caps-lock is on you cant use normal inputs',
+        'Aim with the mouse and shoot with left mouse click',
         this.game.width / 2 - 400,
         this.game.height / 2 - 100
       )
       context.fillText(
-        'Aim with the mouse and shoot with left mouse click',
+        'Change weapons with 1-3',
         this.game.width / 2 - 400,
         this.game.height / 2 - 50
       )
