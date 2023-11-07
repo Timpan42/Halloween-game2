@@ -6,6 +6,10 @@ https://fonts.google.com/specimen/VT323?query=eter
 https://fonts.google.com/specimen/Special+Elite?category=Serif,Sans+Serif,Display,Monospace
 
 ## Att göra Idag
+* Animation för sprites 
+* Ljud
+* Mer Enemies
+* Mer Bossar 
 
 ## Måste göra för att göra klart 
 ### Allmänt
@@ -26,15 +30,11 @@ https://fonts.google.com/specimen/Special+Elite?category=Serif,Sans+Serif,Displa
 ## Om det finns tid (Extra saker)
 ### Allmänt
 * Rundorna blir för långa efter drygt runda 8
-* Animation för sprites 
 * Göra om points systemet så man använder en array som man går igenom istället för många if satser
-* Ljud
 * font
 * En map maker i spelet på en annan Game instans, för ett visuell sätt att göra mer waves baner och enemies
 
 ### Enemies
-* Mer Enemies
-* Mer Bossar 
 
 ### Pickups
 

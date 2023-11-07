@@ -1,22 +1,16 @@
 import Weapon from "./Weapons/Weapon"
 import DoubleShot from "./Weapons/DoubleShot"
 import TrippelShot from "./Weapons/TrippelShot"
-import image from '../assets/img/player.png'
+import IdleSkel from '../assets/img/IdleSkel.png'
 
 export default class Player {
   constructor(game) {
     this.game = game
-    this.width = 16 * 3
-    this.height = 19 * 3
+    this.width = 52.5
+    this.height = 63
     this.x = this.game.width / 2 - this.width / 2
     this.y = this.game.height / 2 - this.height / 2
 
-    this.image = new Image()
-    this.image.onload = () => {
-      this.width
-      this.height
-    }
-    this.image.src = image
 
     //For collision 
     this.halfW = this.width / 2
@@ -51,11 +45,29 @@ export default class Player {
     this.useTrippelShot = false
 
     this.canShoot = true
-    this.flip = true
 
     this.weapon = new Weapon(game, this.x, this.y, this.width, this.height)
     this.doubleShot = new DoubleShot(game, this.x, this.y, this.width, this.height)
     this.trippelShot = new TrippelShot(game, this.x, this.y, this.width, this.height)
+
+    this.flip = true
+    // sprite animation
+    this.frameX = 0
+    const idleImage = new Image()
+    idleImage.src = IdleSkel
+
+    this.frameX = 0
+    this.maxFrame = 4
+    this.animationFps = 10
+    this.animationTimer = 0
+    this.animationInterval = 1000 / this.animationFps
+    this.idle = {
+      image: idleImage,
+      frames: 4,
+    }
+    this.image = this.idle.image
+
+
   }
 
   update(deltaTime) {
@@ -129,10 +141,23 @@ export default class Player {
     } else if (this.speedX < 0) {
       this.flip = true
     }
+
+    // sprite animation update
+    if (this.animationTimer > this.animationInterval) {
+      this.frameX++
+      this.animationTimer = 0
+    } else {
+      this.animationTimer += deltaTime
+    }
+
+    // reset frameX when it reaches maxFrame
+    if (this.frameX >= this.maxFrame) {
+      this.frameX = 0
+    }
+
   }
 
   draw(context) {
-    // player image
 
     if (this.game.debug) {
       // lines around player enemy 
@@ -163,9 +188,18 @@ export default class Player {
       context.save()
       context.scale(-1, 1)
     }
-    if (this.image.complete && this.width && this.height) {
-      context.drawImage(this.image, this.flip ? this.x * -1 - this.width : this.x, this.y, this.width, this.height)
-    }
+    // player image
+    context.drawImage(
+      this.image,
+      this.frameX * this.width,
+      0,
+      this.width,
+      this.height,
+      this.flip ? this.x * -1 - this.width : this.x,
+      this.y,
+      this.width,
+      this.height
+    )
     context.restore()
   }
 }
