@@ -1,14 +1,14 @@
 import Weapon from "./Weapons/Weapon"
 import DoubleShot from "./Weapons/DoubleShot"
 import TrippelShot from "./Weapons/TrippelShot"
-import IdleSkel from '../assets/img/IdleSkelly.png'
-import WalkSkel from '../assets/img/WalkSkelly.png'
+import IdleSkelly from '../assets/img/player/IdleSkelly.png'
+import WalkSkelly from '../assets/img/player/WalkSkelly.png'
 
 
 export default class Player {
   constructor(game) {
     this.game = game
-    this.width = 52.5
+    this.width = 51.166666667
     this.height = 63
     this.x = this.game.width / 2 - this.width / 2
     this.y = this.game.height / 2 - this.height / 2
@@ -56,7 +56,10 @@ export default class Player {
     // sprite animation
     this.frameX = 0
     const idleImage = new Image()
-    idleImage.src = IdleSkel
+    idleImage.src = IdleSkelly
+    const runImage = new Image()
+    runImage.src = WalkSkelly
+
 
     this.frameX = 0
     this.maxFrame = 4
@@ -66,6 +69,10 @@ export default class Player {
     this.idle = {
       image: idleImage,
       frames: 4,
+    }
+    this.run = {
+      image: runImage,
+      frames: 6
     }
     this.image = this.idle.image
 
@@ -136,6 +143,14 @@ export default class Player {
       this.projectiles = this.weapon.projectiles
       this.ammo = this.weapon.ammo
       this.damage = this.weapon.damage
+    }
+
+    if (this.speedX !== 0 || this.speedY !== 0) {
+      this.maxFrame = this.run.frames
+      this.image = this.run.image
+    } else {
+      this.maxFrame = this.idle.frames
+      this.image = this.idle.image
     }
 
     if (this.speedX > 0) {
