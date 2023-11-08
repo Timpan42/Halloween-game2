@@ -7,13 +7,9 @@ https://fonts.google.com/specimen/Special+Elite?category=Serif,Sans+Serif,Displa
 
 ## Att göra Idag
 * fixa så inte spelet körs snabbare på en snabbare skärm 
-* Vissa enemies är svår att see 
 * Ljud
 * Mer Enemies
 * Mer Bossar 
-* ta bort movement upgrade?
-* sätta en gräns på hastigheten
-* Om man är utanför kartan så hammar på andra sidan 
 
 ## Måste göra för att göra klart 
 * enemy scaling 
@@ -87,3 +83,6 @@ https://fonts.google.com/specimen/Special+Elite?category=Serif,Sans+Serif,Displa
 * flippa player när den går vänster, samma för enemy 
 * Animation för sprites 
 * kolla så alla uppgraderings konsader börja om. (bug)
+* ta bort movement upgrade?
+* sätta en gräns på hastigheten
+* Om man är utanför kartan så hammar på andra sidan 
