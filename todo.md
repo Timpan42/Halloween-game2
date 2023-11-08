@@ -8,12 +8,12 @@ https://fonts.google.com/specimen/Special+Elite?category=Serif,Sans+Serif,Displa
 ## Att göra Idag
 * fixa så inte spelet körs snabbare på en snabbare skärm 
 * Ljud
-* Mer Enemies
-* Mer Bossar 
 
 ## Måste göra för att göra klart 
 * enemy scaling 
 * ui grafik 
+* Mer Enemies
+* Mer Bossar 
 ### Allmänt
 
 ### Enemies
