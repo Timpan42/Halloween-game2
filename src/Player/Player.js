@@ -24,7 +24,6 @@ export default class Player {
     //Increase for shop logic
     this.damageIncrease = 1 //X
     this.attackSpeedIncrease = 0 //X
-    this.movementSpeedIncrease = 0 //X
     this.maxHPIncrease = 0 //X
     this.maxAmmoIncrease = 0 //X
     this.ammoRegenIncrease = 0 //X
@@ -85,7 +84,6 @@ export default class Player {
     }
 
     this.maxLives = 10 + this.maxHPIncrease
-    this.maxSpeed = 6 + this.movementSpeedIncrease
 
     this.centerX = this.x + this.halfW
     this.centerY = this.y + this.halfH

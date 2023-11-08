@@ -238,7 +238,6 @@ export default class Game {
 
     this.player.damageIncrease = 1
     this.player.attackSpeedIncrease = 0
-    this.player.movementSpeedIncrease = 0
     this.player.maxHPIncrease = 0
     this.player.maxAmmoIncrease = 0
     this.player.ammoRegenIncrease = 0

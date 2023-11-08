@@ -28,7 +28,6 @@ export default class UserInterface {
     this.upgradeScreenButtons = []
     this.damageButton // X
     this.attackSpeedButton // X
-    this.movementSpeedButton // X
     this.maxHPButton // X
     this.maxAmmoButton // X
     this.ammoRegenIncreaseButton // X
@@ -369,15 +368,15 @@ export default class UserInterface {
           this.feeAttackSpeed
         )
 
-        this.movementSpeedButton = new UpgradeButton(
+        this.coinIncreaseButton = new UpgradeButton(
           this.game,
           context,
           this.game.width / 2 - 400,
           this.game.height / 2,
           500,
           50,
-          'Movement Speed',
-          'Increase your Movement Speed by 1',
+          'More Coins',
+          'Increase Coin value by 1',
           5,
           25,
           this.white,
@@ -387,8 +386,8 @@ export default class UserInterface {
           this.fontFamily,
           0,
           10,
-          'MOSP',
-          this.feeMovement
+          'COIN',
+          this.feeCoin
         )
 
         this.maxHPButton = new UpgradeButton(
@@ -457,28 +456,6 @@ export default class UserInterface {
           this.feeAmmoRegen
         )
 
-        this.coinIncreaseButton = new UpgradeButton(
-          this.game,
-          context,
-          this.game.width / 2 - 200,
-          this.game.height / 2 + 110,
-          500,
-          50,
-          'More Coins',
-          'Increase Coin value by 1',
-          5,
-          25,
-          this.white,
-          this.red,
-          this.black,
-          30,
-          this.fontFamily,
-          0,
-          10,
-          'COIN',
-          this.feeCoin
-        )
-
         this.backButton = new Button(
           this.game,
           context,
@@ -495,7 +472,7 @@ export default class UserInterface {
           10
         )
         this.upgradeScreenButtons.splice(0, this.upgradeScreenButtons.length);
-        this.upgradeScreenButtons.push(this.damageButton, this.attackSpeedButton, this.movementSpeedButton, this.maxHPButton, this.maxAmmoButton, this.ammoRegenIncreaseButton, this.coinIncreaseButton, this.backButton)
+        this.upgradeScreenButtons.push(this.damageButton, this.attackSpeedButton, this.maxHPButton, this.maxAmmoButton, this.ammoRegenIncreaseButton, this.coinIncreaseButton, this.backButton)
       }
 
     }
@@ -561,10 +538,6 @@ export default class UserInterface {
         case 'ATSP':
           this.game.player.attackSpeedIncrease += 30
           this.feeAttackSpeed += 5
-          break;
-        case 'MOSP':
-          this.game.player.movementSpeedIncrease += 1
-          this.feeMovement += 5
           break;
         case 'MAHP':
           this.game.player.maxHPIncrease += 2

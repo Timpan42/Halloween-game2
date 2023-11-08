@@ -6,7 +6,6 @@ https://fonts.google.com/specimen/VT323?query=eter
 https://fonts.google.com/specimen/Special+Elite?category=Serif,Sans+Serif,Display,Monospace
 
 ## Att göra Idag
-* kolla så alla uppgraderings konsader börja om. (bug)
 * fixa så inte spelet körs snabbare på en snabbare skärm 
 * Vissa enemies är svår att see 
 * Ljud
@@ -87,3 +86,4 @@ https://fonts.google.com/specimen/Special+Elite?category=Serif,Sans+Serif,Displa
 * efter att använt shopen så kan man inte använda andra vapen än den första, men efter ett tag så funkar den igen, behöver byta från förta vapnet sen till en annan plus vänta 
 * flippa player när den går vänster, samma för enemy 
 * Animation för sprites 
+* kolla så alla uppgraderings konsader börja om. (bug)
