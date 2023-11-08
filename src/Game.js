@@ -188,7 +188,7 @@ export default class Game {
     // collision check enemy
     this.enemies.forEach((enemy) => {
       // collision with enemy and player 
-      enemy.update(this.player)
+      enemy.update(deltaTime, this.player)
 
       if (this.checkCollision(this.player, enemy)) {
         enemy.markedForDeletion = true
@@ -262,44 +262,44 @@ export default class Game {
     if (this.wave >= 3 && this.wave <= 5) {
       if (this.wave == this.bossWave) {
         if (this.bossSpawn > 0) {
-          this.enemies.push(new BossPumpkin(this, x, y, 31 * 2, 43 * 2))
+          this.enemies.push(new BossPumpkin(this, x, y, 62, 86))
           this.bossSpawn--
         }
       }
 
       if (this.gummyBearSpawn > 0) {
-        this.enemies.push(new GummyBear(this, x, y, 28 * 1.3, 42 * 1.3))
+        this.enemies.push(new GummyBear(this, x, y, 56, 84))
         this.gummyBearSpawn--
       }
       else {
-        this.enemies.push(new Pumpkin(this, x, y, 31 * 1.3, 43 * 1.3))
+        this.enemies.push(new Pumpkin(this, x, y, 62, 86))
       }
     }
 
     else if (this.wave >= 6) {
       if (this.wave == this.bossWave && this.wave > 5) {
         if (this.bossSpawn > 0) {
-          this.enemies.push(new BossPumpkin(this, x, y, 32 * 2, 32 * 2))
+          this.enemies.push(new BossPumpkin(this, x, y, 62, 86))
           this.bossSpawn--
         }
       }
 
       if (this.candyEyeSpawn > 0) {
-        this.enemies.push(new CandyEye(this, x, y, 44 * 1.3, 13 * 1.3))
+        this.enemies.push(new CandyEye(this, x, y, 88, 88))
         this.candyEyeSpawn--
 
       }
       else if (this.gummyBearSpawn > 0) {
-        this.enemies.push(new GummyBear(this, x, y, 28 * 1.3, 42 * 1.3))
+        this.enemies.push(new GummyBear(this, x, y, 56, 84))
         this.gummyBearSpawn--
       }
       else {
-        this.enemies.push(new Pumpkin(this, x, y, 31 * 1.3, 43 * 1.3))
+        this.enemies.push(new Pumpkin(this, x, y, 62, 86))
       }
     }
 
     else {
-      this.enemies.push(new Pumpkin(this, x, y, 31, 43))
+      this.enemies.push(new Pumpkin(this, x, y, 62, 86))
 
     }
     this.waveSpawned++
@@ -327,25 +327,18 @@ export default class Game {
   enemyCollision(enemy) {
     if (enemy.lives > 0) {
       enemy.lives -= this.player.damage
-      if (enemy.lives <= 0) {
-        let coinWorth = enemy.givCoinWorth()
-        this.countCoins(coinWorth, enemy.coinSpawnChans, enemy.x, enemy.y)
-        this.countPoints(enemy)
-        this.pickUpsStats(enemy)
-
-        this.waveKilled++
-        enemy.markedForDeletion = true
-      }
-    } else {
+    } else if (!enemy.markedForDeletion) {
       let coinWorth = enemy.givCoinWorth()
+      enemy.markedForDeletion = true
       this.countCoins(coinWorth, enemy.coinSpawnChans, enemy.x, enemy.y)
       this.countPoints(enemy)
       this.pickUpsStats(enemy)
 
       this.waveKilled++
-      enemy.markedForDeletion = true
     }
   }
+
+
 
   spawnStats(objectSpawn) {
     if (objectSpawn === 'heal') {
