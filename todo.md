@@ -5,6 +5,9 @@ https://fonts.google.com/specimen/Eater?query=eater
 https://fonts.google.com/specimen/VT323?query=eter
 https://fonts.google.com/specimen/Special+Elite?category=Serif,Sans+Serif,Display,Monospace
 
+Main song 
+Music by <a href="https://pixabay.com/users/alexgrohl-25289918/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=111451">AlexGrohl</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=111451">Pixabay</a>
+
 ## Att göra Idag
 * fixa så inte spelet körs snabbare på en snabbare skärm 
 * Ljud

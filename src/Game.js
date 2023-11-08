@@ -9,6 +9,7 @@ import Coins from './PickupsObject/Coins.js'
 import GummyBear from './Enemies/GummyBear.js'
 import CandyEye from './Enemies/CandyEye.js'
 import BossPumpkin from './Enemies/BossPumpkin.js'
+import Sound from "./Sound.js"
 
 export default class Game {
   constructor(width, height, canvasPosition) {
@@ -84,6 +85,10 @@ export default class Game {
 
 
     this.player = new Player(this)
+    this.mainSong = new Sound(this)
+
+    this.playSong = true
+    this.resetSong = 0
   }
 
   update(deltaTime) {
@@ -106,12 +111,30 @@ export default class Game {
     if (this.gameOver) {
       this.storeLocal()
       this.player.weapon.canShoot = false
+      this.mainSong.gameSong.pause()
+
       return
     }
 
     if (this.upgradeScreen) {
       this.player.weapon.canShoot = false
       return
+    }
+
+    // Song
+    if (this.playSong) {
+      this.mainSong.playSong()
+      console.log(this.mainSong.duration)
+      this.playSong = false
+    }
+
+    if ((this.resetSong * 0.001) >= this.mainSong.duration) {
+      this.mainSong.playSong()
+      console.log("loop song ")
+      this.resetSong = 0
+    } else {
+      this.resetSong += deltaTime
+      console.log((this.resetSong * 0.001))
     }
 
     this.player.update(deltaTime)
@@ -248,6 +271,9 @@ export default class Game {
     this.ui.feeMaxAmmo = 5
     this.ui.feeAmmoRegen = 30
     this.ui.feeCoin = 50
+
+    this.playSong = true
+
   }
 
   storeLocal() {
