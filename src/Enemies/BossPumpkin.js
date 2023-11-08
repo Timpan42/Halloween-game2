@@ -8,7 +8,6 @@ export default class BossPumpkin extends Pumpkin {
         this.lives = Math.floor((Math.random() * (3 - 1 + 1) + 1) * this.bossMultiply)
         this.damage = 1 * this.bossMultiply
         this.points = 10 * this.bossMultiply
-        this.color = 'orange'
         this.type = 'bossPumpkin'
         this.coinMax = 3 * this.bossMultiply
         this.coinMin = 1 * this.bossMultiply

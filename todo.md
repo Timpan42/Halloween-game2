@@ -9,14 +9,14 @@ Main song
 Music by <a href="https://pixabay.com/users/alexgrohl-25289918/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=111451">AlexGrohl</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=111451">Pixabay</a>
 
 ## Att göra Idag
-* fixa så inte spelet körs snabbare på en snabbare skärm 
-* Ljud
+* Ljud (skjuta, click)
+* kunna ändra ljud nivå 
+* enemy scaling 
+* Bossar (annan version av bass enemies)
 
 ## Måste göra för att göra klart 
-* enemy scaling 
 * ui grafik 
 * Mer Enemies
-* Mer Bossar 
 ### Allmänt
 
 ### Enemies
@@ -89,3 +89,4 @@ Music by <a href="https://pixabay.com/users/alexgrohl-25289918/?utm_source=link-
 * ta bort movement upgrade?
 * sätta en gräns på hastigheten
 * Om man är utanför kartan så hammar på andra sidan 
+* fixa så inte spelet körs snabbare på en snabbare skärm 
