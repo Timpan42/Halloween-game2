@@ -236,12 +236,19 @@ export default class Game {
     this.coinsBlock = 0
     this.coinIncrease = 0
 
-    this.player.damageIncrease = 1 //X
-    this.player.attackSpeedIncrease = 0 //X
-    this.player.movementSpeedIncrease = 0 //X
-    this.player.maxHPIncrease = 0 //X
-    this.player.maxAmmoIncrease = 0 //X
-    this.player.ammoRegenIncrease = 0 //X
+    this.player.damageIncrease = 1
+    this.player.attackSpeedIncrease = 0
+    this.player.movementSpeedIncrease = 0
+    this.player.maxHPIncrease = 0
+    this.player.maxAmmoIncrease = 0
+    this.player.ammoRegenIncrease = 0
+    this.ui.feeDamage = 10
+    this.ui.feeAttackSpeed = 20
+    this.ui.feeMovement = 20
+    this.ui.feeHp = 10
+    this.ui.feeMaxAmmo = 5
+    this.ui.feeAmmoRegen = 30
+    this.ui.feeCoin = 50
   }
 
   storeLocal() {
@@ -412,12 +419,21 @@ export default class Game {
   }
 
   checkCollision(object1, object2) {
-    return (
-      object1.x < object2.x + object2.width &&
-      object1.x + object1.width > object2.x &&
-      object1.y < object2.y + object2.height &&
-      object1.height + object1.y > object2.y
-    )
+    if (object2 instanceof Enemy) {
+      return (
+        object1.x < object2.x + (object2.width - 5) &&
+        object1.x + (object1.width - 5) > object2.x &&
+        object1.y < object2.y + (object2.height - 5) &&
+        object1.height + object1.y > object2.y
+      )
+    } else {
+      return (
+        object1.x < object2.x + object2.width &&
+        object1.x + object1.width > object2.x &&
+        object1.y < object2.y + object2.height &&
+        object1.height + object1.y > object2.y
+      )
+    }
   }
 
   checkSmartCollision(object1, object2) {

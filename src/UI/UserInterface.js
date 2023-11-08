@@ -556,27 +556,27 @@ export default class UserInterface {
       switch (element.typ) {
         case 'DAIN':
           this.game.player.damageIncrease += 0.5
-          this.feeDamage += 2
+          this.feeDamage += 5
           break;
         case 'ATSP':
           this.game.player.attackSpeedIncrease += 30
-          this.feeAttackSpeed += 2
+          this.feeAttackSpeed += 5
           break;
         case 'MOSP':
           this.game.player.movementSpeedIncrease += 1
-          this.feeMovement += 2
+          this.feeMovement += 5
           break;
         case 'MAHP':
           this.game.player.maxHPIncrease += 2
-          this.feeHp += 2
+          this.feeHp += 5
           break;
         case 'MAAM':
           this.game.player.maxAmmoIncrease += 2
-          this.feeMaxAmmo += 2
+          this.feeMaxAmmo += 5
           break;
         case 'AMREIN':
           this.game.player.ammoRegenIncrease += 1
-          this.feeAmmoRegen += 2
+          this.feeAmmoRegen += 5
           break;
         case 'COIN':
           this.game.coinIncrease += 1
