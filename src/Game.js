@@ -112,7 +112,6 @@ export default class Game {
       this.storeLocal()
       this.player.weapon.canShoot = false
       this.mainSong.gameSong.pause()
-
       return
     }
 
@@ -124,17 +123,14 @@ export default class Game {
     // Song
     if (this.playSong) {
       this.mainSong.playSong()
-      console.log(this.mainSong.duration)
       this.playSong = false
     }
 
     if ((this.resetSong * 0.001) >= this.mainSong.duration) {
       this.mainSong.playSong()
-      console.log("loop song ")
       this.resetSong = 0
     } else {
       this.resetSong += deltaTime
-      console.log((this.resetSong * 0.001))
     }
 
     this.player.update(deltaTime)
@@ -145,7 +141,7 @@ export default class Game {
     this.wallArray.forEach((wall) => {
 
       if (this.checkCollision(this.player, wall)) {
-        this.checkSmartCollision(this.player, wall)
+        this.checkSmartCollision(this.player, wall, deltaTime)
       }
 
     })
@@ -461,7 +457,7 @@ export default class Game {
     }
   }
 
-  checkSmartCollision(object1, object2) {
+  checkSmartCollision(object1, object2, deltaTime) {
     this.diffX = object1.centerX - object2.centerX
     this.diffY = object1.centerY - object2.centerY
     this.minXDist = object1.halfW + object2.halfW + 20
@@ -475,11 +471,11 @@ export default class Game {
         // Collision along the X axis.
         if (this.depthX > 0) {
           // Left side collision
-          this.player.x += this.player.maxSpeed
+          this.player.x += this.player.maxSpeed * (deltaTime / 1000)
         }
         else {
           // Right side collision
-          this.player.x -= this.player.maxSpeed
+          this.player.x -= this.player.maxSpeed * (deltaTime / 1000)
 
         }
       }
@@ -487,12 +483,12 @@ export default class Game {
         // Collision along the Y axis.
         if (this.depthY > 0) {
           // Top side collision
-          this.player.y += this.player.maxSpeed
+          this.player.y += this.player.maxSpeed * (deltaTime / 1000)
 
         }
         else {
           // Bottom side collision
-          this.player.y -= this.player.maxSpeed
+          this.player.y -= this.player.maxSpeed * (deltaTime / 1000)
 
         }
       }

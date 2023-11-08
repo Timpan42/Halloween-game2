@@ -31,7 +31,7 @@ export default class Player {
     //Move Speed
     this.speedX = 0
     this.speedY = 0
-    this.maxSpeed = 6
+    this.maxSpeed = 280
 
     // For UI
     this.projectiles = []
@@ -106,8 +106,8 @@ export default class Player {
       this.speedY = 0
     }
 
-    this.y += this.speedY
-    this.x += this.speedX
+    this.y += this.speedY * (deltaTime / 1000)
+    this.x += this.speedX * (deltaTime / 1000)
 
 
     if (this.useTrippelShot) {

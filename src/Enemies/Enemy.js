@@ -42,8 +42,6 @@ export default class Enemy {
   }
 
   update(deltaTime, player) {
-    this.y += this.speedY
-    this.x += this.speedX
     if (this.x < 0 || this.x > this.game.width) this.markedForDeletion = true
     if (this.y < 0 || this.y > this.game.height) this.markedForDeletion = true
 
@@ -52,8 +50,8 @@ export default class Enemy {
     const distance = Math.sqrt(dx * dx + dy * dy) // calculate the total distance to the player
     const speedX = (dx / distance) * this.speed // calculate the x speed towards the player
     const speedY = (dy / distance) * this.speed // calculate the y speed towards the player
-    this.x += speedX // move the enemy towards the player on the x axis
-    this.y += speedY // move the enemy towards the player on the y axis
+    this.x += speedX * (deltaTime / 1000) // move the enemy towards the player on the x axis
+    this.y += speedY * (deltaTime / 1000) // move the enemy towards the player on the y axis
 
     if (speedX > 0) {
       this.flip = true
