@@ -25,6 +25,7 @@ export default class InputHandler {
 
       if (event.key === 'u' || event.key === 'U') {
         this.game.upgradeScreen === false ? this.game.upgradeScreen = true : this.game.upgradeScreen = false
+        this.game.mainSong.decreaseVolume()
         this.game.player.update
       }
 

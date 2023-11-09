@@ -120,7 +120,6 @@ export default class Game {
 
     if (this.upgradeScreen) {
       this.player.weapon.canShoot = false
-      this.mainSong.gameSound.pause()
       return
     }
 

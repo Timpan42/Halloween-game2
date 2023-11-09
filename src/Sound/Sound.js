@@ -9,6 +9,7 @@ export default class Sound {
 
         this.duration
         this.soundVolume = 0.2
+        this.decreaseVolumeBoolean = false
     }
     playSound() {
         this.duration = this.gameSound.duration
@@ -20,6 +21,16 @@ export default class Sound {
     updateSound(volume) {
         this.soundVolume = volume
         this.gameSound.volume = this.soundVolume
+    }
+
+    decreaseVolume() {
+        if (!this.decreaseVolumeBoolean) {
+            this.gameSound.volume = this.gameSound.volume / 2
+            this.decreaseVolumeBoolean = true
+        } else {
+            this.gameSound.volume = this.gameSound.volume * 2
+            this.decreaseVolumeBoolean = false
+        }
     }
 
 }
