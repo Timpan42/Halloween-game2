@@ -9,7 +9,7 @@ import Coins from './PickupsObject/Coins.js'
 import GummyBear from './Enemies/GummyBear.js'
 import CandyEye from './Enemies/CandyEye.js'
 import BossPumpkin from './Enemies/BossPumpkin.js'
-import Sound from "./Sound.js"
+import MainSong from './Sound/MainSong.js'
 
 export default class Game {
   constructor(width, height, canvasPosition) {
@@ -65,12 +65,15 @@ export default class Game {
 
     this.gummyBearSpawn = 0
     this.gummyBearMultiply = 1.0
+    this.roundGummyBearSpawn
 
     this.candyEyeSpawn = 0
     this.candyEyeMultiply = 1.0
+    this.roundCandyEyeSpawn
 
     this.bossSpawn = 1
     this.bossWave = 5
+    this.roundBossSpawn
 
     // statistic 
     this.enemyKills = 0
@@ -85,7 +88,7 @@ export default class Game {
 
 
     this.player = new Player(this)
-    this.mainSong = new Sound(this)
+    this.mainSong = new MainSong(this)
 
     this.playSong = true
     this.resetSong = 0
@@ -111,7 +114,7 @@ export default class Game {
     if (this.gameOver) {
       this.storeLocal()
       this.player.weapon.canShoot = false
-      this.mainSong.gameSong.pause()
+      this.mainSong.gameSound.pause()
       return
     }
 
@@ -122,12 +125,12 @@ export default class Game {
 
     // Song
     if (this.playSong) {
-      this.mainSong.playSong()
+      this.mainSong.playSound()
       this.playSong = false
     }
 
     if ((this.resetSong * 0.001) >= this.mainSong.duration) {
-      this.mainSong.playSong()
+      this.mainSong.playSound()
       this.resetSong = 0
     } else {
       this.resetSong += deltaTime
@@ -287,68 +290,56 @@ export default class Game {
 
 
   enemySpawner(x, y) {
-    if (this.wave >= 3 && this.wave <= 5) {
-      if (this.wave == this.bossWave) {
-        if (this.bossSpawn > 0) {
-          this.enemies.push(new BossPumpkin(this, x, y, 62, 86))
-          this.bossSpawn--
-        }
-      }
+    if (this.wave == this.bossWave) {
+      if (this.roundBossSpawn > 0) {
+        this.enemies.push(new BossPumpkin(this, x, y, 62, 86))
+        this.roundBossSpawn--
+        this.waveSpawned++
 
-      if (this.gummyBearSpawn > 0) {
-        this.enemies.push(new GummyBear(this, x, y, 56, 84))
-        this.gummyBearSpawn--
-      }
-      else {
-        this.enemies.push(new Pumpkin(this, x, y, 62, 86))
       }
     }
 
-    else if (this.wave >= 6) {
-      if (this.wave == this.bossWave && this.wave > 5) {
-        if (this.bossSpawn > 0) {
-          this.enemies.push(new BossPumpkin(this, x, y, 62, 86))
-          this.bossSpawn--
-        }
-      }
-
-      if (this.candyEyeSpawn > 0) {
+    if (this.wave >= 6) {
+      if (this.roundCandyEyeSpawn > 0) {
         this.enemies.push(new CandyEye(this, x, y, 88, 88))
-        this.candyEyeSpawn--
-
+        this.roundCandyEyeSpawn--
+        this.waveSpawned++
       }
-      else if (this.gummyBearSpawn > 0) {
+    }
+
+    if (this.wave >= 3)
+      if (this.roundGummyBearSpawn > 0) {
         this.enemies.push(new GummyBear(this, x, y, 56, 84))
-        this.gummyBearSpawn--
+        this.roundGummyBearSpawn--
+        this.waveSpawned++
       }
-      else {
-        this.enemies.push(new Pumpkin(this, x, y, 62, 86))
-      }
-    }
 
-    else {
+    if (this.wave >= 0) {
       this.enemies.push(new Pumpkin(this, x, y, 62, 86))
-
+      this.waveSpawned++
     }
-    this.waveSpawned++
+
     this.enemyTimer = 0
   }
 
   increaseSpawns() {
     if (this.wave == (this.bossWave + 1)) {
       this.bossWave += 5
-      this.bossSpawn = Math.floor(1 * this.waveSpawnAmountMultiply)
+      this.bossSpawn = 1 + Math.floor(0.5 * this.waveSpawnAmountMultiply)
+      this.roundBossSpawn = this.bossSpawn
     }
 
     if (this.wave >= 2) {
-      this.gummyBearSpawn += Math.floor(1 * this.gummyBearMultiply)
+      this.gummyBearSpawn = 1 + Math.floor(0.5 * this.gummyBearMultiply)
       this.gummyBearMultiply += 0.2
+      this.roundGummyBearSpawn = this.gummyBearSpawn
     }
     if (this.wave >= 5) {
-      this.candyEyeSpawn += Math.floor(1 * this.candyEyeMultiply)
+      this.candyEyeSpawn = 1 + Math.floor(0.5 * this.candyEyeMultiply)
       this.candyEyeMultiply += 0.3
+      this.roundCandyEyeSpawn = this.candyEyeSpawn
     }
-    this.waveSpawnAmount = this.waveSpawnAmount + Math.floor(2 * this.waveSpawnAmountMultiply)
+    this.waveSpawnAmount = this.waveSpawnAmount + Math.floor(1 * this.waveSpawnAmountMultiply)
     this.waveSpawnAmountMultiply += 0.1
   }
 
