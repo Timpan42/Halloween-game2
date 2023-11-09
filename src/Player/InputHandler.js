@@ -34,12 +34,15 @@ export default class InputHandler {
       }
 
       if (event.key === '1') {
+        this.game.player.weapon.weaponSound.switchWeapon()
         this.game.player.useTrippelShot = false
         this.game.player.useDoubleShot = false
       } else if (event.key === '2') {
+        this.game.player.doubleShot.weaponSound.switchWeapon()
         this.game.player.useTrippelShot = false
         this.game.player.useDoubleShot = true
       } else if (event.key === '3') {
+        this.game.player.trippelShot.weaponSound.switchWeapon()
         this.game.player.useTrippelShot = true
         this.game.player.useDoubleShot = false
       }

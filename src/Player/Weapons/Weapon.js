@@ -1,4 +1,5 @@
 import Projectile from './Projectile.js'
+import Weapon1Sound from '../../Sound/Weapon1Sound.js'
 
 export default class Weapon {
     constructor(game, x, y, width, height) {
@@ -7,6 +8,8 @@ export default class Weapon {
         this.y = y
         this.width = width
         this.height = height
+
+        this.weaponSound = new Weapon1Sound(game)
 
         this.maxAmmo = 20
         this.ammo = 20
@@ -66,6 +69,7 @@ export default class Weapon {
 
             // can use ammo 
             if (this.ammo > 0) {
+                this.weaponSound.playSound()
                 this.game.player.canShoot = false
                 this.shootTimer = 0
                 this.ammo--

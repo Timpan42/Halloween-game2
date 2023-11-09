@@ -1,5 +1,7 @@
 import Weapon from "./Weapon.js";
 import Projectile from "./Projectile.js";
+import Weapon2Sound from '../../Sound/Weapon2Sound.js'
+
 export default class DoubleShot extends Weapon {
     constructor(game, x, y, width, height) {
         super(game)
@@ -7,6 +9,8 @@ export default class DoubleShot extends Weapon {
         this.y = y
         this.width = width
         this.height = height
+
+        this.weaponSound = new Weapon2Sound(game)
 
         this.maxAmmo = 20
         this.ammo = 20
@@ -33,6 +37,7 @@ export default class DoubleShot extends Weapon {
 
             // can use ammo 
             if (this.ammo >= 2) {
+                this.weaponSound.playSound()
                 this.game.player.canShoot = false
                 this.shootTimer = 0
                 this.ammo -= 2

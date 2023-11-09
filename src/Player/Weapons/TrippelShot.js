@@ -1,5 +1,7 @@
 import Weapon from "./Weapon";
 import Projectile from "./Projectile";
+import Weapon3Sound from '../../Sound/Weapon3Sound.js'
+
 
 export default class TrippelShot extends Weapon {
     constructor(game, x, y, width, height) {
@@ -8,6 +10,8 @@ export default class TrippelShot extends Weapon {
         this.y = y
         this.width = width
         this.height = height
+
+        this.weaponSound = new Weapon3Sound(game)
 
         this.maxAmmo = 20
         this.ammo = 20
@@ -42,6 +46,7 @@ export default class TrippelShot extends Weapon {
 
             // can use ammo 
             if (this.ammo >= 3) {
+                this.weaponSound.playSound()
                 this.game.player.canShoot = false
                 this.shootTimer = 0
                 this.ammo -= 3
