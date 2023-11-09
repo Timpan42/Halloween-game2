@@ -280,12 +280,12 @@ export default class UserInterface {
         this.game.height / 2 - 50
       )
       context.fillText(
-        'Enemies has a chance to drop coins, that can used for upgrades',
+        'Enemies has a chance to drop coins, that are used for upgrades',
         this.game.width / 2 - 400,
         this.game.height / 2
       )
       context.fillText(
-        'Press U to open the upgrade shop',
+        'Press U or Q to open the upgrade shop',
         this.game.width / 2 - 400,
         this.game.height / 2 + 50
       )
@@ -536,6 +536,7 @@ export default class UserInterface {
   }
   upgradeScreenButtonCheck(element) {
     if (element instanceof Button) {
+      this.game.mainSong.decreaseVolume()
       this.game.upgradeScreen = false
     } else {
       this.shopLogic(element)
