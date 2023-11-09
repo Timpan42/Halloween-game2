@@ -5,6 +5,8 @@ export default class Sound {
         const a = new Audio()
         a.src = audio
         this.gameSound = a
+        this.gameSound.preload = 'auto'
+
         this.duration
         this.soundVolume = 0.2
     }

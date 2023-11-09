@@ -5,6 +5,7 @@ export default class Button {
         this.y = y
         this.width = width
         this.height = height
+
         context.fillStyle = fillColor;
         context.fillRect(x, y, width, height);
         context.fillStyle = textColor;
@@ -16,6 +17,5 @@ export default class Button {
         //Reset
         context.shadowColor = this.game.ui.black
         context.fillStyle = this.game.ui.white;
-
     }
 }

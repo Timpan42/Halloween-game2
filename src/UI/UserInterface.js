@@ -1,5 +1,8 @@
 import Button from "./Button"
 import UpgradeButton from "./UpgradeButton"
+import ButtonClickSound from "../Sound/ButtonClickSound"
+import UpgradeNo from "../Sound/UpgradeNo"
+import UpgradeYes from "../Sound/UpgradeYes"
 
 export default class UserInterface {
   constructor(game) {
@@ -13,6 +16,12 @@ export default class UserInterface {
     this.green = '#08e600'
     this.red = '#cc0600'
     this.orange = '#ff9a00'
+
+    this.clickSound = new ButtonClickSound(game)
+    this.upgradeNoSound = new UpgradeNo(game)
+    this.upgradeYesSound = new UpgradeYes(game)
+
+
 
     this.statWindow = false
     this.gameInfo = true
@@ -47,23 +56,27 @@ export default class UserInterface {
     window.addEventListener('mousedown', (event) => {
       if (!this.game.startGame && !this.statWindow && !this.gameInfo) {
         if (this.isInsideButton(this.startGameButton.x, this.startGameButton.y, this.startGameButton.width, this.startGameButton.height)) {
+          this.clickSound.playSound()
           this.game.startGame = true
         }
         else if (this.isInsideButton(this.statsButton.x, this.statsButton.y, this.statsButton.width, this.statsButton.height)) {
+          this.clickSound.playSound()
           this.statWindow = true
         }
         else if (this.isInsideButton(this.gameInfoButton.x, this.gameInfoButton.y, this.gameInfoButton.width, this.gameInfoButton.height)) {
+          this.clickSound.playSound()
           this.gameInfo = true
         }
       }
       else if (!this.game.startGame && this.statWindow) {
         if (this.isInsideButton(this.backButton.x, this.backButton.y, this.backButton.width, this.backButton.height)) {
+          this.clickSound.playSound()
           this.statWindow = false
         }
       } else if (!this.game.startGame && this.gameInfo) {
         if (this.isInsideButton(this.backButton.x, this.backButton.y, this.backButton.width, this.backButton.height)) {
+          this.clickSound.playSound()
           this.gameInfo = false
-          console.log("button")
         }
       }
 
@@ -75,12 +88,13 @@ export default class UserInterface {
         });
       }
 
-
       if (this.game.gameOver) {
         if (this.isInsideButton(this.gameOverButton.x, this.gameOverButton.y, this.gameOverButton.width, this.gameOverButton.height)) {
+          this.clickSound.playSound()
           this.game.gameReset = true
         }
         else if (this.isInsideButton(this.menuButton.x, this.menuButton.y, this.menuButton.width, this.menuButton.height)) {
+          this.clickSound.playSound()
           this.game.startGame = false
           this.game.gameOver = false
           this.game.gameReset = true
@@ -549,17 +563,18 @@ export default class UserInterface {
           break;
         case 'AMREIN':
           this.game.player.ammoRegenIncrease += 1
-          this.feeAmmoRegen += 5
+          this.feeAmmoRegen += 10
           break;
         case 'COIN':
           this.game.coinIncrease += 1
           this.feeCoin += 50
           break;
       }
+      this.upgradeYesSound.playSound()
     }
     else {
+      this.upgradeNoSound.playSound()
       console.log("You are POOR! Get more Coins!")
     }
   }
-
 }

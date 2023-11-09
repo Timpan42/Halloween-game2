@@ -1,3 +1,4 @@
+
 export default class UpgradeButton {
     constructor(game, context, x, y, width, height, text, botText, botTextX, botTextY, fillColor, fillColorSmall, textColor, fontSize, font, textXFix, textYFix, typ, fee) {
         this.game = game
@@ -7,6 +8,7 @@ export default class UpgradeButton {
         this.height = 100
         this.typ = typ
         this.fee = fee
+
         context.fillStyle = fillColor;
         context.fillRect(x, y, this.width, this.height);
         context.fillStyle = fillColorSmall;
@@ -21,10 +23,8 @@ export default class UpgradeButton {
         context.font = `${fontSize - 10}px ${font}`;
         context.fillText(this.fee + ' coins', (x + width / 2 + textXFix), (y + height / 2 + textYFix) + 55, width);
 
-
         //Reset
         context.shadowColor = this.game.ui.black
         context.fillStyle = this.game.ui.white;
-
     }
 }
