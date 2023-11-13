@@ -86,7 +86,7 @@ export default class Game {
     this.waveSpawnAmountMultiply = 1.1
     this.waveKilled = 0
 
-
+    this.scaling = 0
     this.player = new Player(this)
     this.mainSong = new MainSong(this)
 
@@ -113,13 +113,14 @@ export default class Game {
     //stop game
     if (this.gameOver) {
       this.storeLocal()
-      this.player.weapon.canShoot = false
+      this.player.canShoot = false
+
       this.mainSong.gameSound.pause()
       return
     }
 
     if (this.upgradeScreen) {
-      this.player.weapon.canShoot = false
+      this.player.canShoot = false
       return
     }
 
@@ -272,6 +273,7 @@ export default class Game {
     this.ui.feeCoin = 50
 
     this.playSong = true
+    this.scaling = 0
 
   }
 
@@ -292,7 +294,7 @@ export default class Game {
   enemySpawner(x, y) {
     if (this.wave == this.bossWave) {
       if (this.roundBossSpawn > 0) {
-        this.enemies.push(new BossPumpkin(this, x, y, 62, 86))
+        this.enemies.push(new BossPumpkin(this, x, y, 62, 86, this.scaling))
         this.roundBossSpawn--
         this.waveSpawned++
 
@@ -301,7 +303,7 @@ export default class Game {
 
     if (this.wave >= 6) {
       if (this.roundCandyEyeSpawn > 0) {
-        this.enemies.push(new CandyEye(this, x, y, 88, 88))
+        this.enemies.push(new CandyEye(this, x, y, 88, 88, this.scaling))
         this.roundCandyEyeSpawn--
         this.waveSpawned++
       }
@@ -309,13 +311,13 @@ export default class Game {
 
     if (this.wave >= 3)
       if (this.roundGummyBearSpawn > 0) {
-        this.enemies.push(new GummyBear(this, x, y, 56, 84))
+        this.enemies.push(new GummyBear(this, x, y, 56, 84, this.scaling))
         this.roundGummyBearSpawn--
         this.waveSpawned++
       }
 
     if (this.wave >= 0) {
-      this.enemies.push(new Pumpkin(this, x, y, 62, 86))
+      this.enemies.push(new Pumpkin(this, x, y, 62, 86, this.scaling))
       this.waveSpawned++
     }
 
@@ -341,6 +343,8 @@ export default class Game {
     }
     this.waveSpawnAmount = this.waveSpawnAmount + Math.floor(1 * this.waveSpawnAmountMultiply)
     this.waveSpawnAmountMultiply += 0.1
+
+    this.scaling = this.wave * 0.2
   }
 
   enemyCollision(enemy) {

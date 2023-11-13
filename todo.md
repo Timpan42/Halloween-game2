@@ -9,14 +9,10 @@ Main song
 Music by <a href="https://pixabay.com/users/alexgrohl-25289918/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=111451">AlexGrohl</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=111451">Pixabay</a>
 
 ## Att göra Idag
-* Ljud (skjuta, click)
-* kunna ändra ljud nivå 
 * enemy scaling 
 * Bossar (annan version av bass enemies)
 
 ## Måste göra för att göra klart 
-* ui grafik 
-* Mer Enemies
 ### Allmänt
 
 ### Enemies
@@ -34,6 +30,9 @@ Music by <a href="https://pixabay.com/users/alexgrohl-25289918/?utm_source=link-
 
 ## Om det finns tid (Extra saker)
 ### Allmänt
+* kunna ändra ljud nivå 
+* ui grafik 
+* Mer Enemies
 * Rundorna blir för långa efter drygt runda 8
 * Göra om points systemet så man använder en array som man går igenom istället för många if satser
 * font
@@ -90,3 +89,4 @@ Music by <a href="https://pixabay.com/users/alexgrohl-25289918/?utm_source=link-
 * sätta en gräns på hastigheten
 * Om man är utanför kartan så hammar på andra sidan 
 * fixa så inte spelet körs snabbare på en snabbare skärm 
+* Ljud (skjuta, click)

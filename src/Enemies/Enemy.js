@@ -9,11 +9,9 @@ export default class Enemy {
     this.speedY = 0
     this.markedForDeletion = false
 
-
     this.frameX = 0
     const runImage = new Image()
     runImage.src = image
-
 
     this.frameX = 0
     this.maxFrame = 4
