@@ -11,6 +11,7 @@ export default class CandyEye extends Enemy {
         this.damage = 2 + Math.floor(1 * scaling)
         this.points = 30
         this.type = 'candyEye'
-        this.coinMax = 3
+        this.coinMax = 5
+        this.coinMin = 3
     }
 }
