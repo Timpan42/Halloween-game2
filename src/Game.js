@@ -290,7 +290,6 @@ export default class Game {
     }
   }
 
-
   enemySpawner(x, y) {
     if (this.wave == this.bossWave) {
       if (this.roundBossSpawn > 0) {
@@ -319,6 +318,21 @@ export default class Game {
     if (this.wave >= 0) {
       this.enemies.push(new Pumpkin(this, x, y, 62, 86, this.scaling))
       this.waveSpawned++
+      if (this.waveSpawned < this.waveSpawnAmount) {
+        let x = Math.random() < 0.5 ? 0 : this.width // spawn on left or right edge
+        let y = Math.random() < 0.5 ? 0 : this.height // spawn on top or bottom edge
+        if (x === 0) {
+          y = Math.random() * this.height // if on left edge, randomize y position
+        } else if (x === this.width) {
+          y = Math.random() * this.height // if on right edge, randomize y position
+        } else if (y === 0) {
+          x = Math.random() * this.width // if on top edge, randomize x position
+        } else {
+          x = Math.random() * this.width // if on bottom edge, randomize x position
+        }
+        this.enemies.push(new Pumpkin(this, x, y, 62, 86, this.scaling))
+        this.waveSpawned++
+      }
     }
 
     this.enemyTimer = 0
