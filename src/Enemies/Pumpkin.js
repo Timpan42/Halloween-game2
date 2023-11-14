@@ -1,5 +1,5 @@
 import Enemy from './Enemy.js'
-import image from '../assets/img/Jack.png'
+import image from './../assets/img/Jack.png'
 
 export default class Pumpkin extends Enemy {
   constructor(game, x, y, width, height, scaling) {

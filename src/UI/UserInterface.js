@@ -158,7 +158,7 @@ export default class UserInterface {
       context.textAlign = 'center'
       context.font = `50px ${this.fontFamily}`
       context.fillText(
-        'Starting screen',
+        'Skelly',
         this.game.width / 2,
         this.game.height / 2 - 200
       )

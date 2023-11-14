@@ -1,8 +1,8 @@
 import Weapon from "./Weapons/Weapon"
 import DoubleShot from "./Weapons/DoubleShot"
 import TrippelShot from "./Weapons/TrippelShot"
-import IdleSkelly from '../assets/img/player/IdleSkelly.png'
-import WalkSkelly from '../assets/img/player/WalkSkelly.png'
+import IdleSkelly from './../assets/img/player/IdleSkelly.png'
+import WalkSkelly from './../assets/img/player/WalkSkelly.png'
 
 
 export default class Player {

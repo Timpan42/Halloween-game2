@@ -9,7 +9,6 @@ Main song
 Music by <a href="https://pixabay.com/users/alexgrohl-25289918/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=111451">AlexGrohl</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=111451">Pixabay</a>
 
 ## Att göra Idag
-* enemy scaling 
 * Bossar (annan version av bass enemies)
 
 ## Måste göra för att göra klart 
@@ -90,3 +89,4 @@ Music by <a href="https://pixabay.com/users/alexgrohl-25289918/?utm_source=link-
 * Om man är utanför kartan så hammar på andra sidan 
 * fixa så inte spelet körs snabbare på en snabbare skärm 
 * Ljud (skjuta, click)
+* enemy scaling 

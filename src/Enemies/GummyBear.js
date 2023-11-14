@@ -1,6 +1,6 @@
 import Enemy from "./Enemy";
 
-import image from '../assets/img/Were.png'
+import image from './../assets/img/Were.png'
 
 export default class GummyBear extends Enemy {
     constructor(game, x, y, width, height, scaling) {
